@@ -11,7 +11,7 @@
    String[] competence = Question.trouveCompetenceP();
    String questionSelectionnee = "";
 %>
-   <h3>Choisissez une destination</h3>
+   <h3>Choisissez une compétence</h3>
    <form action="Pform" method="get">
      Merci de choisir une compétence :
       <SELECT name="competenceR">
@@ -41,13 +41,13 @@
              <th>Id</th>
             </tr>
          <%
-         for(Question hotel : list){
+         for(Question question : list){
          %>
            <tr>
-             <td><%=hotel.getEnonce()%></td>
-             <td><%=hotel.getCompetence()%></td>
-             <td><%=hotel.getAut()%></td>
-             <td><%=hotel.getId()%></td>
+             <td><%=question.getEnonce()%></td>
+             <td><%=question.getCompetence()%></td>
+             <td><%=question.getAut()%></td>
+             <td><%=question.getId()%></td>
             </tr>
          <%
          }
