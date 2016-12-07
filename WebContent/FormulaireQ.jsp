@@ -10,6 +10,7 @@
 	<%@page import="QuestionV1.Question" %>
 	<%
   		Question questionI = new Question();
+		String[] langue = Question.trouveLangueP();
    		String[] competence = Question.trouveCompetenceP();
    	%>
 	<form method="post" action="Pform">
@@ -22,8 +23,21 @@
 			
 			<label for="auteur">Nom Auteur</label> 
 			<input type="text" id="auteur" name="auteur" value="" /> <br /> 
-			
-			<label for="auteur">Competence</label> 
+      		
+			<label for="langue">Langue</label> 			
+			<SELECT name="langueN">
+         	<OPTION value="">--- Langue ---</OPTION>
+        	 <%
+        		 for(String langueName : langue )
+        		 {
+        	 %>
+          			<OPTION value="<%=langueName %>"><%=langueName %></OPTION>
+         	<%
+        	 	 }
+        	 %>
+      		</SELECT> <br /> 
+      		
+			<label for="competence">Competence</label> 
 			<SELECT name="competenceN">
          	<OPTION value="">--- Competence ---</OPTION>
         	 <%

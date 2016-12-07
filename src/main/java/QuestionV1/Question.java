@@ -1,16 +1,16 @@
 package QuestionV1;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Question {
 
-    /**
-     * La liste de toutes les villes connues dans la base de données.
-     */
     private static String[] competences = { "Mathematique", "Langage C", "UML" };
+    private static String[] langue = { "Français", "Anglais", "Espagnol" };
     String enonceQ;
     String nomAuteur;
+    String langueQ;
     String competenceQ;
     int idQ;
     
@@ -18,12 +18,19 @@ public class Question {
           
         this.enonceQ= "";
         this.nomAuteur="";
+        this.langueQ ="";
         this.competenceQ ="";
         this.idQ = 0;
       } 
     public String getCompetence()
     {
       return this.competenceQ;
+    }
+    public String getLangue()
+    {
+     String str2 = new String(this.langueQ.getBytes(),Charset.forName("UTF-8"));
+     System.out.println("laaaaaaaaaaaaaaaaa   "+ str2 );
+      return str2;
     }
     public String getEnonce()
     {
@@ -50,6 +57,10 @@ public class Question {
         return questionT;
     }
     
+    public static String[] trouveLangueP() 
+    {
+        return langue;
+    } 
 
     public static String[] trouveCompetenceP() 
     {

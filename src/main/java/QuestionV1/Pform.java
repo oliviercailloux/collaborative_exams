@@ -19,9 +19,11 @@ public class Pform extends HttpServlet
 		String nom = req.getParameter("auteur");
         int identifiant = Integer.parseInt( req.getParameter("id"));
         String enonce = req.getParameter("question");
+        String langueI = req.getParameter("langueN");
         String competenceI = req.getParameter("competenceN");
         Question insert = new Question();
         insert.nomAuteur =nom;
+        insert.langueQ= langueI;
         insert.competenceQ= competenceI;
         insert.enonceQ =enonce;
         insert.idQ = identifiant;
