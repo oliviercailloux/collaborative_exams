@@ -13,7 +13,7 @@
 		String[] langue = Question.trouveLangueP();
    		String[] competence = Question.trouveCompetenceP();
    	%>
-	<form method="post" action="Pform">
+	<form method="post" action="reponse.jsp">
 		<fieldset>
 			<legend>Creation Question</legend>
 			<p>Vous pouvez enregistrer une question.</p>
@@ -51,6 +51,16 @@
       		</SELECT> <br /> 
 			<label for="identifiant"> Identifiant question </label> 
 			<input type="text" id="id" name="id"value="" /> <br /> 
+			
+			<label for="nbRep"> Nombre Questions souhaitées </label> 
+			<SELECT name="nbRep">
+         		<OPTION value="">--- Nombre ---</OPTION>
+         		<OPTION value="1">1</OPTION>
+          		<OPTION value="2">2</OPTION>
+          		<OPTION value="3">3</OPTION>
+          		<OPTION value="4">4</OPTION>
+          		<OPTION value="5">5</OPTION>
+      		</SELECT> <br /> 
 			
 			<input type="submit"value="Poster" /> <br />
 		</fieldset>

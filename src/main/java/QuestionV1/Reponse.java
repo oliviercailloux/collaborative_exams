@@ -1,3 +1,4 @@
+package QuestionV1;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,15 +11,17 @@ public class Reponse {
     
     
     
-    public Reponse(int idQuestion, String auteur, String textReponse){
-        this.idQuestion= idQuestion;
-        this.auteur= auteur;
+    public Reponse(String textReponse)
+    {
+   
         this.textReponse = textReponse;
+        System.out.println("test constr");
         
-      } 
+    } 
     
     public String getText()
     {
+    	System.out.println("test text");
       return this.textReponse;
     }
     public int getIdQuestion()

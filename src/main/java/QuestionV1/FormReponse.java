@@ -1,3 +1,4 @@
+package QuestionV1;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +18,18 @@ public class FormReponse extends HttpServlet
 		String auteur = req.getParameter("auteur");
         int idQuestion = Integer.parseInt( req.getParameter("idQuestion"));
         String textReponse = req.getParameter("textReponse");
-        Reponse reponse = new Reponse(idQuestion,auteur, textReponse);
+        Reponse reponse = new Reponse(textReponse);
         req.setAttribute("idQuestion",reponse.getIdQuestion());
         req.setAttribute("auteur",reponse.getAut());
         req.setAttribute("textReponse",reponse.getText());
 
         this.getServletContext().getRequestDispatcher("/reponse.jsp").forward(req, resp);;
 	}
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
+		String bt = req.getParameter("testA");
+		System.out.println(bt);
+	}
+	
 	
 }

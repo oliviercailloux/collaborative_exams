@@ -29,33 +29,45 @@
    <% 
    	  if ( request.getAttribute("listQuestionR") != null)
    	  {
-   	  ArrayList <Question> list = (ArrayList<Question>) request.getAttribute("listQuestionR");
-   	  if (list.size() > 0) { %>
-      <h3>Les questions liées à la competence <%= request.getAttribute("competenceR") %> </h3>
-      <table border="1">
-           <tr>
-             <th>Enonce</th>
-             <th>Langue</th>
-             <th>Competence</th>
-             <th>Auteur</th>
-             <th>Id</th>
-            </tr>
+   	  	ArrayList <Question> list = (ArrayList<Question>) request.getAttribute("listQuestionR");
+   	  	if (list.size() > 0) { 
+   	  	if ( request.getAttribute("competenceR") != null ){
+   	  		if(request.getAttribute("competenceR").equals(""))
+   	  		{
+   	  			%><h3>L'ensemble des questions :</h3><%
+   	  		}
+   	  		else{%>
+      		<h3>Les questions liées à la competence <%= request.getAttribute("competenceR") %> </h3><%}}
+   	  	else
+   	  	{
+   	  		%><h3>L'ensemble des questions :</h3><%	
+   	  	} %>
+   	  	<form action="FormReponse" method="get">
+      		<table border="1">
+          	 <tr>
+            	<th>Enonce</th>
+             	<th>Langue</th>
+             	<th>Competence</th>
+             	<th>Auteur</th>
+             	<th>Id</th>
+             </tr>
          <%
-         for(Question question : list){
-          	  System.out.println("--------------" + question.getLangue());
+         	for(Question question : list){
+          	  	System.out.println("--------------" + question.getLangue());
 
          %>
-           <tr>
-             <td><%=question.getEnonce()%></td>
-             <td><%=question.getLangue()%></td>
-             <td><%=question.getCompetence()%></td>
-             <td><%=question.getAut()%></td>
-             <td><%=question.getId()%></td>
+           	<tr>
+            	<td><%=question.getEnonce()%></td>
+             	<td><%=question.getLangue()%></td>
+            	<td><%=question.getCompetence()%></td>
+             	<td><%=question.getAut()%></td>
+             	<td><%=question.getId()%></td>
+             	<td><BUTTON type="submit" name="testA" value="<%=question.getId()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
             </tr>
          <%
-         }
+         }}
          %>
-       </table>
-    <%}}%>
+       </table></form>
+    <%}%>
 </body>
 </html>

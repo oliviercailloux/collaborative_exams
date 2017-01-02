@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/Pform")
 public class Pform extends HttpServlet 
@@ -16,12 +17,23 @@ public class Pform extends HttpServlet
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-		String nom = req.getParameter("auteur");
-        int identifiant = Integer.parseInt( req.getParameter("id"));
-        String enonce = req.getParameter("question");
-        String langueI = req.getParameter("langueN");
-        String competenceI = req.getParameter("competenceN");
+		HttpSession session = req.getSession();
+		String nom = (String)session.getAttribute("auteur");
+        int identifiant = (int) session.getAttribute("identifiant");
+        String enonce = (String)session.getAttribute("question");
+        String langueI = (String)session.getAttribute("langueN");
+        String competenceI = (String)session.getAttribute("competenceN");
+        int nombreRep = (int)session.getAttribute("nb");
+        int conditionRep =1;
         Question insert = new Question();
+        while(conditionRep <= nombreRep)
+        {
+        	String reponseId = "textReponse"+conditionRep;
+        	String textReponse = req.getParameter(reponseId);
+        	Reponse reponse = new Reponse(textReponse);
+        	insert.setReponse(reponse);
+        	conditionRep=conditionRep+1;
+        }
         insert.nomAuteur =nom;
         insert.langueQ= langueI;
         insert.competenceQ= competenceI;
@@ -29,8 +41,8 @@ public class Pform extends HttpServlet
         insert.idQ = identifiant;
         System.out.println(nom +"   " + identifiant + insert);
         listeQ.add(insert);
-        req.setAttribute("listQuestion", listeQ);
-        
+        req.setAttribute("listQuestionR", listeQ);
+        session.invalidate();
         this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);;
 	}
 	

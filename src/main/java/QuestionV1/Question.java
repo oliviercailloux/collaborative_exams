@@ -12,6 +12,8 @@ public class Question {
     String nomAuteur;
     String langueQ;
     String competenceQ;
+    String variante;
+    List <Reponse> listeR;
     int idQ;
     
     public Question(){
@@ -21,7 +23,24 @@ public class Question {
         this.langueQ ="";
         this.competenceQ ="";
         this.idQ = 0;
+        this.listeR= new ArrayList <Reponse>();
+        this.variante="-";
       } 
+    public Question(int idPere,String auteurPere)
+    {
+        
+        this.enonceQ= "";
+        this.nomAuteur="";
+        this.langueQ ="";
+        this.competenceQ ="";
+        this.idQ = 0;
+        this.listeR= new ArrayList <Reponse>();
+        this.variante="auteurPere+"+idPere;
+      } 
+    public void setReponse(Reponse e)
+    {
+      this.listeR.add(e);
+    }
     public String getCompetence()
     {
       return this.competenceQ;
@@ -47,6 +66,8 @@ public class Question {
     public static List <Question> trouveQuestionParMatiere(String matiere, List <Question> listeQ) 
     {
         List <Question> questionT = new ArrayList <Question>();
+        if(matiere.isEmpty())
+        	return listeQ;
         for (Question quest : listeQ) 
         {
             if (quest.getCompetence().equalsIgnoreCase(matiere)) 
