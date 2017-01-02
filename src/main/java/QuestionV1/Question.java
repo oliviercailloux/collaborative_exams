@@ -2,18 +2,22 @@ package QuestionV1;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 
 public class Question {
 
     private static String[] competences = { "Mathematique", "Langage C", "UML" };
     private static String[] langue = { "Français", "Anglais", "Espagnol" };
+    protected static int idtechnique = 0;
+    int idTechvisible;
     String enonceQ;
     String nomAuteur;
     String langueQ;
     String competenceQ;
     String variante;
-    List <Reponse> listeR;
+    String opinion;
+     List <Reponse> listeR;
     int idQ;
     
     public Question(){
@@ -25,25 +29,48 @@ public class Question {
         this.idQ = 0;
         this.listeR= new ArrayList <Reponse>();
         this.variante="-";
+        this.idtechnique = this.idtechnique +1;
+        this.idTechvisible = this.idtechnique;
       } 
-    public Question(int idPere,String auteurPere)
+    public Question(String idPere)
     {
-        
+    	StringTokenizer st = new StringTokenizer(idPere, "+"); 
+		String tableauEntier[] = new String[2];
+		int i=0;
+		while (st.hasMoreTokens()) {
+			tableauEntier[i] = st.nextToken();
+			i=i+1;
+	     }
         this.enonceQ= "";
         this.nomAuteur="";
         this.langueQ ="";
         this.competenceQ ="";
         this.idQ = 0;
+        this.opinion ="";
         this.listeR= new ArrayList <Reponse>();
-        this.variante="auteurPere+"+idPere;
+        this.variante=idPere;
+        this.idtechnique = this.idtechnique +1;
+        this.idTechvisible = this.idtechnique;
       } 
     public void setReponse(Reponse e)
     {
       this.listeR.add(e);
     }
+    public void setVar(String v)
+    {
+      this.variante=v;
+    }
+    public String getOpinion()
+    {
+      return this.opinion;
+    }
     public String getCompetence()
     {
       return this.competenceQ;
+    }
+    public int getIdTech()
+    {
+      return this.idTechvisible;
     }
     public String getLangue()
     {
@@ -63,6 +90,19 @@ public class Question {
     {
       return this.idQ;
     }
+    public String getVar()
+    {
+    	if(this.variante.equalsIgnoreCase("-"))
+    		return this.variante;
+		StringTokenizer st = new StringTokenizer(this.variante, "+"); 
+		String tableauEntier[] = new String[2];
+		int i=0;
+		while (st.hasMoreTokens()) {
+			tableauEntier[i] = st.nextToken();
+			i=i+1;
+	     }
+      return "- Idention question :"+tableauEntier[0]+ "\n- Auteur:"+tableauEntier[1];
+    }
     public static List <Question> trouveQuestionParMatiere(String matiere, List <Question> listeQ) 
     {
         List <Question> questionT = new ArrayList <Question>();
@@ -77,7 +117,59 @@ public class Question {
         }
         return questionT;
     }
+    public static Question getQuestion(String id, List <Question> listeQ) 
+    {
+    	StringTokenizer st = new StringTokenizer(id, "+"); 
+		String tableauEntier[] = new String[2];
+		int i=0;
+		while (st.hasMoreTokens()) {
+			tableauEntier[i] = st.nextToken();
+			i=i+1;
+	     }
+        Question questionT = new Question();
+        int idTemp = Integer.parseInt(tableauEntier[0]);
+        for (Question quest : listeQ) 
+        {
+            if (quest.getIdTech() == idTemp) 
+            {
+            	if(quest.getAut().equalsIgnoreCase(tableauEntier[1]))
+            	{
+            		questionT= quest;
+            	}
+                
+            }
+        }
+        return questionT;
+    }
     
+    public static List <Reponse> retourneReponse(String id, List <Question> listeQ) 
+    {
+    	StringTokenizer st = new StringTokenizer(id, "+"); 
+		String tableauEntier[] = new String[2];
+		int i=0;
+		while (st.hasMoreTokens()) {
+			tableauEntier[i] = st.nextToken();
+			i=i+1;
+	     }
+        Question questionT = new Question();
+        int idTemp = Integer.parseInt(tableauEntier[0]);
+        for (Question quest : listeQ) 
+        {
+            if (quest.getIdTech() == idTemp) 
+            {
+            	if(quest.getAut().equalsIgnoreCase(tableauEntier[1]))
+            	{
+            		questionT= quest;
+            	}
+                
+            }
+        }
+        return questionT.listeR;
+    }
+    public List <Reponse> reponseR() 
+    {
+        return listeR;
+    } 
     public static String[] trouveLangueP() 
     {
         return langue;

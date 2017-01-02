@@ -50,6 +50,7 @@
              	<th>Competence</th>
              	<th>Auteur</th>
              	<th>Id</th>
+             	<th>Variante de</th>
              </tr>
          <%
          	for(Question question : list){
@@ -62,7 +63,8 @@
             	<td><%=question.getCompetence()%></td>
              	<td><%=question.getAut()%></td>
              	<td><%=question.getId()%></td>
-             	<td><BUTTON type="submit" name="testA" value="<%=question.getId()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
+             	<td><%=question.getVar()%></td>
+             	<td><BUTTON type="submit" name="testA" value="<%=question.getIdTech()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
             </tr>
          <%
          }}

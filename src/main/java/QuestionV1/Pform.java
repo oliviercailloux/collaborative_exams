@@ -43,7 +43,7 @@ public class Pform extends HttpServlet
         listeQ.add(insert);
         req.setAttribute("listQuestionR", listeQ);
         session.invalidate();
-        this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);;
+        this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
