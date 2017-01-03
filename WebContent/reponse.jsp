@@ -34,11 +34,29 @@
 		<fieldset>
 			<legend>Créer une réponse</legend>
 			<p>Vous pouvez enregistrer votre réponse.</p>
-			<% while(reponse <= nb ){ %>
-			<label for="textReponse">Réponse <%= reponse %></label> 
-			<input type="text" id="textReponse<%= reponse %>" name="textReponse<%= reponse %>" value="" size="70" /> <br /> 
-			<%reponse=reponse+1; } %>
-			
+			<% while(reponse <= nb )
+			{%>
+				<label for="textReponse">Réponse <%= reponse %> : </label> 
+				<input type="text" id="textReponse<%= reponse %>" name="textReponse<%= reponse %>" value="" size="70" /> <br /> 
+			<%
+				if(nb==1)
+				{%>
+					<label for="pos<%= reponse %>">Position Réponse <%= reponse %> : </label> 
+					<SELECT name="pos<%= reponse %>">
+		          		<OPTION value="V">V</OPTION>
+		      		</SELECT> <br />
+				<%}
+				else
+				{%>
+					<label for="pos<%= reponse %>"> Position Réponse <%= reponse %> : </label> 
+					<SELECT name="pos<%= reponse %>">
+		          		<OPTION value="V">V</OPTION>
+		          		<OPTION value="F">F</OPTION>
+		      		</SELECT> <br />
+				<%}
+				reponse=reponse+1; 
+			}%>
+			<!-- NE PAS OUBLIER DE FAIRE UNE FONCTION ONCLICK POUR VEFIRIER SELON CM-CU  -->
 			<input type="submit"value="Poster" /> <br />
 		</fieldset>
 	</form>

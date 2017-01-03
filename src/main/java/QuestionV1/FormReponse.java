@@ -25,7 +25,7 @@ public class FormReponse extends HttpServlet
         //variable Question standard
         String nom = req.getParameter("auteur");
         int identifiant = Integer.parseInt( req.getParameter("id"));
-        String enonce = req.getParameter("question");
+        String enonce = req.getParameter("variante");
         String langueI = req.getParameter("langueN");
         String competenceI = req.getParameter("competenceN");
         

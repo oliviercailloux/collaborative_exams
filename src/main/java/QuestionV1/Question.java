@@ -34,13 +34,6 @@ public class Question {
       } 
     public Question(String idPere)
     {
-    	StringTokenizer st = new StringTokenizer(idPere, "+"); 
-		String tableauEntier[] = new String[2];
-		int i=0;
-		while (st.hasMoreTokens()) {
-			tableauEntier[i] = st.nextToken();
-			i=i+1;
-	     }
         this.enonceQ= "";
         this.nomAuteur="";
         this.langueQ ="";
@@ -95,13 +88,14 @@ public class Question {
     	if(this.variante.equalsIgnoreCase("-"))
     		return this.variante;
 		StringTokenizer st = new StringTokenizer(this.variante, "+"); 
-		String tableauEntier[] = new String[2];
+		String tableauEntier[] = new String[3];
 		int i=0;
 		while (st.hasMoreTokens()) {
 			tableauEntier[i] = st.nextToken();
 			i=i+1;
 	     }
-      return "- Idention question :"+tableauEntier[0]+ "\n- Auteur:"+tableauEntier[1];
+	  String Newligne=System.getProperty("line.separator"); 
+      return "- Idention question :"+tableauEntier[2]+Newligne+"- Auteur:"+tableauEntier[1];
     }
     public static List <Question> trouveQuestionParMatiere(String matiere, List <Question> listeQ) 
     {
@@ -117,10 +111,12 @@ public class Question {
         }
         return questionT;
     }
+    
+    
     public static Question getQuestion(String id, List <Question> listeQ) 
     {
     	StringTokenizer st = new StringTokenizer(id, "+"); 
-		String tableauEntier[] = new String[2];
+		String tableauEntier[] = new String[3];
 		int i=0;
 		while (st.hasMoreTokens()) {
 			tableauEntier[i] = st.nextToken();
@@ -145,7 +141,7 @@ public class Question {
     public static List <Reponse> retourneReponse(String id, List <Question> listeQ) 
     {
     	StringTokenizer st = new StringTokenizer(id, "+"); 
-		String tableauEntier[] = new String[2];
+		String tableauEntier[] = new String[3];
 		int i=0;
 		while (st.hasMoreTokens()) {
 			tableauEntier[i] = st.nextToken();

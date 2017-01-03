@@ -7,13 +7,20 @@ public class Reponse {
 	int idQuestion;
 	String auteur;
     String textReponse;
+    int trueRep;
     
     
     
-    
-    public Reponse(String textReponse)
+    public Reponse(String textReponse,String pos)
     {
-   
+    	if(pos.equalsIgnoreCase("V"))
+    	{
+    		this.trueRep=1;
+    	}
+    	else
+    	{
+    		this.trueRep=0;
+    	}
         this.textReponse = textReponse;
         System.out.println("test constr");
         
@@ -23,6 +30,17 @@ public class Reponse {
     {
     	System.out.println("test text");
       return this.textReponse;
+    }
+    public String getPos()
+    {
+      if(this.trueRep==1)
+      {
+    	  return "Vrai";
+      }
+      else
+      {
+    	  return "Faux";
+      }
     }
     public int getIdQuestion()
     {

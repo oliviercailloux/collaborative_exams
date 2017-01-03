@@ -26,14 +26,19 @@ public class Pform extends HttpServlet
         int nombreRep = (int)session.getAttribute("nb");
         int conditionRep =1;
         Question insert = new Question();
+        
+        //creation et insertion des reponses
         while(conditionRep <= nombreRep)
         {
         	String reponseId = "textReponse"+conditionRep;
+        	String positionID = "pos"+conditionRep;
         	String textReponse = req.getParameter(reponseId);
-        	Reponse reponse = new Reponse(textReponse);
+        	String pos = req.getParameter(positionID);
+        	Reponse reponse = new Reponse(textReponse, pos);
         	insert.setReponse(reponse);
         	conditionRep=conditionRep+1;
-        }
+        }//fin creation et insertion des reponses
+        
         insert.nomAuteur =nom;
         insert.langueQ= langueI;
         insert.competenceQ= competenceI;

@@ -26,10 +26,10 @@
 			<legend>Creation Variante</legend>
 			<p>Vous pouvez enregistrer une variante.</p>
 			
-			<label for="variante">Variante</label>
-			<input type="text" id="variante" name="variante" value="<%=questionI.getEnonce()%>" size="50" readonly/><br />
-			<label for="question">question</label>
-			<input type="text" id="question" name="question" value="" size="50"></input><br /> 
+			<label for="question">Question</label>
+			<input type="text" id="question" name="question" value="<%=questionI.getEnonce()%>" size="50" readonly/><br />
+			<label for="variante">question</label>
+			<input type="text" id="variante" name="variante" value="" size="50"></input><br /> 
 			
 			<label for="auteur">Nom Auteur</label> 
 			<input type="text" id="auteur" name="auteur" value="" /> <br /> 

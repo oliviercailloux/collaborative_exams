@@ -27,13 +27,21 @@
    	  		
    	  	
    	  <h2>Les réponses sont :</h2>
+   	    <table border="0">
+   	    <tr>
+            <th>Intitulé</th>
+             <th>Position</th>
+        </tr>
 		<ol>
 	    	<%
 	    	for(int i=0; i<list.reponseR().size();i++)
 	    	{%>
-	    		<li><%=list.reponseR().get(i).getText() %></li>
+	    		<tr>
+	    			<td><li><%=list.reponseR().get(i).getText() %></li></td>
+	    			<td><%=list.reponseR().get(i).getPos() %></td>
+	    		</tr>
 	    	<%} %>
-		</ol>
+		</ol></table>
 		<form method="post" action="FormulaireVariante.jsp">
 		<fieldset>
 			<legend>Création d'une variante</legend>
@@ -42,7 +50,7 @@
          		<OPTION value="VarianteSimple">Variante Simple</OPTION>
           		<OPTION value="Amelioration">Amelioration</OPTION>
       		</SELECT>
-			<BUTTON type="submit"name="IdQPere" value="<%=list.getIdTech()%>+<%=list.getAut()%>">Poster</BUTTON> <br />
+			<BUTTON type="submit"name="IdQPere" value="<%=list.getIdTech()%>+<%=list.getAut()%>+<%=list.getId()%>">Poster</BUTTON> <br />
 		</fieldset>
 	</form>
 </body>
