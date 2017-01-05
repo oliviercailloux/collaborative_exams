@@ -17,7 +17,7 @@ public class Question {
     String competenceQ;
     String variante;
     String opinion;
-     List <Reponse> listeR;
+    List <Reponse> listeR;
     int idQ;
     
     public Question(){

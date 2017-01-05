@@ -47,17 +47,34 @@ public class Pform extends HttpServlet
         System.out.println(nom +"   " + identifiant + insert);
         listeQ.add(insert);
         req.setAttribute("listQuestionR", listeQ);
+        req.setAttribute("listeSujet", SujetForm.sujetQ);
         session.invalidate();
         this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		String competenceRechercher = req.getParameter("competenceR");
-		List <Question> listeRechercher = new ArrayList <Question>();
-		listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, listeQ);
-		req.setAttribute("listQuestionR", listeRechercher);
-		req.setAttribute("competenceR", competenceRechercher);
-        this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);;
+		if(req.getParameter("competenceR")!=null)
+		{
+			String competenceRechercher = req.getParameter("competenceR");
+			List <Question> listeRechercher = new ArrayList <Question>();
+			listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, listeQ);
+			req.setAttribute("listQuestionR", listeRechercher);
+			req.setAttribute("competenceR", competenceRechercher);
+	        
+		}
+		else if (req.getParameter("sujetR")!=null)
+		{
+			String nom = req.getParameter("sujetR");
+			Sujet sujetRechercher = new Sujet();
+			sujetRechercher = Sujet.getSujet(nom, SujetForm.sujetQ);
+			List <Question> listeRechercher = new ArrayList <Question>();
+			listeRechercher = sujetRechercher.listeQuestionSujet;
+			req.setAttribute("listQuestionR", listeRechercher);
+			req.setAttribute("sujetNomR", nom);
+		}
+		req.setAttribute("listeSujet", SujetForm.sujetQ);
+		this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
+		
 	}
 }

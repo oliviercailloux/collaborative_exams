@@ -51,7 +51,7 @@ public class FormReponse extends HttpServlet
 		Question listeQuestionA = new Question();
 		listeQuestionA = Question.getQuestion(bt, Pform.listeQ);
 		req.setAttribute("Question",listeQuestionA);
-		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);;
+		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);
 	}
 	
 	
