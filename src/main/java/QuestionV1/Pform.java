@@ -57,6 +57,7 @@ public class Pform extends HttpServlet
 		if(req.getParameter("competenceR")!=null)
 		{
 			String competenceRechercher = req.getParameter("competenceR");
+			System.out.println("je rentre laaaaaaa" + competenceRechercher);
 			List <Question> listeRechercher = new ArrayList <Question>();
 			listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, listeQ);
 			req.setAttribute("listQuestionR", listeRechercher);
@@ -66,6 +67,7 @@ public class Pform extends HttpServlet
 		else if (req.getParameter("sujetR")!=null)
 		{
 			String nom = req.getParameter("sujetR");
+			
 			Sujet sujetRechercher = new Sujet();
 			sujetRechercher = Sujet.getSujet(nom, SujetForm.sujetQ);
 			List <Question> listeRechercher = new ArrayList <Question>();

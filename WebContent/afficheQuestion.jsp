@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
@@ -50,27 +51,41 @@
       <BUTTON type="submit">Chercher</BUTTON>
    </form>
    <% 
+   	  /***************
+   	  		DEBUT TEST AFFICHAGE QUESTION
+   	  							***************/
+   	  //Test si la liste des questions existent					
    	  if ( request.getAttribute("listQuestionR") != null)
    	  {
    	  	ArrayList <Question> list = (ArrayList<Question>) request.getAttribute("listQuestionR");
-   	  	if (list.size() > 0) { 
-   	  	if ( request.getAttribute("competenceR") != null )
-   	  	{
-   	  		if(request.getAttribute("competenceR").equals(""))
-   	  		{
-   	  			%><h3>L'ensemble des questions :</h3><%
+   	  	//Test si la liste est vide == des questions créées ou pas
+   	  	if (list.size() > 0) 
+   	  	{ 
+   	  		// test si le filtrage des question par question par compétence ou sujet est demandé
+	   	  	if ((request.getAttribute("competenceR") != null) || (request.getAttribute("sujetNomR")!=null))
+	   	  	{
+	   	  		//test si la demande est null remplace un futur contrôle javascript
+	   	  		if(((request.getAttribute("competenceR") != null)&&(request.getAttribute("competenceR").equals(""))) || ((request.getAttribute("sujetNomR")!=null)&&(request.getAttribute("sujetNomR").equals(""))))
+	   	  		{
+	   	  			%><h3>L'ensemble des questions :</h3><%
+	   	  		}
+	   	  		//test si le filtrage est sur la compétence
+	   	  		else if(((request.getAttribute("competenceR") != null)&&(request.getAttribute("competenceR").equals("")==false)))
+	   	  		{%>
+      				<h3>Les questions liées à la competence <%= request.getAttribute("competenceR") %> </h3><%	
+	   	  		}
+	   	  		//test si le filtrage est sur un sujet
+	   	  		else if(((request.getAttribute("sujetNomR")!=null)&&(request.getAttribute("sujetNomR").equals("")==false)))
+	   	  		{%>
+	      			<h3>Les questions liées au sujet <%= request.getAttribute("sujetNomR") %> </h3><%
+	      		}
    	  		}
    	  		else
-   	  		{%>
-      			<h3>Les questions liées à la competence <%= request.getAttribute("competenceR") %> </h3><%
-      		}
-   	  	}
-   	  	else
-   	  	{
-   	  		%><h3>L'ensemble des questions :</h3><%	
-   	  	} %>
-   	  	<a href="creationSujet.jsp" class="pull-left btn btn-default">Créer un sujet</a>
-   	  	<form action="FormReponse" method="get">
+   	  		{
+   	  			%><h3>L'ensemble des questions :</h3><%	
+   	  		} %>
+   	  		<a href="creationSujet.jsp" class="pull-left btn btn-default">Créer un sujet</a>
+   	  		<form action="FormReponse" method="get">
    	  		
       		<table class="table" >
       		<thead>
@@ -84,22 +99,23 @@
              </tr>
              </thead>
              <tbody>
-         <%
-         	for(Question question : list){
-          	  	System.out.println("--------------" + question.getLangue());
-
-         %>
-           	<tr>
-            	<td><%=question.getEnonce()%></td>
-             	<td><%=question.getLangue()%></td>
-            	<td><%=question.getCompetence()%></td>
-             	<td><%=question.getAut()%></td>
-             	<td><%=question.getId()%></td>
-             	<td><%=question.getVar()%></td>
-             	<td><BUTTON type="submit" name="testA" value="<%=question.getIdTech()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
-            </tr>
-         <%
-         }}
+         	<%
+         	for(Question question : list)
+         	{
+          	  	System.out.println("--------------" + question.getLangue());%>
+	           	<tr>
+	            	<td><%=question.getEnonce()%></td>
+	             	<td><%=question.getLangue()%></td>
+	            	<td><%=question.getCompetence()%></td>
+	             	<td><%=question.getAut()%></td>
+	             	<td><%=question.getId()%></td>
+	             	<td><%=question.getVar()%></td>
+	             	<td><BUTTON type="submit" name="testA" value="<%=question.getIdTech()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
+	            </tr>
+         	<%
+         	}
+         }
+   	  	
          %>
        </tbody></table></form>
     <%}%>
