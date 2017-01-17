@@ -41,7 +41,7 @@ public class Question {
         this.nomAuteur="";
         this.langueQ ="";
         this.competenceQ ="";
-        this.idQ =0;
+        this.idQ = 0;
         this.opinion ="";
         this.listeR= new ArrayList <Reponse>();
         this.variante=pere;
