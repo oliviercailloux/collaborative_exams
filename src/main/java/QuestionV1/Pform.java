@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 public class Pform extends HttpServlet 
 {
     public static List <Question> listeQ = new ArrayList <Question>();
-    /*@Inject
-    Reponse reponse;*/
+    @Inject
+    Reponse reponse;
     @Inject
     Question insert;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -37,9 +37,7 @@ public class Pform extends HttpServlet
         	String positionID = "pos"+conditionRep;
         	String textReponse = req.getParameter(reponseId);
         	String pos = req.getParameter(positionID);
-        	Reponse reponse = new Reponse();
-        	reponse.setReponse(textReponse, pos);
-        	insert.setReponse(reponse);
+        	insert.setReponse(reponse.setReponse(textReponse, pos));
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
         
