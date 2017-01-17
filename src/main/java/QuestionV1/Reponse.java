@@ -2,6 +2,9 @@ package QuestionV1;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class Reponse {
 
 	int idQuestion;
@@ -11,19 +14,10 @@ public class Reponse {
     
     
     
-    public Reponse(String textReponse,String pos)
+    public Reponse()
     {
-    	if(pos.equalsIgnoreCase("V"))
-    	{
-    		this.trueRep=1;
-    	}
-    	else
-    	{
-    		this.trueRep=0;
-    	}
-        this.textReponse = textReponse;
-        System.out.println("test constr");
-        
+    	this.textReponse = ""; 
+    	this.trueRep =2;
     } 
     
     public String getText()
@@ -41,6 +35,18 @@ public class Reponse {
       {
     	  return "Faux";
       }
+    }
+    public void setReponse(String texteR, String position)
+    {
+    	if(position.equalsIgnoreCase("V"))
+    	{
+    		this.trueRep=1;
+    	}
+    	else
+    	{
+    		this.trueRep=0;
+    	}
+        this.textReponse = texteR;
     }
     public int getIdQuestion()
     {

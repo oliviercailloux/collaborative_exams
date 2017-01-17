@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,10 @@ import javax.servlet.http.HttpSession;
 public class Pform extends HttpServlet 
 {
     public static List <Question> listeQ = new ArrayList <Question>();
-
+    /*@Inject
+    Reponse reponse;*/
+    @Inject
+    Question insert;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		HttpSession session = req.getSession();
@@ -24,9 +28,8 @@ public class Pform extends HttpServlet
         String langueI = (String)session.getAttribute("langueN");
         String competenceI = (String)session.getAttribute("competenceN");
         int nombreRep = (int)session.getAttribute("nb");
-        int conditionRep =1;
+        int conditionRep =1;  
         Question insert = new Question();
-        
         //creation et insertion des reponses
         while(conditionRep <= nombreRep)
         {
@@ -34,18 +37,20 @@ public class Pform extends HttpServlet
         	String positionID = "pos"+conditionRep;
         	String textReponse = req.getParameter(reponseId);
         	String pos = req.getParameter(positionID);
-        	Reponse reponse = new Reponse(textReponse, pos);
+        	Reponse reponse = new Reponse();
+        	reponse.setReponse(textReponse, pos);
         	insert.setReponse(reponse);
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
         
-        insert.nomAuteur =nom;
-        insert.langueQ= langueI;
-        insert.competenceQ= competenceI;
-        insert.enonceQ =enonce;
-        insert.idQ = identifiant;
+        insert.setAut(nom);
+        insert.setLangue(langueI);
+        insert.setCompetence(competenceI);
+        insert.setEnonce(enonce);
+        insert.setId(identifiant);
         System.out.println(nom +"   " + identifiant + insert);
         listeQ.add(insert);
+        
         req.setAttribute("listQuestionR", listeQ);
         req.setAttribute("listeSujet", SujetForm.sujetQ);
         session.invalidate();

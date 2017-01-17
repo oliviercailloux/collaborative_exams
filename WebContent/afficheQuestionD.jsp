@@ -59,6 +59,9 @@
          		<OPTION value="VarianteSimple">Variante Simple</OPTION>
           		<OPTION value="Amelioration">Amelioration</OPTION>
       		</SELECT>
+      		
+      		<!-- Envoi l'idenfiant de la variante -->
+      		
 			<BUTTON type="submit"name="IdQPere" value="<%=list.getIdTech()%>+<%=list.getAut()%>+<%=list.getId()%>">Poster</BUTTON> <br />
 		</fieldset>
 	</form>

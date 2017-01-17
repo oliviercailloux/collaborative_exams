@@ -18,8 +18,8 @@
 	<%
   		Question questionI = new Question();
 		questionI = Question.getQuestion(IdQPere, Pform.listeQ);
-		String[] langue = Question.trouveLangueP();
-   		String[] competence = Question.trouveCompetenceP();
+		String[] langue = Donnees.trouveLangueP();
+   		String[] competence = Donnees.trouveCompetenceP();
    	%>
 	<form method="post" action="FormReponse">
 		<fieldset>
@@ -28,7 +28,7 @@
 			
 			<label for="question">Question</label>
 			<input type="text" id="question" name="question" value="<%=questionI.getEnonce()%>" size="50" readonly/><br />
-			<label for="variante">question</label>
+			<label for="variante">Variante</label>
 			<input type="text" id="variante" name="variante" value="" size="50"></input><br /> 
 			
 			<label for="auteur">Nom Auteur</label> 

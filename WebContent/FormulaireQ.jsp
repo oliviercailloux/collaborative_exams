@@ -13,11 +13,11 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   </head>
 <body>
-	<%@page import="QuestionV1.Question" %>
+	<%@page import="QuestionV1.*" %>
 	<%
   		Question questionI = new Question();
-		String[] langue = Question.trouveLangueP();
-   		String[] competence = Question.trouveCompetenceP();
+		String[] langue = Donnees.trouveLangueP();
+   		String[] competence = Donnees.trouveCompetenceP();
    	%>
 	<form method="post" action="reponse.jsp">
 		<fieldset>
@@ -58,7 +58,7 @@
 			<label for="identifiant"> Identifiant question </label> 
 			<input type="text" id="id" name="id"value="" /> <br /> 
 			
-			<label for="nbRep"> Nombre Questions souhaitées </label> 
+			<label for="nbRep"> Nombre de Réponses souhaitées </label> 
 			<SELECT name="nbRep">
          		<OPTION value="">--- Nombre ---</OPTION>
          		<OPTION value="1">1</OPTION>

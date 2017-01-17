@@ -16,7 +16,7 @@
  <%@page import="QuestionV1.*" %>
  <%@page import="java.util.*"%>
 <%
-	String[] competence = Question.trouveCompetenceP();
+	String[] competence = Donnees.trouveCompetenceP();
 	ArrayList <Sujet> listSujet = (ArrayList<Sujet>) request.getAttribute("listeSujet");
 %>
    <h3>Choisissez une compétence</h3>
@@ -110,7 +110,7 @@
 	             	<td><%=question.getAut()%></td>
 	             	<td><%=question.getId()%></td>
 	             	<td><%=question.getVar()%></td>
-	             	<td><BUTTON type="submit" name="testA" value="<%=question.getIdTech()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
+	             	<td><BUTTON type="submit" name="getDetail" value="<%=question.getIdTech()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
 	            </tr>
          	<%
          	}

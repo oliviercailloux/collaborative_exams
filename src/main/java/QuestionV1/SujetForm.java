@@ -18,11 +18,13 @@ public class SujetForm extends HttpServlet
     public static List <Sujet> sujetQ = new ArrayList <Sujet>();
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
+    	//permet de récupérer la liste des questions sélectionnées
     	String[] values = req.getParameterValues("questionSelect");
-    	String nomS = req.getParameter("test1");
-    	System.out.println("---------------  Sujet2 " +nomS);
+    	
+    	//Recupération nom Sujet et création sujet
+    	String nomS = req.getParameter("sujetNom");
     	Sujet sujetTemp =new Sujet(nomS);
-    	System.out.println("---------------  Sujet " +sujetTemp.nomSujet);
+    	//navigue et récupère les questions sélectionées.
     	for(int i=0; i<values.length;i++)
     	{
     		Question listeQuestionA = new Question();
@@ -33,11 +35,10 @@ public class SujetForm extends HttpServlet
 		req.setAttribute("listeSujet",sujetQ);
 		this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);;
 	}
+    
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		String sujetTest = req.getParameter("test1");
-		System.out.println("---------------  Sujet2 " +sujetTest);
-		
 		String competenceRechercher = req.getParameter("competenceR");
 		List <Question> listeRechercher = new ArrayList <Question>();
 		listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, Pform.listeQ);

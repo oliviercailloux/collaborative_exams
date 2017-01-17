@@ -10,6 +10,9 @@
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- 
+		Permet de récupérer la valeur du nom sujet saisie par la personne
+		Et Submit un form d'une autre façon						 			-->
 	<script>
 	function modify_value()
 	{
@@ -17,6 +20,10 @@
    	 	hidden_field.value = document.getElementById("nomSujet").value;
     	document.getElementById("testform").Submit();
 	}</script>
+	<!-- 
+		Permet de récupérer la valeur du nom sujet saisie par la personne
+		Et de récupérer sa valeur et de l'afficher si la personne choisi une compétence
+																						-->
 	<script>
 	function modify_valueP()
 	{
@@ -30,7 +37,7 @@
 	<%@page import="QuestionV1.*" %>
 	<%@page import="java.util.*"%>
 	<%
-	  	String[] competence = Question.trouveCompetenceP();
+	  	String[] competence = Donnees.trouveCompetenceP();
 		String nomSujet = "";
 		if(request.getAttribute("sujetTest")!=null)
 		{
@@ -70,7 +77,7 @@
 			<h4>L'ensemble des questions :</h4>
 			<form name="testform" id="testform" action="SujetForm" method="Post" >
 				<input type="submit"value="Enregistrer sujet" onclick="modify_value()"/>
-				<input type="hidden" name=test1 id="test2" value="">
+				<input type="hidden" name=sujetNom id="test2" value="">
 				<table class="table" >
 					<thead>
 	   	 				<tr>
