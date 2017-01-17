@@ -17,8 +17,7 @@ public class Pform extends HttpServlet
     public static List <Question> listeQ = new ArrayList <Question>();
     /*@Inject
     Reponse reponse;*/
-    @Inject
-    Question insert;
+    
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		HttpSession session = req.getSession();

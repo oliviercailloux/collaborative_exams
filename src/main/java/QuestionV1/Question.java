@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 
 @ApplicationScoped
 public class Question {
@@ -20,6 +21,7 @@ public class Question {
     String opinion;
     List <Reponse> listeR;
     int idQ;
+    Question questionT;
     
     public Question(){
           
@@ -44,8 +46,24 @@ public class Question {
         this.listeR= new ArrayList <Reponse>();
         this.variante=pere;
       } 
+    
+    public Question createQuestionV(String nom, String langueI, String competenceI, String enonce, String idPere, int identifiant, String opinionI)
+    {
+    	questionT = new Question();
+    	questionT.setAut(nom);
+    	questionT.setLangue(langueI);
+    	questionT.setCompetence(competenceI);
+    	questionT.setEnonce(enonce);
+    	questionT.setVar(idPere);
+    	questionT.setId(identifiant);
+        questionT.setOpinion(opinionI);
+        questionT.setListReponse(Question.retourneReponse(idPere, Pform.listeQ));
+		return questionT;
+    	
+    }
     public void setListReponse(List <Reponse> e)
     {
+    	
       this.listeR = e;
     }
     public void setReponse(Reponse e)

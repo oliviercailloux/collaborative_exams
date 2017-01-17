@@ -34,16 +34,7 @@ public class FormReponse extends HttpServlet
         //variable Opinion
         String opinionI = req.getParameter("opinionN");
         //Question insert = new Question(idPere);
-        
-        insert.setAut(nom);
-        insert.setLangue(langueI);
-        insert.setCompetence(competenceI);
-        insert.setEnonce(enonce);
-        insert.setVar(idPere);
-        insert.setId(identifiant);
-        insert.setOpinion(opinionI);
-        insert.setListReponse(Question.retourneReponse(idPere, Pform.listeQ));
-        Pform.listeQ.add(insert);
+        Pform.listeQ.add(insert.createQuestionV(nom, langueI, competenceI, enonce, idPere, identifiant, opinionI));
         
         req.setAttribute("listQuestionR", Pform.listeQ);
         session.invalidate();
