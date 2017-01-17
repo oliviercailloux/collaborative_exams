@@ -18,7 +18,15 @@
   		Question questionI = new Question();
 		String[] langue = Donnees.trouveLangueP();
    		String[] competence = Donnees.trouveCompetenceP();
+   		String[] typeQ = Donnees.trouveTypeQ();
+   		Integer[] coef = Donnees.trouveCoef();
+   		RequestDispatcher rd;
    	%>
+   	
+   	
+   	
+   	
+   	
 	<form method="post" action="reponse.jsp">
 		<fieldset>
 			<legend>Creation Question</legend>
@@ -26,6 +34,32 @@
 
 			<label for="question">Question</label>
 			<input type="text" id="question" name="question" value="" size="50" /> <br /> 
+			
+			<label for="coef">Coefficient question</label> 			
+			<SELECT name="coef">
+         	<OPTION value="">--- Coefficient ---</OPTION>
+        	 <%
+        		 for(Integer i : coef )
+        		 {
+        	 %>
+          			<OPTION value="<%=i %>"><%=i %></OPTION>
+         	<%
+        	 	 }
+        	 %>
+      		</SELECT> <br />
+			
+			<label for="type">Type question</label> 			
+			<SELECT name="type">
+         	<OPTION value="">--- Type ---</OPTION>
+        	 <%
+        		 for(String type : typeQ )
+        		 {
+        	 %>
+          			<OPTION value="<%=type %>"><%=type %></OPTION>
+         	<%
+        	 	 }
+        	 %>
+      		</SELECT> <br />
 			
 			<label for="auteur">Nom Auteur</label> 
 			<input type="text" id="auteur" name="auteur" value="" /> <br /> 
@@ -42,6 +76,9 @@
         	 	 }
         	 %>
       		</SELECT> <br /> 
+      		
+      	
+      		
       		
 			<label for="competence">Competence</label> 
 			<SELECT name="competenceN">
@@ -68,8 +105,14 @@
           		<OPTION value="5">5</OPTION>
       		</SELECT> <br /> 
 			
+			
+			
 			<input type="submit"value="Poster" /> <br />
 		</fieldset>
 	</form>
+	
+	
+
+		
 </body>
 </html>

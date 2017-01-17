@@ -3,15 +3,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 @ApplicationScoped
 public class Reponse {
-
+	
 	int idQuestion;
 	String auteur;
     String textReponse;
     int trueRep;
-    
+    Reponse reponse;
     
     
     public Reponse()
@@ -36,17 +37,19 @@ public class Reponse {
     	  return "Faux";
       }
     }
-    public void setReponse(String texteR, String position)
+    public Reponse setReponse(String texteR, String position)
     {
+    	reponse = new Reponse();
     	if(position.equalsIgnoreCase("V"))
     	{
-    		this.trueRep=1;
+    		reponse.trueRep=1;
     	}
     	else
     	{
-    		this.trueRep=0;
+    		reponse.trueRep=0;
     	}
-        this.textReponse = texteR;
+        reponse.textReponse = texteR;
+        return reponse;
     }
     public int getIdQuestion()
     {
