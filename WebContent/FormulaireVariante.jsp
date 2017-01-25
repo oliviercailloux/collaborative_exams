@@ -17,7 +17,7 @@
 	<%@page import="QuestionV1.*" %>
 	<%
   		Question questionI = new Question();
-		questionI = Question.getQuestion(IdQPere, Pform.listeQ);
+		questionI = Question.getQuestion(IdQPere, CreationEtAffichageQuestionForm.listeQ);
 		String[] langue = Donnees.trouveLangueP();
    		String[] competence = Donnees.trouveCompetenceP();
    	%>

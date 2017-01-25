@@ -23,7 +23,6 @@ public class Reponse {
     
     public String getText()
     {
-    	System.out.println("test text");
       return this.textReponse;
     }
     public String getPos()

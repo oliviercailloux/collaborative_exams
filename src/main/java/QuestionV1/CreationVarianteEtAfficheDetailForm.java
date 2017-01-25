@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/FormReponse")
-public class FormReponse extends HttpServlet 
+public class CreationVarianteEtAfficheDetailForm extends HttpServlet 
 {
 	@Inject
 	Question insert;
@@ -34,9 +34,9 @@ public class FormReponse extends HttpServlet
         //variable Opinion
         String opinionI = req.getParameter("opinionN");
         //Question insert = new Question(idPere);
-        Pform.listeQ.add(insert.createQuestionV(nom, langueI, competenceI, enonce, idPere, identifiant, opinionI));
+        CreationEtAffichageQuestionForm.listeQ.add(insert.createQuestionV(nom, langueI, competenceI, enonce, idPere, identifiant, opinionI));
         
-        req.setAttribute("listQuestionR", Pform.listeQ);
+        req.setAttribute("listQuestionR", CreationEtAffichageQuestionForm.listeQ);
         session.invalidate();
 		req.setAttribute("listeSujet", SujetForm.sujetQ);
         this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
@@ -48,7 +48,7 @@ public class FormReponse extends HttpServlet
 		Question listeQuestionA = new Question();
 		
 		//Recherche et Recupere une question
-		listeQuestionA = Question.getQuestion(identifiantRecherche, Pform.listeQ);
+		listeQuestionA = Question.getQuestion(identifiantRecherche, CreationEtAffichageQuestionForm.listeQ);
 		req.setAttribute("Question",listeQuestionA);
 		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);
 	}

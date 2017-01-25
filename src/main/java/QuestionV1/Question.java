@@ -57,7 +57,7 @@ public class Question {
     	questionT.setVar(idPere);
     	questionT.setId(identifiant);
         questionT.setOpinion(opinionI);
-        questionT.setListReponse(Question.retourneReponse(idPere, Pform.listeQ));
+        questionT.setListReponse(Question.retourneReponse(idPere, CreationEtAffichageQuestionForm.listeQ));
 		return questionT;
     	
     }
@@ -101,7 +101,6 @@ public class Question {
     public String getLangue()
     {
      String str2 = new String(this.langueQ.getBytes(),Charset.forName("UTF-8"));
-     System.out.println("laaaaaaaaaaaaaaaaa   "+ str2 );
       return str2;
     }
     public void setLangue(String langue)
@@ -209,7 +208,6 @@ public class Question {
      															***/
     public static List <Reponse> retourneReponse(String id, List <Question> listeQ) 
     {
-    	System.out.println("je rentre la je m'apelle salim  "+ id);
     	StringTokenizer st = new StringTokenizer(id, "+"); 
 		String tableauEntier[] = new String[3];
 		int i=0;
