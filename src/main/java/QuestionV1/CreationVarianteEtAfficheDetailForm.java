@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class CreationVarianteEtAfficheDetailForm extends HttpServlet 
 {
 	@Inject
-	Question insert;
+	GestionQuestion insert;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		//variable session pour identifier la variante

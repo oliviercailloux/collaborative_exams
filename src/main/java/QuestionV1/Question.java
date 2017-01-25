@@ -47,20 +47,6 @@ public class Question {
         this.variante=pere;
       } 
     
-    public Question createQuestionV(String nom, String langueI, String competenceI, String enonce, String idPere, int identifiant, String opinionI)
-    {
-    	questionT = new Question();
-    	questionT.setAut(nom);
-    	questionT.setLangue(langueI);
-    	questionT.setCompetence(competenceI);
-    	questionT.setEnonce(enonce);
-    	questionT.setVar(idPere);
-    	questionT.setId(identifiant);
-        questionT.setOpinion(opinionI);
-        questionT.setListReponse(Question.retourneReponse(idPere, CreationEtAffichageQuestionForm.listeQ));
-		return questionT;
-    	
-    }
     public void setListReponse(List <Reponse> e)
     {
     	

@@ -33,7 +33,7 @@
 			<p>Vous pouvez enregistrer une question.</p>
 
 			<label for="question">Question</label>
-			<input type="text" id="question" name="question" value="" size="50" /> <br /> 
+			<input type="text" id="question" name="question" value="test" size="50" /> <br /> 
 			
 			<label for="coef">Coefficient question</label> 			
 			<SELECT name="coef">
@@ -62,7 +62,7 @@
       		</SELECT> <br />
 			
 			<label for="auteur">Nom Auteur</label> 
-			<input type="text" id="auteur" name="auteur" value="" /> <br /> 
+			<input type="text" id="auteur" name="auteur" value="tonton" /> <br /> 
       		
 			<label for="langue">Langue</label> 			
 			<SELECT name="langueN">
@@ -93,7 +93,7 @@
         	 %>
       		</SELECT> <br /> 
 			<label for="identifiant"> Identifiant question </label> 
-			<input type="text" id="id" name="id"value="" /> <br /> 
+			<input type="text" id="id" name="id"value="1" /> <br /> 
 			
 			<label for="nbRep"> Nombre de Réponses souhaitées </label> 
 			<SELECT name="nbRep">

@@ -18,7 +18,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
     @Inject
     Reponse reponse;
     @Inject
-    Question insert;
+    GestionQuestion testQuestion;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		HttpSession session = req.getSession();
@@ -29,7 +29,8 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         String competenceI = (String)session.getAttribute("competenceN");
         int nombreRep = (int)session.getAttribute("nb");
         int conditionRep =1;  
-        Question insert = new Question();
+       // Question insert = new Question();
+        testQuestion.createQuestion(nom, langueI, competenceI, enonce, identifiant);
         //creation et insertion des reponses
         while(conditionRep <= nombreRep)
         {
@@ -37,17 +38,17 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         	String positionID = "pos"+conditionRep;
         	String textReponse = req.getParameter(reponseId);
         	String pos = req.getParameter(positionID);
-        	insert.setReponse(reponse.setReponse(textReponse, pos));
+        	testQuestion.setReponseG(reponse.setReponse(textReponse, pos));
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
-        
+        /*
         insert.setAut(nom);
         insert.setLangue(langueI);
         insert.setCompetence(competenceI);
         insert.setEnonce(enonce);
-        insert.setId(identifiant);
-        System.out.println(nom +"   " + identifiant + insert);
-        listeQ.add(insert);
+        insert.setId(identifiant);*/
+       // System.out.println(nom +"   " + identifiant + insert);
+        listeQ.add(testQuestion.getQuestion());
         
         req.setAttribute("listQuestionR", listeQ);
         req.setAttribute("listeSujet", SujetForm.sujetQ);
