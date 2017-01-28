@@ -23,6 +23,14 @@ public class Question {
     int idQ;
     Question questionT;
     
+    //Liste permettant de calculer la note de pertinence de la question
+    //Element 0, somme de des notes attribué
+    //Element 1, nombre personne ayant voté
+    //List<Integer> notePertinence;
+
+    //Attribut niveau de type String
+    String niveau;
+    
     public Question(){
           
         this.enonceQ= "";
@@ -33,6 +41,9 @@ public class Question {
         this.opinion ="";
         this.listeR= new ArrayList <Reponse>();
         this.variante="-";
+        this.niveau="";
+        //this.notePertinence.add(0,0);
+        //this.notePertinence.add(1,0);
        
       } 
     public Question(String pere)
@@ -45,9 +56,13 @@ public class Question {
         this.opinion ="";
         this.listeR= new ArrayList <Reponse>();
         this.variante=pere;
+        this.niveau="";
+        //this.notePertinence.add(0,0);
+        //this.notePertinence.add(1,0);
+        
       } 
     
-    public Question createQuestionV(String nom, String langueI, String competenceI, String enonce, String idPere, int identifiant, String opinionI)
+    public Question createQuestionV(String nom, String langueI, String competenceI, String enonce, String idPere, int identifiant, String opinionI, String niveau)
     {
     	questionT = new Question();
     	questionT.setAut(nom);
@@ -58,6 +73,7 @@ public class Question {
     	questionT.setId(identifiant);
         questionT.setOpinion(opinionI);
         questionT.setListReponse(Question.retourneReponse(idPere, CreationEtAffichageQuestionForm.listeQ));
+        questionT.setNiveau(niveau);
 		return questionT;
     	
     }
@@ -233,6 +249,27 @@ public class Question {
     public List <Reponse> reponseR() 
     {
         return listeR;
-    } 
+    }
+    
+    /*public void setNotePertinence (int note){
+    	int x = notePertinence.get(1);
+    	notePertinence.set(1, x++);
+    	notePertinence.set(0, notePertinence.get(0)+note);
+    	
+    }
+    
+    public int getNotePertinence() 
+    {
+        return notePertinence.get(0)/notePertinence.get(1);
+    } */
+    
+    public void setNiveau(String p) {
+        niveau = p;
+    }
+
+    public String getNiveau() {
+        return niveau;
+    }
+    
     
 }

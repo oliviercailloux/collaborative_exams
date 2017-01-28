@@ -93,6 +93,7 @@
             	<th>Enonce</th>
              	<th>Langue</th>
              	<th>Competence</th>
+             	<th>Niveau</th>
              	<th>Auteur</th>
              	<th>Id</th>
              	<th>Variante de</th>
@@ -107,6 +108,7 @@
 	            	<td><%=question.getEnonce()%></td>
 	             	<td><%=question.getLangue()%></td>
 	            	<td><%=question.getCompetence()%></td>
+	            	<td><%=question.getNiveau()%></td>
 	             	<td><%=question.getAut()%></td>
 	             	<td><%=question.getId()%></td>
 	             	<td><%=question.getVar()%></td>

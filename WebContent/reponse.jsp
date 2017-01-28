@@ -5,7 +5,8 @@
 	int identifiant = Integer.parseInt( request.getParameter("id"));
 	String enonce = request.getParameter("question");
 	String langueI = request.getParameter("langueN");
-	String competenceI = request.getParameter("competenceN");	
+	String competenceI = request.getParameter("competenceN");
+	String niveau = request.getParameter("niveau");
 	int nb = Integer.parseInt( request.getParameter("nbRep"));
 	int reponse = 1;
 	//insertion données première form
@@ -14,6 +15,7 @@
 	session.setAttribute( "question", enonce );
 	session.setAttribute( "langueN", langueI );
 	session.setAttribute( "competenceN", competenceI );
+	session.setAttribute( "niveau", niveau );
 	session.setAttribute( "nb", nb );
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

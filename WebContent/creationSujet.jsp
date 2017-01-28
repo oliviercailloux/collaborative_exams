@@ -84,6 +84,7 @@
 	     					<th>Enonce</th>
 					      	<th>Langue</th>
 					      	<th>Competence</th>
+					      	<th>Niveau</th>
 					      	<th>Auteur</th>
 					      	<th>Id</th>
 					      	<th>Variante de</th>
@@ -100,6 +101,7 @@
 							<td><input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>+<%=question.getAut()%>"><%=question.getEnonce()%></input></td>
 						 	<td><%=question.getLangue()%></td>
 							<td><%=question.getCompetence()%></td>
+							<td><%=question.getNiveau()%></td>
 						 	<td><%=question.getAut()%></td>
 						 	<td><%=question.getId()%></td>
 					<%

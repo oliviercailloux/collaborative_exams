@@ -19,12 +19,10 @@
 		String[] langue = Donnees.trouveLangueP();
    		String[] competence = Donnees.trouveCompetenceP();
    		String[] typeQ = Donnees.trouveTypeQ();
+   		String[] niveau = Donnees.listeNiveau();
    		Integer[] coef = Donnees.trouveCoef();
    		RequestDispatcher rd;
    	%>
-   	
-   	
-   	
    	
    	
 	<form method="post" action="reponse.jsp">
@@ -75,9 +73,9 @@
          	<%
         	 	 }
         	 %>
-      		</SELECT> <br /> 
+      		</SELECT> <br />
       		
-      	
+      		 
       		
       		
 			<label for="competence">Competence</label> 
@@ -91,9 +89,24 @@
          	<%
         	 	 }
         	 %>
+      		</SELECT> <br />
+      		
+      		<label for="niveau">Niveau</label> 
+			<SELECT name="niveau">
+         	<OPTION value="">--- Niveau ---</OPTION>
+        	 <%
+        		 for(String niv : niveau)
+        		 {
+        	 %>
+          			<OPTION value="<%=niv %>"><%=niv %></OPTION>
+         	<%
+        	 	 }
+        	 %>
       		</SELECT> <br /> 
+      		
+      		 
 			<label for="identifiant"> Identifiant question </label> 
-			<input type="text" id="id" name="id"value="" /> <br /> 
+			<input type="text" id="id" name="id"value="" /> <br />
 			
 			<label for="nbRep"> Nombre de Réponses souhaitées </label> 
 			<SELECT name="nbRep">
@@ -103,9 +116,7 @@
           		<OPTION value="3">3</OPTION>
           		<OPTION value="4">4</OPTION>
           		<OPTION value="5">5</OPTION>
-      		</SELECT> <br /> 
-			
-			
+      		</SELECT> <br />
 			
 			<input type="submit"value="Poster" /> <br />
 		</fieldset>

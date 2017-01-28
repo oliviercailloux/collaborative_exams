@@ -27,6 +27,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         String enonce = (String)session.getAttribute("question");
         String langueI = (String)session.getAttribute("langueN");
         String competenceI = (String)session.getAttribute("competenceN");
+        String niveau = (String)session.getAttribute("niveau");
         int nombreRep = (int)session.getAttribute("nb");
         int conditionRep =1;  
         Question insert = new Question();
@@ -44,6 +45,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         insert.setAut(nom);
         insert.setLangue(langueI);
         insert.setCompetence(competenceI);
+        insert.setNiveau(niveau);
         insert.setEnonce(enonce);
         insert.setId(identifiant);
         System.out.println(nom +"   " + identifiant + insert);
