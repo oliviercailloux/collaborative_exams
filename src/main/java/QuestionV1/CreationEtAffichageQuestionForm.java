@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/Pform")
-public class Pform extends HttpServlet 
+public class CreationEtAffichageQuestionForm extends HttpServlet 
 {
     public static List <Question> listeQ = new ArrayList <Question>();
     @Inject

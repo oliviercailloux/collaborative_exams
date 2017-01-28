@@ -28,7 +28,7 @@ public class SujetForm extends HttpServlet
     	for(int i=0; i<values.length;i++)
     	{
     		Question listeQuestionA = new Question();
-    		listeQuestionA = Question.getQuestion(values[i], Pform.listeQ);
+    		listeQuestionA = Question.getQuestion(values[i], CreationEtAffichageQuestionForm.listeQ);
     		sujetTemp.insertSujet(listeQuestionA);
     	}
     	sujetQ.add(sujetTemp);
@@ -41,7 +41,7 @@ public class SujetForm extends HttpServlet
 		String sujetTest = req.getParameter("test1");
 		String competenceRechercher = req.getParameter("competenceR");
 		List <Question> listeRechercher = new ArrayList <Question>();
-		listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, Pform.listeQ);
+		listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, CreationEtAffichageQuestionForm.listeQ);
 		req.setAttribute("listQuestionR", listeRechercher);
 		req.setAttribute("sujetTest", sujetTest);
         this.getServletContext().getRequestDispatcher("/creationSujet.jsp").forward(req, resp);;

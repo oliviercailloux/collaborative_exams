@@ -39,7 +39,7 @@ public class Sujet
 	        Sujet sujetT = new Sujet();
 	        if(nom.isEmpty())
 	        {
-	        	sujetT.listeQuestionSujet=Pform.listeQ;
+	        	sujetT.listeQuestionSujet=CreationEtAffichageQuestionForm.listeQ;
 	        	return sujetT;
 	        	
 	        }
