@@ -49,6 +49,8 @@ public class CreationVarianteEtAfficheDetailForm extends HttpServlet
 		
 		//Recherche et Recupere une question
 		listeQuestionA = Question.getQuestion(identifiantRecherche, CreationEtAffichageQuestionForm.listeQ);
+		System.out.println(listeQuestionA.idTechvisible + " id pere");
+		System.out.println(listeQuestionA.variante + " id var");
 		req.setAttribute("Question",listeQuestionA);
 		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);
 	}

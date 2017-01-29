@@ -26,7 +26,7 @@ public class GestionQuestion
 	}
 	public Question createQuestionV(String nom, String langueI, String competenceI, String enonce, String idPere, int identifiant, String opinionI)
     {
-    	questionT = new Question();
+    	questionT = new Question(idPere);
     	questionT.setAut(nom);
     	questionT.setLangue(langueI);
     	questionT.setCompetence(competenceI);

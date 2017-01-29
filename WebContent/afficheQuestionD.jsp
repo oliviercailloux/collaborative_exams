@@ -22,7 +22,7 @@
    	  	list = (Question) request.getAttribute("Question");
    	  }%>
    	  <h1>Les informations de la question : <%=list.getEnonce()%> </h1>
-   	  <p>Enonce : <strong><%=list.getEnonce()%></strong></p>
+   	  <p>Enonce : <strong><%=list.getEnonce()%></strong> <a href="Difference?param1=<%=list.getIdTech()%>&param2=<%=list.getAut()%>">Difference originale</a></p>
    	  <p>Langue de la question : <strong><%=list.getLangue()%></strong></p>
    	  <p>La competence de la question : <strong><%=list.getCompetence()%></strong></p>
    	  <p>L'auteur de la question : <strong><%=list.getAut()%></strong></p>
