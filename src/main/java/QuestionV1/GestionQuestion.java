@@ -16,6 +16,8 @@ public class GestionQuestion
     	this.questionT.setEnonce(enonce);
     	this.questionT.setId(identifiant);
     	this.questionT.setNiveau(niveau);
+    	this.questionT.nbVotePertinence = 0;
+    	this.questionT.totalNotePertinence = 0;
     }
 	public void setReponseG (Reponse e)
 	{
@@ -37,6 +39,8 @@ public class GestionQuestion
         questionT.setOpinion(opinionI);
         questionT.setListReponse(Question.retourneReponse(idPere, CreationEtAffichageQuestionForm.listeQ));
         questionT.setNiveau(niveau);
+        questionT.nbVotePertinence = 0;
+        questionT.totalNotePertinence = 0;
 		return questionT;
     }
 }

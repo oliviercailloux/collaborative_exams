@@ -28,6 +28,7 @@
    	  <p>Le niveau de la question : <strong><%=list.getNiveau()%></strong></p>
    	  <p>L'auteur de la question : <strong><%=list.getAut()%></strong></p>
    	  <p>L'identifiant de la question : <strong><%=list.getId()%></strong></p>
+   	  <p>Pertinence de la question : <strong><%=list.getNotePertinence()%></strong></p>
    	  <p>Variante de : <strong><%=list.getVar()%></strong></p>
    	  <%if(list.getVar()!="-")
    	  {%>

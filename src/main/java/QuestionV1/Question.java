@@ -28,6 +28,9 @@ public class Question {
     
   //Attribut niveau de type String
     String niveau;
+    //Element de pour noter la pertinence de la question
+    int nbVotePertinence;
+    int totalNotePertinence;
     
     public Question(){
           
@@ -40,6 +43,8 @@ public class Question {
         this.listeR= new ArrayList <Reponse>();
         this.variante="-";
         this.niveau="";
+        this.nbVotePertinence = 0;
+        this.totalNotePertinence = 0;
        
       } 
     public Question(String pere)
@@ -53,6 +58,8 @@ public class Question {
         this.listeR= new ArrayList <Reponse>();
         this.variante=pere;
         this.niveau="";
+        this.nbVotePertinence = 0;
+        this.totalNotePertinence = 0;
       } 
     
     public void setListReponse(List <Reponse> e)
@@ -238,6 +245,19 @@ public class Question {
 
     public String getNiveau() {
         return niveau;
+    }
+    
+    public void setNotePertinence(int note){
+    	nbVotePertinence ++;
+    	totalNotePertinence = totalNotePertinence + note;
+    }
+    
+    public float getNotePertinence() {
+    	if(nbVotePertinence == 0){
+    		return 0;
+    	}
+    	else
+        return totalNotePertinence/nbVotePertinence;
     }
 
     
