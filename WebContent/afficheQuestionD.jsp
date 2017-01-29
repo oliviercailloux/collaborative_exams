@@ -25,6 +25,7 @@
    	  <p>Enonce : <strong><%=list.getEnonce()%></strong> <a href="Difference?param1=<%=list.getIdTech()%>&param2=<%=list.getAut()%>">Difference originale</a></p>
    	  <p>Langue de la question : <strong><%=list.getLangue()%></strong></p>
    	  <p>La competence de la question : <strong><%=list.getCompetence()%></strong></p>
+   	  <p>Le niveau de la question : <strong><%=list.getNiveau()%></strong></p>
    	  <p>L'auteur de la question : <strong><%=list.getAut()%></strong></p>
    	  <p>L'identifiant de la question : <strong><%=list.getId()%></strong></p>
    	  <p>Variante de : <strong><%=list.getVar()%></strong></p>

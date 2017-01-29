@@ -20,6 +20,8 @@
 		questionI = Question.getQuestion(IdQPere, CreationEtAffichageQuestionForm.listeQ);
 		String[] langue = Donnees.trouveLangueP();
    		String[] competence = Donnees.trouveCompetenceP();
+   		String[] niveau = Donnees.trouveNiveau();
+
    	%>
 	<form method="post" action="FormReponse">
 		<fieldset>
@@ -62,7 +64,21 @@
         		 	{
         		 %>
           				<OPTION value="<%=competenceName %>"><%=competenceName %></OPTION><%}} %>
+      		</SELECT> <br />
+      		
+      		<label for="niveau">Niveau</label> 			
+			<SELECT name="niveau">
+         	<OPTION value="">--- Niveau ---</OPTION>
+        	 <%
+        		 for(String niv : niveau )
+        		 {
+        	 %>
+          			<OPTION value="<%=niv %>"><%=niv %></OPTION>
+         	<%
+        	 	 }
+        	 %>
       		</SELECT> <br /> 
+      		
 			<label for="identifiant"> Identifiant question </label> 
 			<input type="text" id="id" name="id"value="" /> <br /> 
 			<label for="opinion">Opinion</label> 

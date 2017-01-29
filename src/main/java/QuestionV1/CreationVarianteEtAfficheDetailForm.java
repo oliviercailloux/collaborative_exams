@@ -30,11 +30,12 @@ public class CreationVarianteEtAfficheDetailForm extends HttpServlet
         String enonce = req.getParameter("variante");
         String langueI = req.getParameter("langueN");
         String competenceI = req.getParameter("competenceN");
+        String niveau = req.getParameter("niveau");
         
         //variable Opinion
         String opinionI = req.getParameter("opinionN");
         //Question insert = new Question(idPere);
-        CreationEtAffichageQuestionForm.listeQ.add(insert.createQuestionV(nom, langueI, competenceI, enonce, idPere, identifiant, opinionI));
+        CreationEtAffichageQuestionForm.listeQ.add(insert.createQuestionV(nom, langueI, competenceI, enonce, idPere, identifiant, opinionI, niveau));
         
         req.setAttribute("listQuestionR", CreationEtAffichageQuestionForm.listeQ);
         session.invalidate();

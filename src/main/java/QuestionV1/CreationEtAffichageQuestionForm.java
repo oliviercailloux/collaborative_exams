@@ -27,10 +27,11 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         String enonce = (String)session.getAttribute("question");
         String langueI = (String)session.getAttribute("langueN");
         String competenceI = (String)session.getAttribute("competenceN");
+        String niveau = (String)session.getAttribute("niveau");
         int nombreRep = (int)session.getAttribute("nb");
         int conditionRep =1;  
        // Question insert = new Question();
-        testQuestion.createQuestion(nom, langueI, competenceI, enonce, identifiant);
+        testQuestion.createQuestion(nom, langueI, competenceI, enonce, identifiant,niveau);
         //creation et insertion des reponses
         while(conditionRep <= nombreRep)
         {

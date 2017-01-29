@@ -18,6 +18,7 @@
   		Question questionI = new Question();
 		String[] langue = Donnees.trouveLangueP();
    		String[] competence = Donnees.trouveCompetenceP();
+   		String[] niveau = Donnees.trouveNiveau();
    		String[] typeQ = Donnees.trouveTypeQ();
    		Integer[] coef = Donnees.trouveCoef();
    		RequestDispatcher rd;
@@ -91,7 +92,21 @@
          	<%
         	 	 }
         	 %>
-      		</SELECT> <br /> 
+      		</SELECT> <br />
+      		
+      		<label for="niveau">Niveau</label> 
+			<SELECT name="niveau">
+         	<OPTION value="">--- Niveau ---</OPTION>
+        	 <%
+        		 for(String niv : niveau )
+        		 {
+        	 %>
+          			<OPTION value="<%=niv %>"><%=niv %></OPTION>
+         	<%
+        	 	 }
+        	 %>
+      		</SELECT> <br />
+      		 
 			<label for="identifiant"> Identifiant question </label> 
 			<input type="text" id="id" name="id"value="1" /> <br /> 
 			

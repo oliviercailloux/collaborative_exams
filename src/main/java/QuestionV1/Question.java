@@ -26,6 +26,9 @@ public class Question {
     int idQ;
     Question questionT;
     
+  //Attribut niveau de type String
+    String niveau;
+    
     public Question(){
           
         this.enonceQ= "";
@@ -36,6 +39,7 @@ public class Question {
         this.opinion ="";
         this.listeR= new ArrayList <Reponse>();
         this.variante="-";
+        this.niveau="";
        
       } 
     public Question(String pere)
@@ -48,6 +52,7 @@ public class Question {
         this.opinion ="";
         this.listeR= new ArrayList <Reponse>();
         this.variante=pere;
+        this.niveau="";
       } 
     
     public void setListReponse(List <Reponse> e)
@@ -226,5 +231,14 @@ public class Question {
     {
         return listeR;
     }
+    
+    public void setNiveau(String p) {
+        niveau = p;
+    }
+
+    public String getNiveau() {
+        return niveau;
+    }
+
     
 }
