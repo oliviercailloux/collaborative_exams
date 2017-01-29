@@ -16,7 +16,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 {
     public static List <Question> listeQ = new ArrayList <Question>();
     @Inject
-    Reponse reponse;
+    GestionReponse reponse;
     @Inject
     GestionQuestion testQuestion;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -38,7 +38,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         	String positionID = "pos"+conditionRep;
         	String textReponse = req.getParameter(reponseId);
         	String pos = req.getParameter(positionID);
-        	testQuestion.setReponseG(reponse.setReponse(textReponse, pos));
+        	testQuestion.setReponseG(reponse.createReponse(identifiant, textReponse, pos));
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
         /*
