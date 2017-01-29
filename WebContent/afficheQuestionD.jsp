@@ -9,6 +9,14 @@
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript"> 
+function afficheForm(id) 
+{ 
+	if (document.getElementById(id).style.visibility == "hidden")
+			document.getElementById(id).style.visibility = "visible"; 
+	else	document.getElementById(id).style.visibility = "hidden"; 
+} 
+</script> 
   </head>
 <html>
 <body>
@@ -28,7 +36,19 @@
    	  <p>Le niveau de la question : <strong><%=list.getNiveau()%></strong></p>
    	  <p>L'auteur de la question : <strong><%=list.getAut()%></strong></p>
    	  <p>L'identifiant de la question : <strong><%=list.getId()%></strong></p>
-   	  <p>Pertinence de la question : <strong><%=list.getNotePertinence()%></strong></p>
+   	  <p>Pertinence de la question : <strong><%=list.getNotePertinence()%></strong></p><button type="button" onclick="afficheForm('formPertinence');">Noter</button>
+   	  <form id="formPertinence" action="ServletPertinence" method="get" style="visibility: hidden">
+   	  	<label for="notePertinence">Note de pertinence</label>
+		<SELECT name="notePertinence">
+         		<OPTION value="">--- Note ---</OPTION>
+         		<OPTION value="1">1</OPTION>
+          		<OPTION value="2">2</OPTION>
+          		<OPTION value="3">3</OPTION>
+          		<OPTION value="4">4</OPTION>
+          		<OPTION value="5">5</OPTION>
+      		</SELECT> <br /> 
+		<BUTTON type="submit" name="setNotePertinence" value="<%=list.getIdTech()%>+<%=list.getAut()%>">Notez !</BUTTON> <br />
+	</form>
    	  <p>Variante de : <strong><%=list.getVar()%></strong></p>
    	  <%if(list.getVar()!="-")
    	  {%>
