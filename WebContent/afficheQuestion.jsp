@@ -96,6 +96,7 @@
              	<th>Auteur</th>
              	<th>Id</th>
              	<th>Variante de</th>
+             	<th>Indice</th>
              </tr>
              </thead>
              <tbody>
@@ -110,6 +111,7 @@
 	             	<td><%=question.getAut()%></td>
 	             	<td><%=question.getId()%></td>
 	             	<td><%=question.getVar()%></td>
+	             	<td><%=question.getAide()%></td>
 	             	<td><BUTTON type="submit" name="getDetail" value="<%=question.getIdTech()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
 	            </tr>
          	<%

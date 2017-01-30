@@ -19,7 +19,7 @@
 		String[] langue = Donnees.trouveLangueP();
    		String[] competence = Donnees.trouveCompetenceP();
    		String[] typeQ = Donnees.trouveTypeQ();
-   		Integer[] coef = Donnees.trouveCoef();
+   		Integer[] coeff = Donnees.trouveCoefficient();
    		RequestDispatcher rd;
    	%>
    	
@@ -33,19 +33,18 @@
 			<p>Vous pouvez enregistrer une question.</p>
 
 			<label for="question">Question</label>
-			<input type="text" id="question" name="question" value="" size="50" /> <br /> 
+			<input type="text" id="question" name="question" value="test" size="50" /> <br /> 
 			
-			<label for="coef">Coefficient question</label> 			
-			<SELECT name="coef">
-         	<OPTION value="">--- Coefficient ---</OPTION>
-        	 <%
-        		 for(Integer i : coef )
-        		 {
-        	 %>
-          			<OPTION value="<%=i %>"><%=i %></OPTION>
-         	<%
-        	 	 }
-        	 %>
+			<label for="coeff">Coefficient question</label> 			
+			<SELECT name="coeff">
+         	<OPTION value="">-- Coefficient --</OPTION>
+        	 <% 
+        		 for(Integer c : coeff ){
+        	 %> 
+          			<OPTION value="<%=c %>"><%=c %></OPTION>
+         	<% 
+        	 	 } 
+        	 %> 
       		</SELECT> <br />
 			
 			<label for="type">Type question</label> 			
@@ -62,7 +61,7 @@
       		</SELECT> <br />
 			
 			<label for="auteur">Nom Auteur</label> 
-			<input type="text" id="auteur" name="auteur" value="" /> <br /> 
+			<input type="text" id="auteur" name="auteur" value="tonton" /> <br /> 
       		
 			<label for="langue">Langue</label> 			
 			<SELECT name="langueN">
@@ -93,7 +92,7 @@
         	 %>
       		</SELECT> <br /> 
 			<label for="identifiant"> Identifiant question </label> 
-			<input type="text" id="id" name="id"value="" /> <br /> 
+			<input type="text" id="id" name="id"value="1" /> <br /> 
 			
 			<label for="nbRep"> Nombre de Réponses souhaitées </label> 
 			<SELECT name="nbRep">
@@ -105,6 +104,8 @@
           		<OPTION value="5">5</OPTION>
       		</SELECT> <br /> 
 			
+			<label for="aide">Fournir une aide</label>
+			<input type="text" id="aide" name="aide" value="test" size="50" /> <br /> 
 			
 			
 			<input type="submit"value="Poster" /> <br />

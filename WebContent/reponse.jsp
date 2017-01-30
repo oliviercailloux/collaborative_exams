@@ -7,6 +7,7 @@
 	String langueI = request.getParameter("langueN");
 	String competenceI = request.getParameter("competenceN");	
 	int nb = Integer.parseInt( request.getParameter("nbRep"));
+	String aide = request.getParameter("aide");
 	int reponse = 1;
 	//insertion données première form
 	session.setAttribute( "auteur", auteur );
@@ -15,6 +16,7 @@
 	session.setAttribute( "langueN", langueI );
 	session.setAttribute( "competenceN", competenceI );
 	session.setAttribute( "nb", nb );
+	session.setAttribute( "aide", aide);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 public class CreationVarianteEtAfficheDetailForm extends HttpServlet 
 {
 	@Inject
-	Question insert;
+	GestionQuestion insert;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		//variable session pour identifier la variante
@@ -49,6 +49,8 @@ public class CreationVarianteEtAfficheDetailForm extends HttpServlet
 		
 		//Recherche et Recupere une question
 		listeQuestionA = Question.getQuestion(identifiantRecherche, CreationEtAffichageQuestionForm.listeQ);
+		System.out.println(listeQuestionA.idTechvisible + " id pere");
+		System.out.println(listeQuestionA.variante + " id var");
 		req.setAttribute("Question",listeQuestionA);
 		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);
 	}

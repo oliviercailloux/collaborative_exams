@@ -1,7 +1,10 @@
 package QuestionV1;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -22,6 +25,7 @@ public class Question {
     List <Reponse> listeR;
     int idQ;
     Question questionT;
+    String aide;
     
     public Question(){
           
@@ -33,6 +37,7 @@ public class Question {
         this.opinion ="";
         this.listeR= new ArrayList <Reponse>();
         this.variante="-";
+        this.aide="";
        
       } 
     public Question(String pere)
@@ -45,6 +50,7 @@ public class Question {
         this.opinion ="";
         this.listeR= new ArrayList <Reponse>();
         this.variante=pere;
+        this.aide="";
       } 
     
     public Question createQuestionV(String nom, String langueI, String competenceI, String enonce, String idPere, int identifiant, String opinionI)
@@ -160,7 +166,10 @@ public class Question {
       return "- Identifiant question : "+tableauEntier[2]+Newligne+" - Auteur:"+tableauEntier[1];
     }
     
-    
+    public String getVariante()
+    {
+    	return this.variante;
+    }
     public static List <Question> trouveQuestionParMatiere(String matiere, List <Question> listeQ) 
     {
         List <Question> questionT = new ArrayList <Question>();
@@ -233,6 +242,16 @@ public class Question {
     public List <Reponse> reponseR() 
     {
         return listeR;
-    } 
+    }
+    
+    public String getAide()
+    {
+      return this.aide;
+    }
+    
+    public void setAide(String str)
+    {
+      this.aide = str;
+    }
     
 }
