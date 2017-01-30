@@ -1,4 +1,4 @@
-package QuestionV1;
+package mainPackage;
 
 import java.io.IOException;
 

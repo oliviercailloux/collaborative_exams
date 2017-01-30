@@ -13,7 +13,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   </head>
 <body>
-	<%@page import="QuestionV1.*" %>
+	<%@page import="mainPackage.*" %>
 	<%
   		Question questionI = new Question();
 		String[] langue = Donnees.trouveLangueP();

@@ -13,7 +13,7 @@
   </head>
 <html>
 <body>
- <%@page import="QuestionV1.*" %>
+ <%@page import="mainPackage.*" %>
  <%@page import="java.util.*"%>
 <%
 	String[] competence = Donnees.trouveCompetenceP();

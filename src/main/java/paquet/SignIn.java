@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import QuestionV1.*;
+import mainPackage.*;
 
 @WebServlet("/connect")
 public class SignIn extends HttpServlet

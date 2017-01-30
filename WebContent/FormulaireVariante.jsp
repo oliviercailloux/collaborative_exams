@@ -14,7 +14,7 @@
 <title>CreerQuestion</title>
 </head>
 <body>
-	<%@page import="QuestionV1.*" %>
+	<%@page import="mainPackage.*" %>
 	<%
   		Question questionI = new Question();
 		questionI = Question.getQuestion(IdQPere, CreationEtAffichageQuestionForm.listeQ);

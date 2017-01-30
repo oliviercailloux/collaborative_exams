@@ -1,4 +1,4 @@
-package QuestionV1;
+package mainPackage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +75,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 			
 			Sujet sujetRechercher = new Sujet();
 			sujetRechercher = Sujet.getSujet(nom, SujetForm.sujetQ);
-			List <Question> listeRechercher = new ArrayList <Question>();
+			List <Question> listeRechercher = new ArrayList <>();
 			listeRechercher = sujetRechercher.listeQuestionSujet;
 			req.setAttribute("listQuestionR", listeRechercher);
 			req.setAttribute("sujetNomR", nom);

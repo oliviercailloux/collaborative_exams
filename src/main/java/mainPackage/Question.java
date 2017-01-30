@@ -1,4 +1,4 @@
-package QuestionV1;
+package mainPackage;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,10 +23,8 @@ public class Question {
     String variante;
     String opinion;
     List <Reponse> listeR;
-    int idQ;
-    Question questionT;
-    
-  //Attribut niveau de type String
+    int idQ;    
+    //Attribut niveau de type String
     String niveau;
     //Element de pour noter la pertinence de la question
     int nbVotePertinence;
@@ -40,7 +38,7 @@ public class Question {
         this.competenceQ ="";
         this.idQ = 0;
         this.opinion ="";
-        this.listeR= new ArrayList <Reponse>();
+        this.listeR= new ArrayList <>();
         this.variante="-";
         this.niveau="";
         this.nbVotePertinence = 0;
@@ -55,7 +53,7 @@ public class Question {
         this.competenceQ ="";
         this.idQ = 0;
         this.opinion ="";
-        this.listeR= new ArrayList <Reponse>();
+        this.listeR= new ArrayList <>();
         this.variante=pere;
         this.niveau="";
         this.nbVotePertinence = 0;
@@ -167,7 +165,7 @@ public class Question {
     }
     public static List <Question> trouveQuestionParMatiere(String matiere, List <Question> listeQ) 
     {
-        List <Question> questionT = new ArrayList <Question>();
+        List <Question> questionT = new ArrayList <>();
         if(matiere.isEmpty())
         	return listeQ;
         for (Question quest : listeQ) 
@@ -253,11 +251,10 @@ public class Question {
     }
     
     public float getNotePertinence() {
-    	if(nbVotePertinence == 0){
-    		return 0;
-    	}
-    	else
-        return totalNotePertinence/nbVotePertinence;
+    	if(nbVotePertinence == 0)
+			return 0;
+		else
+			return totalNotePertinence/nbVotePertinence;
     }
     
     public int getNbVotePertinence() {

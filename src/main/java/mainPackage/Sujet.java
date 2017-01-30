@@ -1,4 +1,4 @@
-package QuestionV1;
+package mainPackage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class Sujet
 	 public Sujet()
 	 {
         this.nomSujet= "";
-        this.listeQuestionSujet= new ArrayList <Question>();
+        this.listeQuestionSujet= new ArrayList <>();
 	 } 
 	 public Sujet(String nSujet)
 	 {

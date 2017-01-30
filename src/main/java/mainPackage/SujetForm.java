@@ -1,4 +1,4 @@
-package QuestionV1;
+package mainPackage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class SujetForm extends HttpServlet
     	}
     	sujetQ.add(sujetTemp);
 		req.setAttribute("listeSujet",sujetQ);
-		this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);;
+		this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
 	}
     
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
@@ -44,6 +44,6 @@ public class SujetForm extends HttpServlet
 		listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, CreationEtAffichageQuestionForm.listeQ);
 		req.setAttribute("listQuestionR", listeRechercher);
 		req.setAttribute("sujetTest", sujetTest);
-        this.getServletContext().getRequestDispatcher("/creationSujet.jsp").forward(req, resp);;
+        this.getServletContext().getRequestDispatcher("/creationSujet.jsp").forward(req, resp);
 	}
 }

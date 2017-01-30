@@ -1,6 +1,5 @@
-package QuestionV1;
+package mainPackage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;

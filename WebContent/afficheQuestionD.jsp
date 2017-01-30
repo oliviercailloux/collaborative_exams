@@ -20,7 +20,7 @@ function afficheForm(id)
   </head>
 <html>
 <body>
- <%@page import="QuestionV1.Question" %>
+ <%@page import="mainPackage.Question" %>
  <%@page import="java.util.*"%>
 
    <% 

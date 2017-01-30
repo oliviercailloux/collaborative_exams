@@ -1,9 +1,5 @@
-package QuestionV1;
-import java.util.ArrayList;
-import java.util.List;
-
+package mainPackage;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 @ApplicationScoped
 public class Reponse {

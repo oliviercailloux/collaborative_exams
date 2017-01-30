@@ -8,14 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import QuestionV1.*;
+import mainPackage.*;
 
 import javax.servlet.http.HttpServlet;
 
 @WebServlet("/inscription")
 public class Inscription extends HttpServlet
 {
-    public static List <Compte> listeC = new ArrayList <Compte>();
+    public static List <Compte> listeC = new ArrayList <>();
     @Inject
 	private Compte test_inscription;
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
