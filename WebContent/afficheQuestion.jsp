@@ -112,7 +112,7 @@
 	            	<td><%=question.getNiveau()%></td>
 	             	<td><%=question.getAut()%></td>
 	             	<td><%=question.getId()%></td>
-	             	<td><%=question.getNotePertinence()%></td>
+	             	<td><%=question.getNotePertinence()+" ("+question.getNbVotePertinence()+" vote(s))"%></td>
 	             	<td><%=question.getVar()%></td>
 	             	<td><BUTTON type="submit" name="getDetail" value="<%=question.getIdTech()%>+<%=question.getAut()%>">afficher détails</BUTTON></td>
 	            </tr>

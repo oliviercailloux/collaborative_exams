@@ -259,6 +259,10 @@ public class Question {
     	else
         return totalNotePertinence/nbVotePertinence;
     }
+    
+    public int getNbVotePertinence() {
+    	return nbVotePertinence;
+    }
 
     
 }

@@ -36,7 +36,7 @@ function afficheForm(id)
    	  <p>Le niveau de la question : <strong><%=list.getNiveau()%></strong></p>
    	  <p>L'auteur de la question : <strong><%=list.getAut()%></strong></p>
    	  <p>L'identifiant de la question : <strong><%=list.getId()%></strong></p>
-   	  <p>Pertinence de la question : <strong><%=list.getNotePertinence()%></strong></p><button type="button" onclick="afficheForm('formPertinence');">Noter</button>
+   	  <p>Pertinence de la question : <strong><%=list.getNotePertinence()+" ("+list.getNbVotePertinence()+" vote(s))"%></strong></p><button type="button" onclick="afficheForm('formPertinence');">Noter</button>
    	  <form id="formPertinence" action="ServletPertinence" method="get" style="visibility: hidden">
    	  	<label for="notePertinence">Note de pertinence</label>
 		<SELECT name="notePertinence">
