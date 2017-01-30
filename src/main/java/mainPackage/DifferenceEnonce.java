@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Difference")
 public class DifferenceEnonce extends HttpServlet
 {
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		//Recupere les identifiants pour une question

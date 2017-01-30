@@ -251,10 +251,7 @@ public class Question {
     }
     
     public float getNotePertinence() {
-    	if(nbVotePertinence == 0)
-			return 0;
-		else
-			return totalNotePertinence/nbVotePertinence;
+    	return 	(nbVotePertinence == 0) ? 0 : totalNotePertinence/nbVotePertinence ;
     }
     
     public int getNbVotePertinence() {

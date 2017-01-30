@@ -58,7 +58,7 @@ function afficheForm(id)
    	  		
    	  	
    	  <h2>Les réponses sont :</h2>
-   	    <table border="0">
+   	    <table>
    	    <tr>
             <th>Intitulé</th>
              <th>Position</th>

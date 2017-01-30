@@ -21,7 +21,7 @@ public class Sujet
 	 public Sujet(String nSujet)
 	 {
         this.nomSujet= nSujet;
-        this.listeQuestionSujet= new ArrayList <Question>();
+        this.listeQuestionSujet= new ArrayList <>();
 	 } 
 	 
 	 public void insertSujet(Question questionSujet)

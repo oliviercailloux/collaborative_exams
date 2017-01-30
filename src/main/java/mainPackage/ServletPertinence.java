@@ -13,6 +13,7 @@ public class ServletPertinence extends HttpServlet
 {
 	@Inject
 	GestionQuestion insert;
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		//Recupere les identifiants pour une question

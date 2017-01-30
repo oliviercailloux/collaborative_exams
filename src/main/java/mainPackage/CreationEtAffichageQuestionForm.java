@@ -14,11 +14,12 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Pform")
 public class CreationEtAffichageQuestionForm extends HttpServlet 
 {
-    public static List <Question> listeQ = new ArrayList <Question>();
+    public static List <Question> listeQ = new ArrayList <>();
     @Inject
     GestionReponse reponse;
     @Inject
     GestionQuestion testQuestion;
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		HttpSession session = req.getSession();
@@ -57,13 +58,14 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
 	}
 	
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		if(req.getParameter("competenceR")!=null)
 		{
 			String competenceRechercher = req.getParameter("competenceR");
 			System.out.println("je rentre laaaaaaa" + competenceRechercher);
-			List <Question> listeRechercher = new ArrayList <Question>();
+			List <Question> listeRechercher = new ArrayList <>();
 			listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, listeQ);
 			req.setAttribute("listQuestionR", listeRechercher);
 			req.setAttribute("competenceR", competenceRechercher);

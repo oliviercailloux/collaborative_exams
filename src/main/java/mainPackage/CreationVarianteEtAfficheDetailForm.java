@@ -15,12 +15,12 @@ public class CreationVarianteEtAfficheDetailForm extends HttpServlet
 {
 	@Inject
 	GestionQuestion insert;
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		//variable session pour identifier la variante
 		HttpSession session = req.getSession();
 		String idPere = (String)session.getAttribute("idPere");
-        String VarianteType = (String)session.getAttribute("varianteType");
         
         //variable Question standard
         String nom = req.getParameter("auteur");
@@ -40,6 +40,7 @@ public class CreationVarianteEtAfficheDetailForm extends HttpServlet
 		req.setAttribute("listeSujet", SujetForm.sujetQ);
         this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
 	}
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		//Recupere les identifiants pour une question

@@ -18,12 +18,12 @@ public class Inscription extends HttpServlet
     public static List <Compte> listeC = new ArrayList <>();
     @Inject
 	private Compte test_inscription;
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		String resultat="";
 		String identifiant = req.getParameter("login");
 		String mdp = req.getParameter("pass");
-		String nom = req.getParameter("nom");
 		String prenom = req.getParameter("prenom");
 		String mail = req.getParameter("mail");
 		if(!test_inscription.existeDeja(listeC, mail))
@@ -37,6 +37,7 @@ public class Inscription extends HttpServlet
 		this.getServletContext().getRequestDispatcher("/inscription.jsp").forward(req, resp);
 
 	}
+	@Override
 	protected void doGet(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException
 	{
 		resp.getWriter().println("Marimoh");

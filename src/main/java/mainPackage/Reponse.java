@@ -23,14 +23,7 @@ public class Reponse {
     }
     public String getPos()
     {
-      if(this.trueRep==1)
-      {
-    	  return "Vrai";
-      }
-      else
-      {
-    	  return "Faux";
-      }
+      return (this.trueRep==1)?"Vrai":"Faux";
     }
     public void setIdQ(int id)
     {

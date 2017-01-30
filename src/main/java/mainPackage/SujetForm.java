@@ -15,8 +15,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/SujetForm")
 public class SujetForm extends HttpServlet 
 {
-    public static List <Sujet> sujetQ = new ArrayList <Sujet>();
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    public static List <Sujet> sujetQ = new ArrayList <>();
+    @Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
     	//permet de récupérer la liste des questions sélectionnées
     	String[] values = req.getParameterValues("questionSelect");
@@ -36,11 +37,12 @@ public class SujetForm extends HttpServlet
 		this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
 	}
     
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		String sujetTest = req.getParameter("test1");
 		String competenceRechercher = req.getParameter("competenceR");
-		List <Question> listeRechercher = new ArrayList <Question>();
+		List <Question> listeRechercher = new ArrayList <>();
 		listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, CreationEtAffichageQuestionForm.listeQ);
 		req.setAttribute("listQuestionR", listeRechercher);
 		req.setAttribute("sujetTest", sujetTest);
