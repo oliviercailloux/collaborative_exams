@@ -28,27 +28,32 @@ public class Reponse {
     public String getPos()
     {
       if(this.trueRep==1)
-      {
-    	  return "Vrai";
-      }
-      else
-      {
-    	  return "Faux";
-      }
+		return "Vrai";
+	return "Faux";
     }
-    public Reponse setReponse(String texteR, String position)
+    public void setIdQ(int id)
     {
-    	reponse = new Reponse();
+    	this.idQuestion=id;
+    }
+    public void setAuteurQ(String auteur)
+    {
+    	this.auteur=auteur;
+    } 
+    
+    public void setTextRep(String textR)
+    {
+    	this.textReponse=textR;
+    }
+    public void setTrueRep(String position)
+    {
     	if(position.equalsIgnoreCase("V"))
     	{
-    		reponse.trueRep=1;
+    		this.trueRep=1;
     	}
     	else
     	{
-    		reponse.trueRep=0;
+    		this.trueRep=0;
     	}
-        reponse.textReponse = texteR;
-        return reponse;
     }
     public int getIdQuestion()
     {

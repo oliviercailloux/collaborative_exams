@@ -14,7 +14,7 @@ import javax.enterprise.context.RequestScoped;
 public class Question {
 
     
-    protected static int idtechnique = 0;
+    protected int idtechnique = 0;
     int idTechvisible;
     String enonceQ;
     String nomAuteur;
@@ -34,7 +34,7 @@ public class Question {
         this.competenceQ ="";
         this.idQ = 0;
         this.opinion ="";
-        this.listeR= new ArrayList <Reponse>();
+        this.listeR= new ArrayList <>();
         this.variante="-";
        
       } 
@@ -46,7 +46,7 @@ public class Question {
         this.competenceQ ="";
         this.idQ = 0;
         this.opinion ="";
-        this.listeR= new ArrayList <Reponse>();
+        this.listeR= new ArrayList <>();
         this.variante=pere;
       } 
     
@@ -155,7 +155,7 @@ public class Question {
     }
     public static List <Question> trouveQuestionParMatiere(String matiere, List <Question> listeQ) 
     {
-        List <Question> questionT = new ArrayList <Question>();
+        List <Question> questionT = new ArrayList <>();
         if(matiere.isEmpty())
         	return listeQ;
         for (Question quest : listeQ) 

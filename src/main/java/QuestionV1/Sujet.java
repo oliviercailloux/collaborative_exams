@@ -16,12 +16,12 @@ public class Sujet
 	 public Sujet()
 	 {
         this.nomSujet= "";
-        this.listeQuestionSujet= new ArrayList <Question>();
+        this.listeQuestionSujet= new ArrayList <>();
 	 } 
 	 public Sujet(String nSujet)
 	 {
         this.nomSujet= nSujet;
-        this.listeQuestionSujet= new ArrayList <Question>();
+        this.listeQuestionSujet= new ArrayList <>();
 	 } 
 	 
 	 public void insertSujet(Question questionSujet)

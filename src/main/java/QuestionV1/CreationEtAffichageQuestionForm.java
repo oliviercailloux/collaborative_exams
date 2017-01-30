@@ -14,11 +14,12 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Pform")
 public class CreationEtAffichageQuestionForm extends HttpServlet 
 {
-    public static List <Question> listeQ = new ArrayList <Question>();
+    public static List <Question> listeQ = new ArrayList <>();
     @Inject
-    Reponse reponse;
+    GestionReponse reponse;
     @Inject
     GestionQuestion testQuestion;
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		HttpSession session = req.getSession();
@@ -38,7 +39,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         	String positionID = "pos"+conditionRep;
         	String textReponse = req.getParameter(reponseId);
         	String pos = req.getParameter(positionID);
-        	testQuestion.setReponseG(reponse.setReponse(textReponse, pos));
+        	testQuestion.setReponseG(reponse.createReponse(identifiant, textReponse, pos));
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
         /*
@@ -56,13 +57,14 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
 	}
 	
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		if(req.getParameter("competenceR")!=null)
 		{
 			String competenceRechercher = req.getParameter("competenceR");
 			System.out.println("je rentre laaaaaaa" + competenceRechercher);
-			List <Question> listeRechercher = new ArrayList <Question>();
+			List <Question> listeRechercher = new ArrayList <>();
 			listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, listeQ);
 			req.setAttribute("listQuestionR", listeRechercher);
 			req.setAttribute("competenceR", competenceRechercher);
@@ -74,7 +76,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 			
 			Sujet sujetRechercher = new Sujet();
 			sujetRechercher = Sujet.getSujet(nom, SujetForm.sujetQ);
-			List <Question> listeRechercher = new ArrayList <Question>();
+			List <Question> listeRechercher = new ArrayList <>();
 			listeRechercher = sujetRechercher.listeQuestionSujet;
 			req.setAttribute("listQuestionR", listeRechercher);
 			req.setAttribute("sujetNomR", nom);
