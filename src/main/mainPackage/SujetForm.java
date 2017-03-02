@@ -1,9 +1,13 @@
 package mainPackage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/SujetForm")
+
 public class SujetForm extends HttpServlet 
 {
+	@Inject
+	GestionQuestion questionSearch;
+	@Inject
+	GestionSujet sujetTemp;
     public static List <Sujet> sujetQ = new ArrayList <>();
     @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -24,27 +33,27 @@ public class SujetForm extends HttpServlet
     	
     	//Recupération nom Sujet et création sujet
     	String nomS = req.getParameter("sujetNom");
-    	Sujet sujetTemp =new Sujet(nomS);
+    	sujetTemp.createSujet(nomS);
+    	sujetTemp.ouvertureSujet();
     	//navigue et récupère les questions sélectionées.
     	for(int i=0; i<values.length;i++)
     	{
-    		Question listeQuestionA = new Question();
-    		listeQuestionA = Question.getQuestion(values[i], CreationEtAffichageQuestionForm.listeQ);
-    		sujetTemp.insertSujet(listeQuestionA);
+    		String idTemp = values[i];
+    		sujetTemp.addQuestion(idTemp);
     	}
-    	sujetQ.add(sujetTemp);
-		req.setAttribute("listeSujet",sujetQ);
-		this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
+    	//sujetQ.add(sujetTemp);
+    	sujetTemp.commitSujet();
+        req.setAttribute("listQuestionR", questionSearch.retourneToutesQuestions());
+		req.setAttribute("listeSujet",sujetTemp.getNomSujets());
+		this.getServletContext().getRequestDispatcher("/afficheQuestionJPA.jsp").forward(req, resp);
 	}
     
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		String sujetTest = req.getParameter("test1");
 		String competenceRechercher = req.getParameter("competenceR");
-		List <Question> listeRechercher = new ArrayList <>();
-		listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, CreationEtAffichageQuestionForm.listeQ);
-		req.setAttribute("listQuestionR", listeRechercher);
+		String sujetTest = req.getParameter("test1");
+		req.setAttribute("listQuestionR", questionSearch.retourneListQuestionComp(competenceRechercher));
 		req.setAttribute("sujetTest", sujetTest);
         this.getServletContext().getRequestDispatcher("/creationSujet.jsp").forward(req, resp);
 	}

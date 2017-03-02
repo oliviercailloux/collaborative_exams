@@ -17,9 +17,8 @@
  <%@page import="java.util.*"%>
 <%
 	String[] competence = Donnees.trouveCompetenceP();
-	System.out.println("avant iciiciciccicici tettststst ");
 	List <String> listSujet = (List<String>) request.getAttribute("listeSujet");
-	System.out.println("iciiciciccicici tettststst ");
+	
 %>
    <h3>Choisissez une compétence</h3>
    <form action="Pform" method="get">
@@ -43,6 +42,7 @@
       <SELECT name="sujetR">
          <OPTION value="">--- Sujet ---</OPTION>
          <%
+         
          for(String sujetName : listSujet ){
          %>
           <OPTION value="<%=sujetName.toString() %>"><%=sujetName.toString() %></OPTION>
@@ -59,7 +59,8 @@
    	  //Test si la liste des questions existent					
    	  if ( request.getAttribute("listQuestionR") != null)
    	  {
-   	  	ArrayList <Question> list = (ArrayList<Question>) request.getAttribute("listQuestionR");
+   	  	List <Question> list = (List<Question>) request.getAttribute("listQuestionR");
+
    	  	//Test si la liste est vide == des questions créées ou pas
    	  	if (list.size() > 0) 
    	  	{ 

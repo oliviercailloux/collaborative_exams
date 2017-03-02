@@ -15,7 +15,6 @@
 <body>
 	<%@page import="mainPackage.*" %>
 	<%
-  		Question questionI = new Question();
 		String[] langue = Donnees.trouveLangueP();
    		String[] competence = Donnees.trouveCompetenceP();
    		String[] niveau = Donnees.trouveNiveau();
@@ -23,11 +22,6 @@
    		Integer[] coef = Donnees.trouveCoef();
    		RequestDispatcher rd;
    	%>
-   	
-   	
-   	
-   	
-   	
 	<form method="post" action="reponse.jsp">
 		<fieldset>
 			<legend>Creation Question</legend>
@@ -119,9 +113,7 @@
           		<OPTION value="4">4</OPTION>
           		<OPTION value="5">5</OPTION>
       		</SELECT> <br /> 
-			
-			
-			
+
 			<input type="submit"value="Poster" /> <br />
 		</fieldset>
 	</form>

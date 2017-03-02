@@ -71,7 +71,7 @@
 	<% 
 	if ( request.getAttribute("listQuestionR") != null)
 	{
-		ArrayList <Question> list = (ArrayList<Question>) request.getAttribute("listQuestionR");
+		List <Question> list = (List<Question>) request.getAttribute("listQuestionR");
 		if (list.size() > 0) 
 		{%>
 			<h4>L'ensemble des questions :</h4>

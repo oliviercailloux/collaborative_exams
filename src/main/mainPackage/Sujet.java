@@ -1,14 +1,29 @@
 package mainPackage;
-
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@ApplicationScoped
+@Entity
+@Table(name="App.Sujets")
 public class Sujet 
 {	
 	//@Inject
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected  int idSujet;
+	@OneToMany(mappedBy = "sujetLien", cascade = CascadeType.PERSIST)
 	 List <Question> listeQuestionSujet;
 
 
@@ -24,6 +39,10 @@ public class Sujet
         this.listeQuestionSujet= new ArrayList <>();
 	 } 
 	 
+	 public List<Question> getQuestionsSujet()
+	 {
+		 return this.listeQuestionSujet;
+	 }
 	 public void insertSujet(Question questionSujet)
 	 {
 		 this.listeQuestionSujet.add(questionSujet);

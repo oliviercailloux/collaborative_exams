@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import mainPackage.*;
 
 import javax.servlet.http.HttpServlet;
-
 @WebServlet("/inscription")
 public class Inscription extends HttpServlet
 {

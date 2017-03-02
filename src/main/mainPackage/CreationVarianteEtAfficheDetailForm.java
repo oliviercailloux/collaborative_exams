@@ -1,8 +1,12 @@
 package mainPackage;
 import java.io.IOException;
-
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,15 +47,9 @@ public class CreationVarianteEtAfficheDetailForm extends HttpServlet
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		//Recupere les identifiants pour une question
 		String identifiantRecherche = req.getParameter("getDetail");
-		Question listeQuestionA = new Question();
-		
-		//Recherche et Recupere une question
-		listeQuestionA = Question.getQuestion(identifiantRecherche, CreationEtAffichageQuestionForm.listeQ);
-		System.out.println(listeQuestionA.idTechvisible + " id pere");
-		System.out.println(listeQuestionA.variante + " id var");
-		req.setAttribute("Question",listeQuestionA);
+		//Recupere les identifiants pour une question
+		req.setAttribute("Question",insert.retourneQuestion(identifiantRecherche));
 		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);
 	}
 	

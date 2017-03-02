@@ -1,20 +1,39 @@
 package mainPackage;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@ApplicationScoped
+@Entity
+@Table(name="App.Reponses")
 public class Reponse {
 	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 	int idQuestion;
 	String auteur;
     String textReponse;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="QUESTION_ID")
+    Question questionLien;
     int trueRep;
-    Reponse reponse;
     
+      
     
     public Reponse()
     {
     	this.textReponse = ""; 
     	this.trueRep =2;
+    	questionLien = new Question();
+    	
     } 
     
     public String getText()
@@ -28,6 +47,10 @@ public class Reponse {
     public void setIdQ(int id)
     {
     	this.idQuestion=id;
+    }
+    public void setQuestion(Question q)
+    {
+    	this.questionLien = q;
     }
     public void setAuteurQ(String auteur)
     {

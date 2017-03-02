@@ -1,15 +1,21 @@
 package mainPackage;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 @WebServlet("/Pform")
 public class CreationEtAffichageQuestionForm extends HttpServlet 
@@ -19,6 +25,8 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
     GestionReponse reponse;
     @Inject
     GestionQuestion testQuestion;
+    @Inject
+    GestionSujet sujetT;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
@@ -33,6 +41,7 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         int conditionRep =1;  
        // Question insert = new Question();
         testQuestion.createQuestion(nom, langueI, competenceI, enonce, identifiant,niveau);
+        testQuestion.ouvertureQuestion();
         //creation et insertion des reponses
         while(conditionRep <= nombreRep)
         {
@@ -40,7 +49,13 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         	String positionID = "pos"+conditionRep;
         	String textReponse = req.getParameter(reponseId);
         	String pos = req.getParameter(positionID);
-        	testQuestion.setReponseG(reponse.createReponse(identifiant, textReponse, pos));
+        	//reponse.createReponse(textReponse, pos);
+        	testQuestion.setReponseG(reponse.createReponse(testQuestion.getQuestion(), textReponse, pos));
+        	try {
+        		testQuestion.addReponse(reponse.getReponse());
+			} catch (Exception e) {
+				throw new IllegalStateException(e);
+			}
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
         /*
@@ -50,40 +65,35 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         insert.setEnonce(enonce);
         insert.setId(identifiant);*/
        // System.out.println(nom +"   " + identifiant + insert);
+        testQuestion.commitQuestion();
         listeQ.add(testQuestion.getQuestion());
         
-        req.setAttribute("listQuestionR", listeQ);
-        req.setAttribute("listeSujet", SujetForm.sujetQ);
+        req.setAttribute("listQuestionR", testQuestion.retourneToutesQuestions());
+        req.setAttribute("listeSujet", sujetT.getNomSujets());
         session.invalidate();
-        this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/afficheQuestionJPA.jsp").forward(req, resp);
 	}
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		if(req.getParameter("competenceR")!=null)
+		
+        req.setAttribute("listQuestionR", testQuestion.retourneToutesQuestions());
+		if(req.getParameter("competenceR")!=null && req.getParameter("competenceR").isEmpty()!=true)
 		{
 			String competenceRechercher = req.getParameter("competenceR");
-			System.out.println("je rentre laaaaaaa" + competenceRechercher);
-			List <Question> listeRechercher = new ArrayList <>();
-			listeRechercher = Question.trouveQuestionParMatiere(competenceRechercher, listeQ);
-			req.setAttribute("listQuestionR", listeRechercher);
+			req.setAttribute("listQuestionR", testQuestion.retourneListQuestionComp(competenceRechercher));
 			req.setAttribute("competenceR", competenceRechercher);
 	        
 		}
-		else if (req.getParameter("sujetR")!=null)
+		else if (req.getParameter("sujetR")!=null && req.getParameter("sujetR").isEmpty()!=true)
 		{
 			String nom = req.getParameter("sujetR");
-			
-			Sujet sujetRechercher = new Sujet();
-			sujetRechercher = Sujet.getSujet(nom, SujetForm.sujetQ);
-			List <Question> listeRechercher = new ArrayList <>();
-			listeRechercher = sujetRechercher.listeQuestionSujet;
-			req.setAttribute("listQuestionR", listeRechercher);
-			req.setAttribute("sujetNomR", nom);
+			req.setAttribute("listQuestionR", sujetT.getQuestionsSujet(nom));
+			req.setAttribute("sujetNomR",nom);
 		}
-		req.setAttribute("listeSujet", SujetForm.sujetQ);
-		this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
+		req.setAttribute("listeSujet", sujetT.getNomSujets());
+		this.getServletContext().getRequestDispatcher("/afficheQuestionJPA.jsp").forward(req, resp);
 		
 	}
 }

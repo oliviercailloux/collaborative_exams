@@ -9,12 +9,27 @@ import java.util.StringTokenizer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @ApplicationScoped
+@Entity
+@Table(name="App.Questions")
 public class Question {
 
-    
-    protected static int idtechnique = 0;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected  int idtechnique;
+	
     int idTechvisible;
     String enonceQ;
     String nomAuteur;
@@ -22,8 +37,12 @@ public class Question {
     String competenceQ;
     String variante;
     String opinion;
+    int idQ;
+    @OneToMany(mappedBy = "questionLien", cascade = CascadeType.PERSIST)
     List <Reponse> listeR;
-    int idQ;    
+    @ManyToOne(optional = true,fetch=FetchType.LAZY)
+    @JoinColumn(name="SUJET_ID", nullable=true)
+    Sujet sujetLien;
     //Attribut niveau de type String
     String niveau;
     //Element de pour noter la pertinence de la question
@@ -62,12 +81,15 @@ public class Question {
     
     public void setListReponse(List <Reponse> e)
     {
-    	
       this.listeR = e;
     }
     public void setReponse(Reponse e)
     {
       this.listeR.add(e);
+    }
+    public void setSujet(Sujet e)
+    {
+      this.sujetLien = e;
     }
     public void setVar(String v)
     {
@@ -132,8 +154,11 @@ public class Question {
     public void setId(int id)
     {
       this.idQ=id;
-      this.idtechnique = this.idtechnique +1;
       this.idTechvisible = this.idtechnique;
+    }
+    public void setIdV(int id)
+    {
+      this.idTechvisible = id;
     }
     /***
      		Récupération Variante
@@ -208,7 +233,7 @@ public class Question {
     /***
 			On récupère l'ensemble des Reponses d'une question
      															***/
-    public static List <Reponse> retourneReponse(String id, List <Question> listeQ) 
+   public static List <Reponse> retourneReponse(String id, List <Question> listeQ) 
     {
     	StringTokenizer st = new StringTokenizer(id, "+"); 
 		String tableauEntier[] = new String[3];
@@ -257,6 +282,13 @@ public class Question {
     public int getNbVotePertinence() {
     	return nbVotePertinence;
     }
+    
+    public String getNomSujet() 
+    {
+    	
+    	return (sujetLien==null) ? "-":sujetLien.getNomSujet();
+    }
+    
 
     
 }
