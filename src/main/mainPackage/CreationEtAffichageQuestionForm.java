@@ -58,15 +58,8 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 			}
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
-        /*
-        insert.setAut(nom);
-        insert.setLangue(langueI);
-        insert.setCompetence(competenceI);
-        insert.setEnonce(enonce);
-        insert.setId(identifiant);*/
-       // System.out.println(nom +"   " + identifiant + insert);
+        
         testQuestion.commitQuestion();
-        listeQ.add(testQuestion.getQuestion());
         
         req.setAttribute("listQuestionR", testQuestion.retourneToutesQuestions());
         req.setAttribute("listeSujet", sujetT.getNomSujets());

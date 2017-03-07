@@ -19,14 +19,9 @@ public class ServletPertinence extends HttpServlet
 		//Recupere les identifiants pour une question
 		String identifiantRecherche = req.getParameter("setNotePertinence");
 		int note = Integer.parseInt(req.getParameter("notePertinence"));
-		Question listeQuestionA = new Question();
 		
 		//Recherche et Recupere une question
-		listeQuestionA = Question.getQuestion(identifiantRecherche, CreationEtAffichageQuestionForm.listeQ);
-		System.out.println(listeQuestionA.idTechvisible + " id pere");
-		System.out.println(listeQuestionA.variante + " id var");
-		listeQuestionA.setNotePertinence(note);
-		req.setAttribute("Question",listeQuestionA);
+		req.setAttribute("Question",insert.retourneQuestionNote(identifiantRecherche, note));
 		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);
 	}
 	

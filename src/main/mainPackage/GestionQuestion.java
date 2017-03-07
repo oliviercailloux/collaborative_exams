@@ -103,6 +103,30 @@ public class GestionQuestion
         em.close();
         return listeRechercher;
 	}
+	
+	public Question retourneQuestionNote(String id, int note)
+	{
+		StringTokenizer st = new StringTokenizer(id, "+"); 
+		String tableauEntier[] = new String[3];
+		int i=0;
+		while (st.hasMoreTokens()) {
+			tableauEntier[i] = st.nextToken();
+			i=i+1;
+	     }
+        factory = Persistence.createEntityManagerFactory("questT");
+        em = factory.createEntityManager();
+        
+        // Read the existing entries and write to console
+        Query q = em.createQuery("SELECT u FROM Question u where u.idTechvisible =:arg1", Question.class);
+        q.setParameter("arg1", Integer.parseInt(tableauEntier[0]));
+        Question listeRechercher = (Question) q.getResultList().get(0);
+        em.getTransaction().begin();
+        em.persist(listeRechercher);
+        listeRechercher.setNotePertinence(note);
+		em.getTransaction().commit();
+        em.close();
+        return listeRechercher;
+	}
 	public List <Question> retourneListQuestionComp(String comp)
 	{
         factory = Persistence.createEntityManagerFactory("questT");
