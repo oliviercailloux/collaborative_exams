@@ -123,7 +123,7 @@ public class GestionQuestion
         em.getTransaction().begin();
         em.persist(listeRechercher);
         listeRechercher.setNotePertinence(note);
-		em.getTransaction().commit();
+		em.getTransaction().commit();///modif
         em.close();
         return listeRechercher;
 	}
