@@ -9,6 +9,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.apache.derby.tools.sysinfo;
+
 @ApplicationScoped
 public class GestionQuestion 
 {
@@ -104,6 +106,18 @@ public class GestionQuestion
         return listeRechercher;
 	}
 	
+	public Question retourneQuestionT(String id)
+	{
+        factory = Persistence.createEntityManagerFactory("questT");
+        em = factory.createEntityManager();
+        
+        // Read the existing entries and write to console
+        Query q = em.createQuery("SELECT u FROM Question u where u.idTechvisible =:arg1", Question.class);
+        q.setParameter("arg1", Integer.parseInt(id));
+        Question listeRechercher = (Question) q.getResultList().get(0);
+        em.close();
+        return listeRechercher;
+	}
 	public Question retourneQuestionNote(String id, int note)
 	{
 		StringTokenizer st = new StringTokenizer(id, "+"); 
@@ -138,5 +152,33 @@ public class GestionQuestion
         System.out.println("apres req");
         em.close();
         return listeRechercher;
+	}
+	
+	public boolean verifyR( String id)
+	{
+        System.out.println("test2");
+		StringTokenizer st = new StringTokenizer(id, "+"); 
+		String tableauEntier[] = new String[2];
+		int i=0;
+		while (st.hasMoreTokens()) 
+		{
+			tableauEntier[i] = st.nextToken();
+			i=i+1;
+	     }
+		this.questionT = this.retourneQuestionT(tableauEntier[0]);
+        int j =0;
+        System.out.println("test1");
+        while(this.questionT.reponseR().size() > j)
+        {
+        	if(this.questionT.reponseR().get(j).getid() == Integer.parseInt(tableauEntier[1]))
+        	{
+        		if(this.questionT.reponseR().get(j).trueRep==1)
+        			return true;
+        		else
+        			return false;
+        	}
+        	j++;
+        }
+        return false;
 	}
 }

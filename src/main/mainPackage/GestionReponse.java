@@ -19,6 +19,8 @@ private static EntityManagerFactory factory;
 		reponse = new Reponse();
     	reponse.setTextRep(textRep);
     	reponse.setTrueRep(pos);
+    	System.out.println(questionA.getIdTech()+ " test");
+    	reponse.setIdQ(questionA.getIdTech());
     	reponse.questionLien = questionA;
     	
 		return reponse;

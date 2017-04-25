@@ -17,7 +17,7 @@ public class Reponse {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    int id;
 	int idQuestion;
 	String auteur;
     String textReponse;
@@ -32,6 +32,7 @@ public class Reponse {
     {
     	this.textReponse = ""; 
     	this.trueRep =2;
+    	this.idQuestion = 0;
     	questionLien = new Question();
     	
     } 
@@ -51,6 +52,7 @@ public class Reponse {
     public void setQuestion(Question q)
     {
     	this.questionLien = q;
+    	this.idQuestion=q.getId();
     }
     public void setAuteurQ(String auteur)
     {
@@ -79,6 +81,10 @@ public class Reponse {
     public String getAut()
     {
       return this.auteur;
+    }
+    public int getid()
+    {
+      return this.id;
     }
     
 
