@@ -181,4 +181,39 @@ public class GestionQuestion
         }
         return false;
 	}
+
+    
+    public void modifierQuestion(String nom, String langueI, String competenceI, String enonce, int identifiant, String niveau)
+    {
+        factory = Persistence.createEntityManagerFactory( "questT" );
+        em = factory.createEntityManager( );
+        em.getTransaction( ).begin( );
+        Question quest = em.find(Question.class, identifiant);
+       
+        this.questionT.setAut(nom);
+        this.questionT.setLangue(langueI);
+        this.questionT.setCompetence(competenceI);
+        this.questionT.setEnonce(enonce);
+        this.questionT.setNiveau(niveau);
+        em.getTransaction( ).commit( );
+        
+        System.out.println(quest);
+        em.close();
+        factory.close();
+    }
+    
+    public void supprimerQuestion( int identifiant)
+    {
+        factory = Persistence.createEntityManagerFactory( "questT" );
+        em = factory.createEntityManager( );
+        em.getTransaction( ).begin( );
+        Question quest = em.find(Question.class, identifiant);
+        
+        System.out.println(quest);
+        em.remove(quest);
+        em.getTransaction( ).commit( );
+        em.close();
+        factory.close();
+    }
+    
 }
