@@ -21,6 +21,8 @@ public class testCor extends HttpServlet
 {
 	@Inject
 	GestionQuestion insert;
+    @Inject
+    GestionQuestionnaire questionnaireT;
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -41,10 +43,11 @@ public class testCor extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		//Recupere les identifiants pour une question
-		Question test = insert.retourneQuestionT("4");
-		req.setAttribute("listQ", test);
-		req.setAttribute("listR", test.reponseR());
-        this.getServletContext().getRequestDispatcher("/testCor.jsp").forward(req, resp);
+		List<Question> test = questionnaireT.getQuestions(10);
+		System.out.println(test.get(0).getAut());
+		test = questionnaireT.getQuestions(10);
+		System.out.println(test.get(1).getAut());
+		
 
 	}
 	

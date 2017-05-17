@@ -60,7 +60,7 @@ public class GestionSujet
 	}
     public List<String> getNomSujets()
     {
-    	 factory = Persistence.createEntityManagerFactory("questT");
+    	factory = Persistence.createEntityManagerFactory("questT");
         em = factory.createEntityManager();
         // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u.nomSujet FROM Sujet u", Sujet.class);

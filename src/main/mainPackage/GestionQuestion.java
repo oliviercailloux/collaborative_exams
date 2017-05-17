@@ -67,11 +67,10 @@ public class GestionQuestion
 	}
 	public void commitQuestion()
 	{   questionT.setIdV(questionT.idtechnique);
-		System.out.println("Avant   " +questionT.idTechvisible);
 		em.flush();
         em.persist(questionT);
         questionT.setIdV(questionT.idtechnique);
-		System.out.println("Apres    " +questionT.idTechvisible);
+        questionT.setQuestionnaireNew();
 		em.getTransaction().commit();
         em.close();
 	}

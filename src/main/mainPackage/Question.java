@@ -17,11 +17,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@ApplicationScoped
+@RequestScoped
 @Entity
 @Table(name="App.Questions")
 public class Question {
@@ -43,6 +44,9 @@ public class Question {
     @ManyToOne(optional = true,fetch=FetchType.LAZY)
     @JoinColumn(name="SUJET_ID", nullable=true)
     Sujet sujetLien;
+    @ManyToMany
+    @JoinColumn(name="QUESTION_ID", nullable=true)
+    List<Questionnaire> questionnaireLien;
     //Attribut niveau de type String
     String niveau;
     //Element de pour noter la pertinence de la question
@@ -90,6 +94,14 @@ public class Question {
     public void setSujet(Sujet e)
     {
       this.sujetLien = e;
+    }
+    public void setQuestionnaireNew()
+    {
+    	this.questionnaireLien = new ArrayList <>();
+    }
+    public void setQuestionnaire( Questionnaire e)
+    {
+      this.questionnaireLien.add(e);
     }
     public void setVar(String v)
     {

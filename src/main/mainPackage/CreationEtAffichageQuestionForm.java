@@ -58,7 +58,6 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 			}
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
-        
         testQuestion.commitQuestion();
         
         req.setAttribute("listQuestionR", testQuestion.retourneToutesQuestions());
