@@ -44,9 +44,9 @@ public class testCor extends HttpServlet
 	{
 		//Recupere les identifiants pour une question
 		List<Question> test = questionnaireT.getQuestions(10);
-		System.out.println(test.get(0).getAut());
-		test = questionnaireT.getQuestions(10);
-		System.out.println(test.get(1).getAut());
+		req.setAttribute("listQ", test.get(0));
+		req.setAttribute("listR", test.get(0).reponseR());
+        this.getServletContext().getRequestDispatcher("/testCor.jsp").forward(req, resp);
 		
 
 	}
