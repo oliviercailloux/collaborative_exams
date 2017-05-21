@@ -182,7 +182,7 @@ public class GestionQuestion
         return false;
 	}
 
-    
+    //test
     public void modifierQuestion(String nom, String langueI, String competenceI, String enonce, int identifiant, String niveau)
     {
         factory = Persistence.createEntityManagerFactory( "questT" );
