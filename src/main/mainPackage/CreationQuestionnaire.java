@@ -64,9 +64,8 @@ public class CreationQuestionnaire extends HttpServlet
         	}
         	//sujetQ.add(sujetTemp);
         	questionnaireT.commitQuestionnaire();
-            req.setAttribute("listQuestionR", questionSearch.retourneToutesQuestions());
-    		req.setAttribute("listeSujet",sujetTemp.getNomSujets());
-    		this.getServletContext().getRequestDispatcher("/afficheQuestionJPA.jsp").forward(req, resp);
+        	req.setAttribute("listeQuestionnaire",questionnaireT.getNomQuestionnaires());
+    		this.getServletContext().getRequestDispatcher("/afficheQuestionnaire.jsp").forward(req, resp);
     	}
     		
     	
