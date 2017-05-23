@@ -70,7 +70,7 @@ public class CreationQuestionnaire extends HttpServlet
         	questionnaireT.commitQuestionnaire();
 
         	req.setAttribute("listeQuestionnaire",questionnaireT.getNomQuestionnaires());
-    		this.getServletContext().getRequestDispatcher("/afficheQuestionnaire.jsp").forward(req, resp);
+    		this.getServletContext().getRequestDispatcher("/affichageQuestionnaire.jsp").forward(req, resp);
        	}
     		
     	
