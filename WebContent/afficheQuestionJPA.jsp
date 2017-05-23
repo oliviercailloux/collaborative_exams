@@ -80,7 +80,7 @@
 	   	  		//test si le filtrage est sur un sujet
 	   	  		else if(((request.getAttribute("sujetNomR")!=null)&&(request.getAttribute("sujetNomR").equals("")==false)))
 	   	  		{%>
-	      			<h3>Les questions liées au sujet <%= request.getAttribute("") %> </h3><%
+	      			<h3>Les questions liées au sujet <%= request.getAttribute("sujetNomR") %></h3><%
 	      		}
    	  		}
    	  		else
@@ -88,6 +88,25 @@
    	  			%><h3>L'ensemble des questions :</h3><%	
    	  		} %>
    	  		<a href="creationSujet.jsp" class="pull-left btn btn-default">Créer un sujet</a>
+   	  		<br>
+   	  		<br>
+   	  		
+   	  		<form action="exportXML" method="post">
+     Merci de choisir une compétence :
+      <SELECT name="subject">
+         <OPTION value="">--- Sujet ---</OPTION>
+         <%
+         for(String sujetName : listSujet ){
+         %>
+          <OPTION value="<%=sujetName.toString() %>"><%=sujetName.toString() %></OPTION>
+         <%
+         }
+         %>
+      </SELECT>
+      <BUTTON type="submit">Exporter en XML</BUTTON>
+   </form>
+   
+   
    	  		<form action="FormReponse" method="get">
    	  		
       		<table class="table" >

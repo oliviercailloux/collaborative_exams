@@ -1,4 +1,11 @@
 package mainPackage;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.*;
+import java.util.*;
+import org.jdom2.*;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 import java.util.List;
 import java.util.StringTokenizer;
@@ -24,6 +31,58 @@ public class GestionSujet
     {
     	return this.sujetT;
     }
+    
+
+    
+    public Sujet getSubjectByName(String name){
+    	factory = Persistence.createEntityManagerFactory("sujetT");
+        em = factory.createEntityManager();
+        // Read the existing entries and write to console
+        Query query = em.createQuery("SELECT u FROM Sujets u where u.NOMSUJET =:arg1", Sujet.class);
+        query.setParameter("arg1", name);
+        Sujet subject = (Sujet) query.getResultList().get(0);
+        em.close();
+        return subject; 
+    }
+    
+    public void ExportJava (Sujet subject){
+    	 try {
+
+    			Element company = new Element("subject");
+    			Document doc = new Document(company);
+    			Element name = new Element("name").setText(subject.getNomSujet());
+    			doc.getRootElement().addContent(name);
+    		
+    			
+    			for(Question x : subject.listeQuestionSujet ){
+    				Element question = new Element("question");
+        			question.setAttribute(new Attribute("number", "1"));
+        			question.addContent(new Element("statement").setText(x.getEnonce()));
+        			
+        			for(Reponse y : x.reponseR()){
+        				Element reponse = new Element("reponse");
+            			reponse.setAttribute(new Attribute("number", "1"));
+            			reponse.setText(y.getText());
+            			question.addContent(reponse);
+        			}
+    			}
+
+    			// new XMLOutputter().output(doc, System.out);
+    			XMLOutputter xmlOutput = new XMLOutputter();
+
+    			// display nice nice
+    			xmlOutput.setFormat(Format.getPrettyFormat());
+    			xmlOutput.output(doc, new FileWriter("/Users/brahimfanch/Downloads/company.xml"));
+
+    			//System.out.println("File Saved!");
+    		  } catch (IOException io) {
+    			System.out.println(io.getMessage());
+    		  }
+
+    }
+    
+    
+    
     public void setQuestion (Question e)
 	{
 		this.sujetT.insertSujet(e);
