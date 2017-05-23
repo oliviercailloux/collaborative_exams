@@ -22,14 +22,13 @@
    		Integer[] coef = Donnees.trouveCoef();
    		RequestDispatcher rd;
    	%>
-	<form method="post" action="reponse.jsp">
+	<form method="post" action="FormInsert">
 		<fieldset>
 			<legend>Creation Question</legend>
 			<p>Vous pouvez enregistrer une question.</p>
 
 			<label for="question">Question</label>
-			<input type="text" id="question" name="question" value="test" size="50" /> <br /> 
-			
+			<input type="text" id="question" name="question" value="test" size="50" /> 			
 			<label for="coef">Coefficient question</label> 			
 			<SELECT name="coef">
          	<OPTION value="">--- Coefficient ---</OPTION>

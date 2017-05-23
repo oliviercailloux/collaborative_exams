@@ -30,18 +30,11 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-		HttpSession session = req.getSession();
-		String nom = (String)session.getAttribute("auteur");
-        int identifiant = (int) session.getAttribute("identifiant");
-        String enonce = (String)session.getAttribute("question");
-        String langueI = (String)session.getAttribute("langueN");
-        String competenceI = (String)session.getAttribute("competenceN");
-        String niveau = (String)session.getAttribute("niveau");
-        int nombreRep = (int)session.getAttribute("nb");
+        int nombreRep = Integer.parseInt(req.getParameter("nb"));
         int conditionRep =1;  
-       // Question insert = new Question();
-        testQuestion.createQuestion(nom, langueI, competenceI, enonce, identifiant,niveau);
-        testQuestion.ouvertureQuestion();
+        System.out.println("papapapapapa  "+ Integer.parseInt(req.getParameter("identifiantQuest")));
+        testQuestion.initiateQuestion(Integer.parseInt(req.getParameter("identifiantQuest")));
+        //testQuestion.ouvertureQuestion();
         //creation et insertion des reponses
         while(conditionRep <= nombreRep)
         {
@@ -58,11 +51,10 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 			}
         	conditionRep=conditionRep+1;
         }//fin creation et insertion des reponses
-        testQuestion.commitQuestion();
+        testQuestion.commitQuestionReponse();
         
         req.setAttribute("listQuestionR", testQuestion.retourneToutesQuestions());
         req.setAttribute("listeSujet", sujetT.getNomSujets());
-        session.invalidate();
         this.getServletContext().getRequestDispatcher("/afficheQuestionJPA.jsp").forward(req, resp);
 	}
 	

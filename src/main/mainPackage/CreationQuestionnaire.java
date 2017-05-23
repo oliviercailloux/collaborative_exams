@@ -36,20 +36,24 @@ public class CreationQuestionnaire extends HttpServlet
     	String[] values = req.getParameterValues("questionSelect");
     	
     	//Recupération nom Sujet et création sujet
-		for(int i=0; i<values.length;i++)
+    	System.out.println(values + "tesststtete");
+    	if(values!=null)
     	{
-    		String idTemp = values[i];
-    		listeQ.add(questionnaireT.addQuestionListTemp(idTemp));
-    		
+    		for(int i=0; i<values.length;i++)
+        	{
+        		String idTemp = values[i];
+        		listeQ.add(questionnaireT.addQuestionListTemp(idTemp));
+        		
+        	}
     	}
+		
         String nomQ = req.getParameter("questionnaireNom");
         
     	if(nomQ.isEmpty()==true)
     	{
-    		System.out.println("pourqoi");
+    		System.out.println("pourqoi" + listeQ);
     		req.setAttribute("questionnaireVal",req.getParameter("questionnaireNomBis"));
-    		System.out.println("pourqoi pas");
-    		req.setAttribute("listQuestionR", questionSearch.retourneToutesQuestions());
+    		req.setAttribute("listQuestionR", questionSearch.retourneDiff(listeQ));
     		req.setAttribute("listeSujet", sujetTemp.getNomSujets());
     		this.getServletContext().getRequestDispatcher("/questionnaire.jsp").forward(req, resp);
     	}
@@ -64,6 +68,7 @@ public class CreationQuestionnaire extends HttpServlet
         	}
         	//sujetQ.add(sujetTemp);
         	questionnaireT.commitQuestionnaire();
+        	listeQ = new ArrayList <>();
             req.setAttribute("listQuestionR", questionSearch.retourneToutesQuestions());
     		req.setAttribute("listeSujet",sujetTemp.getNomSujets());
     		this.getServletContext().getRequestDispatcher("/afficheQuestionJPA.jsp").forward(req, resp);

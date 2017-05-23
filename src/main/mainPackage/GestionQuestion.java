@@ -29,6 +29,7 @@ public class GestionQuestion
     	this.questionT.setNiveau(niveau);
     	this.questionT.nbVotePertinence = 0;
     	this.questionT.totalNotePertinence = 0;
+
     }
 	public void setReponseG (Reponse e)
 	{
@@ -56,6 +57,7 @@ public class GestionQuestion
     }
 	public void addReponse(Reponse rep) throws Exception 
 	{
+		
         em.persist(rep);
     }
 	public void ouvertureQuestion()
@@ -65,12 +67,32 @@ public class GestionQuestion
         em.getTransaction().begin();
         em.persist(this.questionT);
 	}
+	
+	public void initiateQuestion(int id)
+	{
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		em = factory.createEntityManager();
+		Query q = em.createQuery("SELECT u FROM Question u where u.idTechvisible =:arg1", Question.class);
+        q.setParameter("arg1", id);
+        this.questionT = new Question();
+        this.questionT = (Question) q.getResultList().get(0);
+        em.getTransaction().begin();
+        em.persist(this.questionT);
+	}
+	//avec session
 	public void commitQuestion()
 	{   questionT.setIdV(questionT.idtechnique);
 		em.flush();
         em.persist(questionT);
         questionT.setIdV(questionT.idtechnique);
         questionT.setQuestionnaireNew();
+		em.getTransaction().commit();
+        em.close();
+	}
+	
+	public void commitQuestionReponse()
+	{  em.flush();
+    em.persist(questionT);
 		em.getTransaction().commit();
         em.close();
 	}
@@ -81,6 +103,29 @@ public class GestionQuestion
     
 	    Query q = em.createQuery("SELECT u FROM Question u", Question.class);
 	    List <Question> listeRechercher = q.getResultList();
+	    System.out.println("apres req");
+	    em.close();
+	    return listeRechercher;
+	}
+	public List <Question> retourneDiff(List <Question> questTemp)
+	{   
+		factory = Persistence.createEntityManagerFactory("questT");
+    	em = factory.createEntityManager();
+    
+	    Query q = em.createQuery("SELECT u FROM Question u", Question.class);
+	    List <Question> listeRechercher = q.getResultList();
+	    
+	    for(Question s : questTemp)
+	    {
+	    	for (int i = 0; i<listeRechercher.size(); i++)
+	    	{
+	    		if(listeRechercher.get(i).getIdTech()==s.getIdTech())
+		    	{
+		    		listeRechercher.remove(i);
+		    	}
+	    	}
+	    }
+	    	
 	    System.out.println("apres req");
 	    em.close();
 	    return listeRechercher;
@@ -173,8 +218,7 @@ public class GestionQuestion
         	{
         		if(this.questionT.reponseR().get(j).trueRep==1)
         			return true;
-        		else
-        			return false;
+				return false;
         	}
         	j++;
         }

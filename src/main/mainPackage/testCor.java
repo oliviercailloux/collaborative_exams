@@ -43,7 +43,7 @@ public class testCor extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		//Recupere les identifiants pour une question
-		List<Question> test = questionnaireT.getQuestions(10);
+		List<Question> test = questionnaireT.getQuestions(2);
 		req.setAttribute("listQ", test.get(0));
 		req.setAttribute("listR", test.get(0).reponseR());
         this.getServletContext().getRequestDispatcher("/testCor.jsp").forward(req, resp);

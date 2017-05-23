@@ -91,6 +91,11 @@
       <input type="hidden" name=test3 id="test3" value="">
 	  <input type="submit" onclick ="modify_valuePbis()"></input>
    </form>
+	<form name="testform" id="testform" action="QuestionnaireForm" method="Post" >
+		<input type="submit"value="Enregistrer questionnaire" onclick="modify_value()"/>
+		<input type="hidden" name=questionnaireNom id="test2" value="">
+		<input type="submit"value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
+		<input type="hidden" name=questionnaireNomBis id="test4" value="">
    <% 
    	  /***************
    	  		DEBUT TEST AFFICHAGE QUESTION
@@ -103,7 +108,7 @@
         System.out.println("apresR");
    	  	//Test si la liste est vide == des questions créées ou pas
    	  	if (list.size() > 0) 
-   	  	{ 
+		{ 
    	  		// test si le filtrage des question par question par compétence ou sujet est demandé
 	   	  	if ((request.getAttribute("competenceR") != null) || (request.getAttribute("sujetNomR")!=null))
 	   	  	{
@@ -128,11 +133,6 @@
    	  			%><h3>L'ensemble des questions :</h3><%	
    	  		} %>
    	  		<h4>L'ensemble des questions :</h4>
-			<form name="testform" id="testform" action="QuestionnaireForm" method="Post" >
-				<input type="submit"value="Enregistrer questionnaire" onclick="modify_value()"/>
-				<input type="hidden" name=questionnaireNom id="test2" value="">
-				<input type="submit"value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
-				<input type="hidden" name=questionnaireNomBis id="test4" value="">
 				<table class="table" >
 					<thead>
 	   	 				<tr>
@@ -162,7 +162,8 @@
 						 	<td><%=question.getNotePertinence()%></td>
 						 	
 					<%
-					}}
+					}
+		}
 	 			%>
 				</tbody>
 			</table>

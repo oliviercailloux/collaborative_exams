@@ -1,22 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String auteur = request.getParameter("auteur");
-	int identifiant = Integer.parseInt( request.getParameter("id"));
-	String enonce = request.getParameter("question");
-	String langueI = request.getParameter("langueN");
-	String competenceI = request.getParameter("competenceN");
-	String niveau = request.getParameter("niveau");	
-	int nb = Integer.parseInt( request.getParameter("nbRep"));
+	String auteur =(String) request.getAttribute("aut");
+	System.out.println("eememmeme "+auteur);
+	String nb =  (String) request.getAttribute("nbRep");
+	System.out.println("eememmeme 1"+nb);
+	String identifiant =(String) request.getAttribute("id");
+	System.out.println("eememmeme 2"+identifiant);
+
 	int reponse = 1;
-	//insertion données première form
-	session.setAttribute( "auteur", auteur );
-	session.setAttribute( "identifiant", identifiant );
-	session.setAttribute( "question", enonce );
-	session.setAttribute( "langueN", langueI );
-	session.setAttribute( "competenceN", competenceI );
-	session.setAttribute( "niveau", niveau );
-	session.setAttribute( "nb", nb );
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
@@ -38,15 +30,17 @@
 	<input type="text" id="auteur" name="auteur" value="<%= auteur%>" readonly/> <br /> 
 	
 	<form method="post" action="Pform">
+		<input type="hidden" id="identifiantQuest" name="identifiantQuest" value="<%= identifiant %>" size="50" /> <br /> 
+		<input type="hidden" id="nb" name="nb" value="<%= nb %>" size="50" /> 
 		<fieldset>
 			<legend>Créer une réponse</legend>
 			<p>Vous pouvez enregistrer votre réponse.</p>
-			<% while(reponse <= nb )
+			<% while(reponse <= Integer.parseInt(nb) )
 			{%>
 				<label for="textReponse">Réponse <%= reponse %> : </label> 
 				<input type="text" id="textReponse<%= reponse %>" name="textReponse<%= reponse %>" value="" size="70" /> <br /> 
 			<%
-				if(nb==1)
+				if(Integer.parseInt(nb)==1)
 				{%>
 					<label for="pos<%= reponse %>">Position Réponse <%= reponse %> : </label> 
 					<SELECT name="pos<%= reponse %>">
