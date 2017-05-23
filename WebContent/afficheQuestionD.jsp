@@ -29,14 +29,14 @@ function afficheForm(id)
    	  {
    	  	list = (Question) request.getAttribute("Question");
    	  }%>
-   	  <h1>Les informations de la question : <%=list.getEnonce()%> </h1>
-   	  <p>Enonce : <strong><%=list.getEnonce()%></strong> <a href="Difference?param1=<%=list.getIdTech()%>&param2=<%=list.getAut()%>">Difference originale</a></p>
-   	  <p>Langue de la question : <strong><%=list.getLangue()%></strong></p>
-   	  <p>La competence de la question : <strong><%=list.getCompetence()%></strong></p>
-   	  <p>Le niveau de la question : <strong><%=list.getNiveau()%></strong></p>
+   	  <h1>Les informations de la question : <%=list.getStatement()%> </h1>
+   	  <p>Enonce : <strong><%=list.getStatement()%></strong> <a href="Difference?param1=<%=list.getIdTech()%>&param2=<%=list.getAut()%>">Difference originale</a></p>
+   	  <p>Langue de la question : <strong><%=list.getLanguage()%></strong></p>
+   	  <p>La competence de la question : <strong><%=list.getSkill()%></strong></p>
+   	  <p>Le niveau de la question : <strong><%=list.getLevel()%></strong></p>
    	  <p>L'auteur de la question : <strong><%=list.getAut()%></strong></p>
    	  <p>L'identifiant de la question : <strong><%=list.getId()%></strong></p>
-   	  <p>Pertinence de la question : <strong><%=list.getNotePertinence()+" ("+list.getNbVotePertinence()+" vote(s))"%></strong></p><button type="button" onclick="afficheForm('formPertinence');">Noter</button>
+   	  <p>Pertinence de la question : <strong><%=list.getRelevanceMark()+" ("+list.getNbVoteRelevance()+" vote(s))"%></strong></p><button type="button" onclick="afficheForm('formPertinence');">Noter</button>
    	  <form id="formPertinence" action="ServletPertinence" method="get" style="visibility: hidden">
    	  	<label for="notePertinence">Note de pertinence</label>
 		<SELECT name="notePertinence">
@@ -65,11 +65,11 @@ function afficheForm(id)
         </tr>
 		<ol>
 	    	<%
-	    	for(int i=0; i<list.reponseR().size();i++)
+	    	for(int i=0; i<list.answerA().size();i++)
 	    	{%>
 	    		<tr>
-	    			<td><li><%=list.reponseR().get(i).getText() %></li></td>
-	    			<td><%=list.reponseR().get(i).getPos() %></td>
+	    			<td><li><%=list.answerA().get(i).getText() %></li></td>
+	    			<td><%=list.answerA().get(i).getPos() %></td>
 	    		</tr>
 	    	<%} %>
 		</ol></table>

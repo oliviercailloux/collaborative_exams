@@ -15,11 +15,11 @@
 <body>
 	<%@page import="mainPackage.*" %>
 	<%
-		String[] langue = Donnees.trouveLangueP();
-   		String[] competence = Donnees.trouveCompetenceP();
-   		String[] niveau = Donnees.trouveNiveau();
-   		String[] typeQ = Donnees.trouveTypeQ();
-   		Integer[] coef = Donnees.trouveCoef();
+		String[] langue = Data.findLanguage();
+   		String[] competence = Data.findSkill();
+   		String[] niveau = Data.findLevel();
+   		String[] typeQ = Data.findTypeQ();
+   		Integer[] coef = Data.findCoef();
    		RequestDispatcher rd;
    	%>
 	<form method="post" action="reponse.jsp">

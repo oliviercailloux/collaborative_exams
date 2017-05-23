@@ -18,38 +18,38 @@ import javax.servlet.http.HttpSession;
 public class CreationVarianteEtAfficheDetailForm extends HttpServlet 
 {
 	@Inject
-	GestionQuestion insert;
+	QuestionManager insert;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		//variable session pour identifier la variante
 		HttpSession session = req.getSession();
-		String idPere = (String)session.getAttribute("idPere");
+		String idFather = (String)session.getAttribute("idPere");
         
         //variable Question standard
-        String nom = req.getParameter("auteur");
-        int identifiant = Integer.parseInt( req.getParameter("id"));
-        String enonce = req.getParameter("variante");
-        String langueI = req.getParameter("langueN");
-        String competenceI = req.getParameter("competenceN");
-        String niveau = req.getParameter("niveau");
+        String name = req.getParameter("auteur");
+        int id = Integer.parseInt( req.getParameter("id"));
+        String statement = req.getParameter("variante");
+        String language = req.getParameter("langueN");
+        String skill = req.getParameter("competenceN");
+        String level = req.getParameter("niveau");
         
         //variable Opinion
-        String opinionI = req.getParameter("opinionN");
+        String opinion = req.getParameter("opinionN");
         //Question insert = new Question(idPere);
-        CreationEtAffichageQuestionForm.listeQ.add(insert.createQuestionV(nom, langueI, competenceI, enonce, idPere, identifiant, opinionI, niveau));
+        CreateDisplayQuestionForm.listQ.add(insert.createQuestionV(name, language, skill, statement, idFather, id, opinion, level));
         
-        req.setAttribute("listQuestionR", CreationEtAffichageQuestionForm.listeQ);
+        req.setAttribute("listQuestionR", CreateDisplayQuestionForm.listQ);
         session.invalidate();
-		req.setAttribute("listeSujet", SujetForm.sujetQ);
+		req.setAttribute("listeSujet", SubjectForm.subjectQ);
         this.getServletContext().getRequestDispatcher("/afficheQuestion.jsp").forward(req, resp);
 	}
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		String identifiantRecherche = req.getParameter("getDetail");
-		//Recupere les identifiants pour une question
-		req.setAttribute("Question",insert.retourneQuestion(identifiantRecherche));
+		String idRecherche = req.getParameter("getDetail");
+		//Recupere les ids pour une question
+		req.setAttribute("Question",insert.returnQuestion(idRecherche));
 		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);
 	}
 	

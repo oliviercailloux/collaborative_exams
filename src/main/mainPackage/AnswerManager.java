@@ -9,41 +9,41 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
 @ApplicationScoped
-public class GestionReponse {
-Reponse reponse;
+public class AnswerManager {
+Answer answer;
 private static final String PERSISTENCE_UNIT_NAME = "questT";
 private static EntityManagerFactory factory;
 
-	public Reponse createReponse(Question questionA, String textRep, String pos)
+	public Answer createAnswer(Question questionA, String textAnswer, String pos)
     {
-		reponse = new Reponse();
-    	reponse.setTextRep(textRep);
-    	reponse.setTrueRep(pos);
+		answer = new Answer();
+    	answer.setTextAnswer(textAnswer);
+    	answer.setTrueFalse(pos);
     	System.out.println(questionA.getIdTech()+ " test");
-    	reponse.setIdQ(questionA.getIdTech());
-    	reponse.questionLien = questionA;
+    	answer.setIdQ(questionA.getIdTech());
+    	answer.questionLink = questionA;
     	
-		return reponse;
+		return answer;
     }
-	public Reponse getReponse()
+	public Answer getAnswer()
 	{
-		return this.reponse;
+		return this.answer;
 	}
 	@SuppressWarnings("unused")
-	public void addReponse(Reponse rep) throws Exception {
+	public void addAnswer(Answer answer) throws Exception {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
-        Reponse test = new Reponse();
+        Answer test = new Answer();
         em.getTransaction().begin();
-        em.persist(rep);
+        em.persist(answer);
         em.getTransaction().commit();
         em.close();
     }
-	public void commitReponse()
+	public void commitAnswer()
 	{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
-        Reponse test = new Reponse();
+        Answer test = new Answer();
         em.getTransaction().begin();
         em.persist(test);
         em.getTransaction().commit();

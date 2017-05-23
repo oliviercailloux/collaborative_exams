@@ -29,7 +29,7 @@
 	if ( request.getAttribute("listQ") != null)
 	{
 		Question list = (Question) request.getAttribute("listQ");
-		List <Reponse> listR = (List<Reponse>) request.getAttribute("listR");
+		List <Answer> listR = (List<Answer>) request.getAttribute("listR");
 		%>
 			<h4>L'ensemble des lists :</h4>
 			<form name="testform" id="testform" action="FormTest" method="Post" >
@@ -39,7 +39,7 @@
 					
 	     			<tbody>
 	 					<%
-					for(Reponse rep : listR)
+					for(Answer rep : listR)
 					{
 	
 					%>

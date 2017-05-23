@@ -18,13 +18,13 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/SujetForm")
 
-public class SujetForm extends HttpServlet 
+public class SubjectForm extends HttpServlet 
 {
 	@Inject
-	GestionQuestion questionSearch;
+	QuestionManager questionSearch;
 	@Inject
-	GestionSujet sujetTemp;
-    public static List <Sujet> sujetQ = new ArrayList <>();
+	SubjectManager subjectTemp;
+    public static List <Subject> subjectQ = new ArrayList <>();
     @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
@@ -32,29 +32,29 @@ public class SujetForm extends HttpServlet
     	String[] values = req.getParameterValues("questionSelect");
     	
     	//Recupération nom Sujet et création sujet
-    	String nomS = req.getParameter("sujetNom");
-    	sujetTemp.createSujet(nomS);
-    	sujetTemp.ouvertureSujet();
+    	String nameS = req.getParameter("sujetNom");
+    	subjectTemp.createSubject(nameS);
+    	subjectTemp.openSubject();
     	//navigue et récupère les questions sélectionées.
     	for(int i=0; i<values.length;i++)
     	{
     		String idTemp = values[i];
-    		sujetTemp.addQuestion(idTemp);
+    		subjectTemp.addQuestion(idTemp);
     	}
-    	//sujetQ.add(sujetTemp);
-    	sujetTemp.commitSujet();
-        req.setAttribute("listQuestionR", questionSearch.retourneToutesQuestions());
-		req.setAttribute("listeSujet",sujetTemp.getNomSujets());
+    	//subjectQ.add(subjectTemp);
+    	subjectTemp.commitSubject();
+        req.setAttribute("listQuestionR", questionSearch.returnAllQuestions());
+		req.setAttribute("listeSujet",subjectTemp.getSubjectName());
 		this.getServletContext().getRequestDispatcher("/afficheQuestionJPA.jsp").forward(req, resp);
 	}
     
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		String competenceRechercher = req.getParameter("competenceR");
-		String sujetTest = req.getParameter("test1");
-		req.setAttribute("listQuestionR", questionSearch.retourneListQuestionComp(competenceRechercher));
-		req.setAttribute("sujetTest", sujetTest);
+		String searchSkill = req.getParameter("competenceR");
+		String subjectTest = req.getParameter("test1");
+		req.setAttribute("listQuestionR", questionSearch.returnListQuestionSkill(searchSkill));
+		req.setAttribute("subjectTest", subjectTest);
         this.getServletContext().getRequestDispatcher("/creationSujet.jsp").forward(req, resp);
 	}
 }

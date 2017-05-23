@@ -16,9 +16,9 @@
  <%@page import="mainPackage.*" %>
  <%@page import="java.util.*"%>
 <%
-	String[] competence = Donnees.trouveCompetenceP();
-	System.out.println("avant iciiciciccicici tettststst ");
-	List <String> listSujet = (List<String>) request.getAttribute("listeSujet");
+	String[] competence = Data.findSkill();
+	System.out.println("avant iciiciciccicici tettststst "); // ENLEVER
+	List <String> listSubject = (List<String>) request.getAttribute("listeSujet");
 	System.out.println("iciiciciccicici tettststst ");
 %>
    <h3>Choisissez une compétence</h3>
@@ -43,9 +43,9 @@
       <SELECT name="sujetR">
          <OPTION value="">--- Sujet ---</OPTION>
          <%
-         for(String sujetName : listSujet ){
+         for(String subjectName : listSubject ){
          %>
-          <OPTION value="<%=sujetName.toString() %>"><%=sujetName.toString() %></OPTION>
+          <OPTION value="<%=subjectName.toString() %>"><%=subjectName.toString() %></OPTION>
          <%
          }
          %>
@@ -107,16 +107,16 @@
          	<%
          	for(Question question : list)
          	{
-          	  	System.out.println("--------------" + question.getLangue());%>
+          	  	System.out.println("--------------" + question.getLanguage());%>
 	           	<tr>
-	            	<td><%=question.getEnonce()%></td>
-	             	<td><%=question.getLangue()%></td>
-	            	<td><%=question.getCompetence()%></td>
-	            	<td><%=question.getNiveau()%></td>
+	            	<td><%=question.getStatement()%></td>
+	             	<td><%=question.getLanguage()%></td>
+	            	<td><%=question.getSkill()%></td>
+	            	<td><%=question.getLevel()%></td>
 	             	<td><%=question.getAut()%></td>
 	             	<td><%=question.getId()%></td>
-	             	<td><%=question.getNotePertinence()+" ("+question.getNbVotePertinence()+" vote(s))"%></td>
-	             	<td><%=question.getNomSujet()%></td>
+	             	<td><%=question.getRelevanceMark()+" ("+question.getNbVoteRelevance()+" vote(s))"%></td>
+	             	<td><%=question.getSubjectName()%></td>
 	             	<td><%=question.getVar()%></td>
 	             	<td><BUTTON type="submit" name="getDetail" value="<%=question.getIdTech()%>+<%=question.getAut()%>+<%=question.getId()%>">afficher détails</BUTTON></td>
 	            </tr>

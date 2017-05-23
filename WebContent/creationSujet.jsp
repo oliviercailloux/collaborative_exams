@@ -37,7 +37,7 @@
 	<%@page import="mainPackage.*" %>
 	<%@page import="java.util.*"%>
 	<%
-	  	String[] competence = Donnees.trouveCompetenceP();
+	  	String[] skill = Data.findSkill();
 		String nomSujet = "";
 		if(request.getAttribute("sujetTest")!=null)
 		{
@@ -54,12 +54,12 @@
 	<h3>Veuillez choisir une compétence pour créer un sujet</h3>
 	<form name="formC" id="formC"action="SujetForm" method="get">
 		Merci de choisir une compétence :
-		<SELECT name="competenceR">
+		<SELECT name="skillR">
 			<OPTION value="">--- Competence ---</OPTION>
 			<%
-			for(String competenceName : competence ){
+			for(String skillName : skill ){
 			%>
-			<OPTION value="<%=competenceName %>"><%=competenceName %></OPTION>
+			<OPTION value="<%=skillName %>"><%=skillName %></OPTION>
 			<%
 			}
 			%>
@@ -95,17 +95,17 @@
 	 				<%
 					for(Question question : list)
 					{
-		  				System.out.println("--------------" + question.getLangue());
+		  				System.out.println("--------------" + question.getLanguage());
 	
 					%>
 						<tr>
-							<td><input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>+<%=question.getAut()%>"><%=question.getEnonce()%></td>
-						 	<td><%=question.getLangue()%></td>
-							<td><%=question.getCompetence()%></td>
-							<td><%=question.getNiveau()%></td>
+							<td><input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>+<%=question.getAut()%>"><%=question.getStatement()%></td>
+						 	<td><%=question.getLanguage()%></td>
+							<td><%=question.getSkill()%></td>
+							<td><%=question.getLevel()%></td>
 						 	<td><%=question.getAut()%></td>
 						 	<td><%=question.getId()%></td>
-						 	<td><%=question.getNotePertinence()%></td>
+						 	<td><%=question.getRelevanceMark()%></td>
 						 	
 					<%
 					}

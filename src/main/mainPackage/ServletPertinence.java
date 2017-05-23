@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletPertinence extends HttpServlet 
 {
 	@Inject
-	GestionQuestion insert;
+	QuestionManager insert;
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
@@ -21,7 +21,7 @@ public class ServletPertinence extends HttpServlet
 		int note = Integer.parseInt(req.getParameter("notePertinence"));
 		
 		//Recherche et Recupere une question
-		req.setAttribute("Question",insert.retourneQuestionNote(identifiantRecherche, note));
+		req.setAttribute("Question",insert.returnQuestionNote(identifiantRecherche, note));
 		this.getServletContext().getRequestDispatcher("/afficheQuestionD.jsp").forward(req, resp);
 	}
 	

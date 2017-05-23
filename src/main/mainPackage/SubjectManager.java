@@ -10,77 +10,77 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 @ApplicationScoped
-public class GestionSujet 
+public class SubjectManager 
 {
 	private static final String PERSISTENCE_UNIT_NAME = "questT";
     private static EntityManagerFactory factory;
     EntityManager em; 
-    Sujet sujetT;
-    public void createSujet(String nom)
+    Subject subjectT;
+    public void createSubject(String name)
     {
-    	this.sujetT = new Sujet(nom);
+    	this.subjectT = new Subject(name);
     }
-    public Sujet getSujet()
+    public Subject getSubject()
     {
-    	return this.sujetT;
+    	return this.subjectT;
     }
     public void setQuestion (Question e)
 	{
-		this.sujetT.insertSujet(e);
+		this.subjectT.insertSubject(e);
 	}
-    public void ouvertureSujet()
+    public void openSubject()
 	{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
         em.getTransaction().begin();
-        em.persist(this.sujetT);
+        em.persist(this.subjectT);
 	}
     public void addQuestion(String id)
 	{
 		StringTokenizer st = new StringTokenizer(id, "+"); 
-		String tableauEntier[] = new String[3];
+		String array[] = new String[3];
 		int i=0;
 		while (st.hasMoreTokens()) {
-			tableauEntier[i] = st.nextToken();
+			array[i] = st.nextToken();
 			i=i+1;
 	     }
         // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u FROM Question u where u.idTechvisible =:arg1", Question.class);
-        q.setParameter("arg1", Integer.parseInt(tableauEntier[0]));
-        Question listeRechercher = (Question) q.getResultList().get(0);
-        em.persist(listeRechercher);
-        listeRechercher.setSujet(this.getSujet());
-        this.sujetT.insertSujet(listeRechercher);
-        //System.out.println("Size: " + listeRechercher.get(0).enonceQ);
+        q.setParameter("arg1", Integer.parseInt(array[0]));
+        Question searchList = (Question) q.getResultList().get(0);
+        em.persist(searchList);
+        searchList.setSubject(this.getSubject());
+        this.subjectT.insertSubject(searchList);
+        //System.out.println("Size: " + searchList.get(0).enonceQ);
 	}
-    public void commitSujet()
+    public void commitSubject()
 	{   
 		em.getTransaction().commit();
         em.close();
 	}
-    public List<String> getNomSujets()
+    public List<String> getSubjectName()
     {
     	 factory = Persistence.createEntityManagerFactory("questT");
         em = factory.createEntityManager();
         // Read the existing entries and write to console
-        Query q = em.createQuery("SELECT u.nomSujet FROM Sujet u", Sujet.class);
-        List<String> listeQuestionA;
-        listeQuestionA = q.getResultList();
+        Query q = em.createQuery("SELECT u.subjectName FROM Subject u", Subject.class);
+        List<String> listQuestionA;
+        listQuestionA = q.getResultList();
        // Question test = userList;
         em.close();
-		return listeQuestionA;
+		return listQuestionA;
     	
     }
-    public List<Question> getQuestionsSujet(String nomSujet)
+    public List<Question> getSubjectQuestions(String nameSubject)
     {
     	 factory = Persistence.createEntityManagerFactory("questT");
         em = factory.createEntityManager();
         // Read the existing entries and write to console
-        Query q = em.createQuery("SELECT u FROM Sujet u where u.nomSujet like :arg1", Sujet.class);
-        q.setParameter("arg1", nomSujet);
-        List<Sujet> sujetTemp = q.getResultList();
+        Query q = em.createQuery("SELECT u FROM Subject u where u.subjectName like :arg1", Subject.class);
+        q.setParameter("arg1", nameSubject);
+        List<Subject> subjectTemp = q.getResultList();
         em.close();
-		return sujetTemp.get(0).getQuestionsSujet();
+		return subjectTemp.get(0).getSubjectQuestions();
     	
     }
     

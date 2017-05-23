@@ -13,33 +13,31 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="App.Reponses")
-public class Reponse {
+public class Answer {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 	int idQuestion;
-	String auteur;
-    String textReponse;
+	String author;
+    String textAnswer;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="QUESTION_ID")
-    Question questionLien;
+    Question questionLink;
     int trueRep;
     
-      
-    
-    public Reponse()
+    public Answer()
     {
-    	this.textReponse = ""; 
+    	this.textAnswer = ""; 
     	this.trueRep =2;
     	this.idQuestion = 0;
-    	questionLien = new Question();
+    	questionLink = new Question();
     	
     } 
     
     public String getText()
     {
-      return this.textReponse;
+      return this.textAnswer;
     }
     public String getPos()
     {
@@ -51,19 +49,19 @@ public class Reponse {
     }
     public void setQuestion(Question q)
     {
-    	this.questionLien = q;
+    	this.questionLink = q;
     	this.idQuestion=q.getId();
     }
-    public void setAuteurQ(String auteur)
+    public void setauthorQ(String author)
     {
-    	this.auteur=auteur;
+    	this.author=author;
     } 
     
-    public void setTextRep(String textR)
+    public void setTextAnswer(String textR)
     {
-    	this.textReponse=textR;
+    	this.textAnswer=textR;
     }
-    public void setTrueRep(String position)
+    public void setTrueFalse(String position)
     {
     	if(position.equalsIgnoreCase("V"))
     	{
@@ -80,7 +78,7 @@ public class Reponse {
     }
     public String getAut()
     {
-      return this.auteur;
+      return this.author;
     }
     public int getid()
     {

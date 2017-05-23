@@ -17,10 +17,10 @@
 	<%@page import="mainPackage.*" %>
 	<%
   		Question questionI = new Question();
-		questionI = Question.getQuestion(IdQPere, CreationEtAffichageQuestionForm.listeQ);
-		String[] langue = Donnees.trouveLangueP();
-   		String[] competence = Donnees.trouveCompetenceP();
-   		String[] niveau = Donnees.trouveNiveau();
+		questionI = Question.getQuestion(IdQPere, CreateDisplayQuestionForm.listQ);
+		String[] language = Data.findLanguage();
+   		String[] skill = Data.findSkill();
+   		String[] level = Data.findLevel();
 
    	%>
 	<form method="post" action="FormReponse">
@@ -29,51 +29,51 @@
 			<p>Vous pouvez enregistrer une variante.</p>
 			
 			<label for="question">Question</label>
-			<input type="text" id="question" name="question" value="<%=questionI.getEnonce()%>" size="50" readonly/><br />
+			<input type="text" id="question" name="question" value="<%=questionI.getStatement()%>" size="50" readonly/><br />
 			<label for="variante">Variante</label>
 			<input type="text" id="variante" name="variante" value="" size="50"></input><br /> 
 			
 			<label for="auteur">Nom Auteur</label> 
 			<input type="text" id="auteur" name="auteur" value="" /> <br /> 
       		
-			<label for="langue">Langue</label> 			
-			<SELECT name="langueN">
+			<label for="language">Langue</label> 			
+			<SELECT name="languageN">
          	<OPTION value="">--- Langue ---</OPTION>
         	 <%
-        		 for(String langueName : langue )
+        		 for(String languageName : language )
         		 {
         	 %>
-          			<OPTION value="<%=langueName %>"><%=langueName %></OPTION>
+          			<OPTION value="<%=languageName %>"><%=languageName %></OPTION>
          	<%
         	 	 }
         	 %>
       		</SELECT> <br /> 
       		
-			<label for="competence">Competence</label> 
-			<SELECT name="competenceN">
+			<label for="skill">Competence</label> 
+			<SELECT name="skillN">
 			<%
 				if(varianteType.equalsIgnoreCase("Amelioration"))
 				{%>
-					<OPTION value="<%=questionI.getCompetence() %>"><%=questionI.getCompetence() %></OPTION>
+					<OPTION value="<%=questionI.getSkill() %>"><%=questionI.getSkill() %></OPTION>
 				<% }
 				else
 				{%>
 					<OPTION value="">--- Competence ---</OPTION>
         	 	<%
-        		 	for(String competenceName : competence )
+        		 	for(String skillName : skill )
         		 	{
         		 %>
-          				<OPTION value="<%=competenceName %>"><%=competenceName %></OPTION><%}} %>
+          				<OPTION value="<%=skillName %>"><%=skillName %></OPTION><%}} %>
       		</SELECT> <br />
       		
-      		<label for="niveau">Niveau</label> 			
-			<SELECT name="niveau">
+      		<label for="level">Niveau</label> 			
+			<SELECT name="level">
          	<OPTION value="">--- Niveau ---</OPTION>
         	 <%
-        		 for(String niv : niveau )
+        		 for(String l : level )
         		 {
         	 %>
-          			<OPTION value="<%=niv %>"><%=niv %></OPTION>
+          			<OPTION value="<%=l %>"><%=l %></OPTION>
          	<%
         	 	 }
         	 %>

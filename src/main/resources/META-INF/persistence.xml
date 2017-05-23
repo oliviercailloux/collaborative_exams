@@ -4,11 +4,11 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/
 <persistence-unit name="questT" transaction-type="RESOURCE_LOCAL"> 
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> 
 	<class>mainPackage.Question</class>
-	<class>mainPackage.Reponse</class>
-	<class>mainPackage.GestionQuestion</class>
-	<class>mainPackage.GestionReponse</class>
-	<class>mainPackage.GestionSujet</class>
-	<class>mainPackage.Sujet</class>
+	<class>mainPackage.Answer</class>
+	<class>mainPackage.QuestionManager</class>
+	<class>mainPackage.AnswerManager</class>
+	<class>mainPackage.SubjectManager</class>
+	<class>mainPackage.Subject</class>
 
 	<properties>
 		<property name="javax.persistence.schema-generation-action" value="drop-and-create"/> 

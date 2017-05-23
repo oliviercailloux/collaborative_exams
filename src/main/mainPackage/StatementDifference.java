@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/Difference")
-public class DifferenceEnonce extends HttpServlet
+public class StatementDifference extends HttpServlet
 {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		//Recupere les identifiants pour une question
-		String identifiantRecherche = req.getParameter("param1");
-		String auteur = req.getParameter("param2");
-		String temp = identifiantRecherche+ "+"+ auteur;
-		Question listeQuestionA = new Question();
+		String idSearch = req.getParameter("param1");
+		String author = req.getParameter("param2");
+		String temp = idSearch+ "+"+ author;
+		Question listQuestionA = new Question();
 		Question quest2 = new Question();
 		//Recherche et Recupere une question
-		listeQuestionA = Question.getQuestion(temp, CreationEtAffichageQuestionForm.listeQ);
-		quest2 = Question.getQuestion(listeQuestionA.getVariante(), CreationEtAffichageQuestionForm.listeQ);
-		req.setAttribute("enonceV",listeQuestionA.getEnonce());
-		req.setAttribute("enonceP",quest2.getEnonce());
+		listQuestionA = Question.getQuestion(temp, CreateDisplayQuestionForm.listQ);
+		quest2 = Question.getQuestion(listQuestionA.getVariant(), CreateDisplayQuestionForm.listQ);
+		req.setAttribute("enonceV",listQuestionA.getStatement());
+		req.setAttribute("enonceP",quest2.getStatement());
 		this.getServletContext().getRequestDispatcher("/afficheDiffOriginaleVariante.jsp").forward(req, resp);
 	}
 }

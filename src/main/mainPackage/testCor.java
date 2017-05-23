@@ -20,7 +20,7 @@ import org.apache.derby.tools.sysinfo;
 public class testCor extends HttpServlet 
 {
 	@Inject
-	GestionQuestion insert;
+	QuestionManager insert;
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -41,9 +41,9 @@ public class testCor extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		//Recupere les identifiants pour une question
-		Question test = insert.retourneQuestionT("4");
+		Question test = insert.returnQuestionT("4");
 		req.setAttribute("listQ", test);
-		req.setAttribute("listR", test.reponseR());
+		req.setAttribute("listR", test.answerA());
         this.getServletContext().getRequestDispatcher("/testCor.jsp").forward(req, resp);
 
 	}
