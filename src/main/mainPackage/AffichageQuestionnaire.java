@@ -60,6 +60,7 @@ public class AffichageQuestionnaire extends HttpServlet
 								break;
 							}
 						}
+						
 						if(r.getPos().equals("Vrai")) scoreTotal ++;
 					}
 				}
