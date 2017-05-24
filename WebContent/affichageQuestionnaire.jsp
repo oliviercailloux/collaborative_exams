@@ -31,7 +31,7 @@
 			};
 		;
 		var doc = new jsPDF();
-		alert('test')
+		alert("<%=(String) request.getAttribute("questionnaireR")%> au format PDF !");
 	    doc.fromHTML($('#content').html(), 15, 15, { 
 	        'width': 190, 
 	            'elementHandlers': specialElementHandlers 
@@ -53,7 +53,7 @@
    
    <h3>Choisissez un Questionnaire</h3>
    <form action="affichageQuestionnaire" method="get">
-     Merci de choisir une compétence :
+     Merci de choisir un questionnaire :
       <SELECT name="questionnaireR">
          <OPTION value="<%= (String) request.getAttribute("questionnaireR")%>"><%= (String) request.getAttribute("questionnaireR")%></OPTION>
          <%
@@ -88,22 +88,44 @@
 				<input type="hidden" name=sujetNom id="test2" value="">
 				<div id="content">
 				<h3>L'ensemble des questions du questionnaire : <%=(String) request.getAttribute("questionnaireR")%></h3> 
+   	  		 <form action="affichageQuestionnaire" method="get">
    	  		<% for(Question question : list)
          	{ 
-   	  			listR = question.reponseR();%>	
+   	  			listR = question.reponseR();
+   	  			String type = "radio";
+   	  			if(listR.size() > 2  ) type = "checkbox";
+   	  			else if (listR.size() == 1 ) type = "input"; %>	
 	           	<h3><%=question.getEnonce()%></h3>
-	            <form action="">
-	            <% for(Reponse reponses : listR)
-	            { %>
-	            	<input type="radio" name="<%= reponses.getid()%>" value="<%= reponses.getText() %>">  <%= reponses.getText() %><br>
-	            <% } %>
-	            </form>
+	          <%  if(request.getAttribute("result") != null)
+        		{	%><label> Le(s) bonne(s) réponse(s) à la question : </label><br><%}
+	             for(Reponse reponses : listR)
+	            { 
+	            if(request.getAttribute("result") != null)
+	          		{	 
+	            	if(reponses.getPos().equals("Vrai")) 
+	            		{%>
+	          		<label><%=reponses.getText() %></label><br>
+	          		<%	}
+	          		}
+	            else { %>
+	            	<input type="<%=type %>" name="<%=question.getIdTech()%>" <%= (listR.size()== 1)?"":"value=\""+reponses.getText()+"\""%>>  <%= (listR.size()== 1)?"":reponses.getText()%><br>
+	            <% }
+	            } %>
          	<%
          	}
          }
    	  	
-         %></div>
-       </tbody>
+         %>	  
+         <input type="hidden" name="Questionnaire_envoi" value="totoro"> 
+         <input type="hidden" name="questionnaireR" value="<%= (String) request.getAttribute("questionnaireR")%>">       
+         <BUTTON type="submit">Envoyer Questionnaire</BUTTON>
+	     </form>
+	     <% if((Integer) request.getAttribute("score") != null)
+	     		{
+	     		%>
+	           <h3>Score =   <%=(Integer) request.getAttribute("score")%>/<%=(Integer) request.getAttribute("scoreTotal")%></h3>
+	            <% } %>
+	            </div>
     <%}%>
 </body>
 </html>

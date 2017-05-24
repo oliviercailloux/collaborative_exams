@@ -38,9 +38,39 @@ public class AffichageQuestionnaire extends HttpServlet
 		
 		if(req.getParameter("questionnaireR")!=null && req.getParameter("questionnaireR").isEmpty()!=true)
 		{
+			System.out.println("MARMOHHHHHHHHH11111");
 			String questionnaireRechercher = req.getParameter("questionnaireR");
 			req.setAttribute("listQuestionR", questionnaireT.getQuestionsQuestionnaire(questionnaireRechercher));
 			req.setAttribute("questionnaireR", questionnaireRechercher);
+			if(req.getParameter("Questionnaire_envoi")!=null && !req.getParameter("Questionnaire_envoi").isEmpty())
+			{
+				System.out.println("MARMOHHHHHHHHH");
+				int score = 0;
+				int scoreTotal = 0;
+				for(Question q : questionnaireT.getQuestionsQuestionnaire(questionnaireRechercher))
+				{	
+					for(Reponse r: q.reponseR())
+					{	
+						for(int i=0;i<req.getParameterValues(Integer.toString(q.getIdTech())).length;i++)
+						{
+							if(req.getParameterValues(Integer.toString(q.getIdTech()))[i].equals(r.getText()) && r.getPos().equals("Vrai"))
+							{
+								req.getParameterValues(Integer.toString(q.getIdTech()))[i] =  "";
+								score = score + 1;
+								break;
+							}
+						}
+						if(r.getPos().equals("Vrai")) scoreTotal ++;
+					}
+				}
+				req.setAttribute("score", score);
+				req.setAttribute("scoreTotal", scoreTotal);
+				System.out.println("SCORE !!!!!"+ score);
+				score=0;
+				scoreTotal = 0;
+				req.setAttribute("result", "result");
+				
+			}
 	        
 		}
 		else 

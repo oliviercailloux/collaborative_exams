@@ -134,6 +134,9 @@ public class Question {
     public String getLangue()
     {
      String str2 = new String(this.langueQ.getBytes(),Charset.forName("UTF-8"));
+     if (str2 == null )
+    	 return this.langueQ;
+     else 
       return str2;
     }
     public void setLangue(String langue)

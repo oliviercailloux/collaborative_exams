@@ -36,6 +36,10 @@ public class Reponse {
     	questionLien = new Question();
     	
     } 
+    public int getTrueRep()
+    {
+    	return this.trueRep;
+    }
     
     public String getText()
     {
