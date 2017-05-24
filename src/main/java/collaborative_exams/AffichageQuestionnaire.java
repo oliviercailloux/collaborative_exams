@@ -1,4 +1,4 @@
-package mainPackage;
+package collaborative_exams;
 import java.io.IOException;
 
 import java.util.ArrayList;
