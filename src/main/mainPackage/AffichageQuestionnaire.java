@@ -38,13 +38,11 @@ public class AffichageQuestionnaire extends HttpServlet
 		
 		if(req.getParameter("questionnaireR")!=null && req.getParameter("questionnaireR").isEmpty()!=true)
 		{
-			System.out.println("MARMOHHHHHHHHH11111");
 			String questionnaireRechercher = req.getParameter("questionnaireR");
 			req.setAttribute("listQuestionR", questionnaireT.getQuestionsQuestionnaire(questionnaireRechercher));
 			req.setAttribute("questionnaireR", questionnaireRechercher);
 			if(req.getParameter("Questionnaire_envoi")!=null && !req.getParameter("Questionnaire_envoi").isEmpty())
 			{
-				System.out.println("MARMOHHHHHHHHH");
 				int score = 0;
 				int scoreTotal = 0;
 				for(Question q : questionnaireT.getQuestionsQuestionnaire(questionnaireRechercher))

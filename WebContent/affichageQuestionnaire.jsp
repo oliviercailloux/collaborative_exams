@@ -50,11 +50,12 @@
 	List <String> listQuestionnaire = (List<String>) request.getAttribute("listeQuestionnaire");
 	
 %>
-   
+  <div class="container">
    <h3>Choisissez un Questionnaire</h3>
+   <div class ="row mt">
    <form action="affichageQuestionnaire" method="get">
      Merci de choisir un questionnaire :
-      <SELECT name="questionnaireR">
+      <SELECT name="questionnaireR" class="selectpicker">
          <OPTION value="<%= (String) request.getAttribute("questionnaireR")%>"><%= (String) request.getAttribute("questionnaireR")%></OPTION>
          <%
          
@@ -65,9 +66,9 @@
          }
          %>
       </SELECT>
-      <BUTTON type="submit">Chercher</BUTTON>
+      <BUTTON type="submit" class="btn btn-success">Chercher</BUTTON>
    </form>
-   
+   </div>
   <% 
   if (request.getAttribute("listQuestionR")== null) {}
    	  /***************
@@ -84,7 +85,8 @@
    	  	if (list.size() > 0) 
    	  	{ 
    	  		%>
-   	  		<input type="submit"value="Questionnaire format PDF" onclick="print_page()"/>
+   	  	  <input type="submit"value="Questionnaire format PDF"  class="btn btn-success" onclick="print_page()"/>
+   	  		<div class ="row mt">
 				<input type="hidden" name=sujetNom id="test2" value="">
 				<div id="content">
 				<h3>L'ensemble des questions du questionnaire : <%=(String) request.getAttribute("questionnaireR")%></h3> 
@@ -97,35 +99,49 @@
    	  			else if (listR.size() == 1 ) type = "input"; %>	
 	           	<h3><%=question.getEnonce()%></h3>
 	          <%  if(request.getAttribute("result") != null)
-        		{	%><label> Le(s) bonne(s) réponse(s) à la question : </label><br><%}
+        		{	%>
+        		<label> La(es) bonne(s) réponse(s) à la question : </label>
+        		<br>
+        		<ul class="list-group">
+        		<% 
+        		}
 	             for(Reponse reponses : listR)
 	            { 
 	            if(request.getAttribute("result") != null)
 	          		{	 
-	            	if(reponses.getPos().equals("Vrai")) 
-	            		{%>
-	          		<label><%=reponses.getText() %></label><br>
-	          		<%	}
+	            	%>
+	            		<li class="list-group-item list-group-item-<%=reponses.getPos().equals("Vrai")?"success":"danger"%>" role="alert"><%=reponses.getText() %></li>
+	          		<%
 	          		}
 	            else { %>
-	            	<input type="<%=type %>" name="<%=question.getIdTech()%>" <%= (listR.size()== 1)?"":"value=\""+reponses.getText()+"\""%>>  <%= (listR.size()== 1)?"":reponses.getText()%><br>
+	            	<div class="form-group">  
+	            		<input type="<%=type %>" name="<%=question.getIdTech()%>" <%= (listR.size()== 1)?"":"value=\""+reponses.getText()+"\""%>>  <%= (listR.size()== 1)?"":reponses.getText()%>
+	            		<br>
+	            	</div>
+	            	
 	            <% }
-	            } %>
-         	<%
-         	}
-         }
-   	  	
-         %>	  
-         <input type="hidden" name="Questionnaire_envoi" value="totoro"> 
-         <input type="hidden" name="questionnaireR" value="<%= (String) request.getAttribute("questionnaireR")%>">       
-         <BUTTON type="submit">Envoyer Questionnaire</BUTTON>
-	     </form>
+	            }
+	             if(request.getAttribute("result") != null)
+	             	{ %>
+	             	</ul>
+         			<%
+         			} 
+	          }
+  			%>	  
+	         <input type="hidden" name="Questionnaire_envoi" value="totoro"> 
+	         <input type="hidden" name="questionnaireR" value="<%= (String) request.getAttribute("questionnaireR")%>">       
+	         <BUTTON type="submit" class="btn btn-success">Envoyer Questionnaire</BUTTON>
+		    </form>	    
 	     <% if((Integer) request.getAttribute("score") != null)
 	     		{
 	     		%>
 	           <h3>Score =   <%=(Integer) request.getAttribute("score")%>/<%=(Integer) request.getAttribute("scoreTotal")%></h3>
-	            <% } %>
+	  		 <% } 
+	     } 
+	     
+   	  } %>
 	            </div>
-    <%}%>
+	            </div>
+    </div> 
 </body>
 </html>
