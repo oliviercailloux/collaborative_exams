@@ -99,7 +99,7 @@
 	
 					%>
 						<tr>
-							<td><input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>+<%=question.getAut()%>"><%=question.getEnonce()%></td>
+							<td><input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>"><%=question.getEnonce()%></td>
 						 	<td><%=question.getLangue()%></td>
 							<td><%=question.getCompetence()%></td>
 							<td><%=question.getNiveau()%></td>

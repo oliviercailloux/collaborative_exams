@@ -25,10 +25,10 @@ public class InsertionQuestion extends HttpServlet
 		String competenceI = request.getParameter("competenceN");
 		String niveau = request.getParameter("niveau");	
 		String nb = ""+Integer.parseInt( request.getParameter("nbRep"));
-        question.createQuestion(nom, langueI, competenceI, enonce, identifiant,niveau);
-        question.ouvertureQuestion();
-        question.commitQuestion();
+        question.ouvertureQuestion(nom, langueI, competenceI, enonce, identifiant,niveau);
         String temp =  ""+question.getQuestion().getIdTech();
+        System.out.println("isisisisisi"+ question.getQuestion().getIdTech());
+        System.out.println("isisisisisi"+ question.getQuestion().getIdt());
         request.setAttribute("id", temp);
         request.setAttribute("nbRep", nb);
         request.setAttribute("aut", nom);

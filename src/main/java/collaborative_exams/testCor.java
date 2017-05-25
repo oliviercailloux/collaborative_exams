@@ -34,7 +34,7 @@ public class testCor extends HttpServlet
     	for(int i=0; i<values.length;i++)
     	{
     		String idTemp = values[i];
-    		if(insert.verifyR(idTemp)==false)
+    		//if(insert.verifyR(idTemp)==false)
     			System.out.println("t'as eu faux à la reponse " + i);
     	}
     	//sujetQ.add(sujetTemp);

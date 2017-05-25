@@ -1,29 +1,31 @@
 package collaborative_exams;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.transaction.Transactional;
 
-@ApplicationScoped
+@RequestScoped
+@Transactional
 public class GestionReponse {
 Reponse reponse;
 private static final String PERSISTENCE_UNIT_NAME = "questT";
 private static EntityManagerFactory factory;
 
-	public Reponse createReponse(Question questionA, String textRep, String pos)
+	public void createReponse(Question questionA, String textRep, String pos)
     {
 		reponse = new Reponse();
     	reponse.setTextRep(textRep);
     	reponse.setTrueRep(pos);
-    	System.out.println(questionA.getIdTech()+ " test");
     	reponse.setIdQ(questionA.getIdTech());
     	reponse.questionLien = questionA;
     	
-		return reponse;
+		//return reponse;
     }
 	public Reponse getReponse()
 	{

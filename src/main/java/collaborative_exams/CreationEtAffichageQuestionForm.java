@@ -32,7 +32,6 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 	{
         int nombreRep = Integer.parseInt(req.getParameter("nb"));
         int conditionRep =1;  
-        System.out.println("papapapapapa  "+ Integer.parseInt(req.getParameter("identifiantQuest")));
         testQuestion.initiateQuestion(Integer.parseInt(req.getParameter("identifiantQuest")));
         //testQuestion.ouvertureQuestion();
         //creation et insertion des reponses
@@ -43,9 +42,10 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
         	String textReponse = req.getParameter(reponseId);
         	String pos = req.getParameter(positionID);
         	//reponse.createReponse(textReponse, pos);
-        	testQuestion.setReponseG(reponse.createReponse(testQuestion.getQuestion(), textReponse, pos));
+        	reponse.createReponse(testQuestion.getQuestion(), textReponse, pos);
         	try {
         		testQuestion.addReponse(reponse.getReponse());
+        		
 			} catch (Exception e) {
 				throw new IllegalStateException(e);
 			}
@@ -62,7 +62,6 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		
-        req.setAttribute("listQuestionR", testQuestion.retourneToutesQuestions());
 		if(req.getParameter("competenceR")!=null && req.getParameter("competenceR").isEmpty()!=true)
 		{
 			String competenceRechercher = req.getParameter("competenceR");
@@ -75,6 +74,10 @@ public class CreationEtAffichageQuestionForm extends HttpServlet
 			String nom = req.getParameter("sujetR");
 			req.setAttribute("listQuestionR", sujetT.getQuestionsSujet(nom));
 			req.setAttribute("sujetNomR",nom);
+		}
+		else
+		{
+	        req.setAttribute("listQuestionR", testQuestion.retourneToutesQuestions());
 		}
 		req.setAttribute("listeSujet", sujetT.getNomSujets());
 		this.getServletContext().getRequestDispatcher("/afficheQuestionJPA.jsp").forward(req, resp);

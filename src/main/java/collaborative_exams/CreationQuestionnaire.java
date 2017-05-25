@@ -22,8 +22,6 @@ public class CreationQuestionnaire extends HttpServlet
 {
     public static List <Question> listeQ = new ArrayList <>();
     @Inject
-    GestionReponse reponse;
-    @Inject
     GestionQuestion questionSearch;
     @Inject
     GestionQuestionnaire questionnaireT;
@@ -68,7 +66,7 @@ public class CreationQuestionnaire extends HttpServlet
         	}
         	//sujetQ.add(sujetTemp);
         	questionnaireT.commitQuestionnaire();
-
+        	listeQ.clear();
         	req.setAttribute("listeQuestionnaire",questionnaireT.getNomQuestionnaires());
     		this.getServletContext().getRequestDispatcher("/affichageQuestionnaire.jsp").forward(req, resp);
        	}

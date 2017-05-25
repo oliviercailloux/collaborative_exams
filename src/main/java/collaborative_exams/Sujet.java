@@ -2,9 +2,8 @@ package collaborative_exams;
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.StringTokenizer;
-
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@ApplicationScoped
+@RequestScoped
 @Entity
 @Table(name="App.Sujets")
 public class Sujet 

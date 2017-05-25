@@ -22,14 +22,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@RequestScoped
+@ApplicationScoped
 @Entity
-@Table(name="App.Questions")
+@Table(name="APP.QUESTION")
 public class Question {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected  int idtechnique;
+	int idtechnique;
 	
     int idTechvisible;
     String enonceQ;
@@ -168,12 +168,16 @@ public class Question {
       this.idQ=id;
       this.idTechvisible = this.idtechnique;
     }
+    public int getIdt()
+    {
+      return this.idtechnique;
+    }
     public void setIdV(int id)
     {
       this.idTechvisible = id;
     }
     /***
-     		Récupération Variante
+     		!!!!! A mettre dans Une gestion Récupération Variante !!!!
      								***/
     public String getVar()
     {
@@ -220,55 +224,14 @@ public class Question {
      ***/
     public static Question getQuestion(String id, List <Question> listeQ) 
     {
-    	StringTokenizer st = new StringTokenizer(id, "+"); 
-		String tableauEntier[] = new String[3];
-		int i=0;
-		while (st.hasMoreTokens()) {
-			tableauEntier[i] = st.nextToken();
-			i=i+1;
-	     }
         Question questionT = new Question();
-        int idTemp = Integer.parseInt(tableauEntier[0]);
+        int idTemp = Integer.parseInt(id);
         for (Question quest : listeQ) 
         {
-            if (quest.getIdTech() == idTemp) 
-            {
-            	if(quest.getAut().equalsIgnoreCase(tableauEntier[1]))
-            	{
-            		questionT= quest;
-            	}
-                
-            }
         }
         return questionT;
     }
-    /***
-			On récupère l'ensemble des Reponses d'une question
-     															***/
-   public static List <Reponse> retourneReponse(String id, List <Question> listeQ) 
-    {
-    	StringTokenizer st = new StringTokenizer(id, "+"); 
-		String tableauEntier[] = new String[3];
-		int i=0;
-		while (st.hasMoreTokens()) {
-			tableauEntier[i] = st.nextToken();
-			i=i+1;
-	     }
-        Question questionT = new Question();
-        int idTemp = Integer.parseInt(tableauEntier[0]);
-        for (Question quest : listeQ) 
-        {
-            if (quest.getIdTech() == idTemp) 
-            {
-            	if(quest.getAut().equalsIgnoreCase(tableauEntier[1]))
-            	{
-            		questionT= quest;
-            	}
-                
-            }
-        }
-        return questionT.listeR;
-    }
+  
     public List <Reponse> reponseR() 
     {
         return listeR;

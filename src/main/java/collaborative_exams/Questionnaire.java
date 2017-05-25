@@ -2,7 +2,6 @@ package collaborative_exams;
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.StringTokenizer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;

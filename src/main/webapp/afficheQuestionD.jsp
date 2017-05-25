@@ -47,7 +47,7 @@ function afficheForm(id)
           		<OPTION value="4">4</OPTION>
           		<OPTION value="5">5</OPTION>
       		</SELECT> <br /> 
-		<BUTTON type="submit" name="setNotePertinence" value="<%=list.getIdTech()%>+<%=list.getAut()%>">Notez !</BUTTON> <br />
+		<BUTTON type="submit" name="setNotePertinence" value="<%=list.getIdTech()%>">Notez !</BUTTON> <br />
 	</form>
    	  <p>Variante de : <strong><%=list.getVar()%></strong></p>
    	  <%if(list.getVar()!="-")
@@ -84,7 +84,7 @@ function afficheForm(id)
       		
       		<!-- Envoi l'idenfiant de la variante -->
       		
-			<BUTTON type="submit"name="IdQPere" value="<%=list.getIdTech()%>+<%=list.getAut()%>+<%=list.getId()%>">Poster</BUTTON> <br />
+			<BUTTON type="submit"name="IdQPere" value="<%=list.getIdTech()%>">Poster</BUTTON> <br />
 		</fieldset>
 	</form>
 </body>
