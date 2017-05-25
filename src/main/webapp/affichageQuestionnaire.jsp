@@ -31,7 +31,7 @@
 			};
 		;
 		var doc = new jsPDF();
-		alert('test')
+		alert("<%=(String) request.getAttribute("questionnaireR")%> au format PDF !");
 	    doc.fromHTML($('#content').html(), 15, 15, { 
 	        'width': 190, 
 	            'elementHandlers': specialElementHandlers 
@@ -50,11 +50,12 @@
 	List <String> listQuestionnaire = (List<String>) request.getAttribute("listeQuestionnaire");
 	
 %>
-   
+  <div class="container">
    <h3>Choisissez un Questionnaire</h3>
+   <div class ="row mt">
    <form action="affichageQuestionnaire" method="get">
-     Merci de choisir une compétence :
-      <SELECT name="questionnaireR">
+     Merci de choisir un questionnaire :
+      <SELECT name="questionnaireR" class="selectpicker">
          <OPTION value="<%= (String) request.getAttribute("questionnaireR")%>"><%= (String) request.getAttribute("questionnaireR")%></OPTION>
          <%
          
@@ -65,9 +66,9 @@
          }
          %>
       </SELECT>
-      <BUTTON type="submit">Chercher</BUTTON>
+      <BUTTON type="submit" class="btn btn-success">Chercher</BUTTON>
    </form>
-   
+   </div>
   <% 
   if (request.getAttribute("listQuestionR")== null) {}
    	  /***************
@@ -79,31 +80,67 @@
    	  	List <Question> list = (List<Question>) request.getAttribute("listQuestionR");
    	  	List <Reponse> listR;
    
-
    	  	//Test si la liste est vide == des questions créées ou pas
    	  	if (list.size() > 0) 
    	  	{ 
    	  		%>
-   	  		<input type="submit"value="Questionnaire format PDF" onclick="print_page()"/>
+   	  	  <input type="submit"value="Questionnaire format PDF"  class="btn btn-success" onclick="print_page()"/>
+   	  		<div class ="row mt">
 				<input type="hidden" name=sujetNom id="test2" value="">
 				<div id="content">
 				<h3>L'ensemble des questions du questionnaire : <%=(String) request.getAttribute("questionnaireR")%></h3> 
+   	  		 <form action="affichageQuestionnaire" method="get">
    	  		<% for(Question question : list)
          	{ 
-   	  			listR = question.reponseR();%>	
+   	  			listR = question.reponseR();
+   	  			String type = "radio";
+   	  			if(listR.size() > 2  ) type = "checkbox";
+   	  			else if (listR.size() == 1 ) type = "input"; %>	
 	           	<h3><%=question.getEnonce()%></h3>
-	            <form action="">
-	            <% for(Reponse reponses : listR)
-	            { %>
-	            	<input type="radio" name="<%= reponses.getid()%>" value="<%= reponses.getText() %>">  <%= reponses.getText() %><br>
-	            <% } %>
-	            </form>
-         	<%
-         	}
-         }
-   	  	
-         %></div>
-       </tbody>
-    <%}%>
+	          <%  if(request.getAttribute("result") != null)
+        		{	%>
+        		<label> La(es) bonne(s) réponse(s) à la question : </label>
+        		<br>
+        		<ul class="list-group">
+        		<% 
+        		}
+	             for(Reponse reponses : listR)
+	            { 
+	            if(request.getAttribute("result") != null)
+	          		{	 
+	            	%>
+	            		<li class="list-group-item list-group-item-<%=reponses.getPos().equals("Vrai")?"success":"danger"%>" role="alert"><%=reponses.getText() %></li>
+	          		<%
+	          		}
+	            else { %>
+	            	<div class="form-group">  
+	            		<input type="<%=type %>" name="<%=question.getIdTech()%>" <%= (listR.size()== 1)?"":"value=\""+reponses.getText()+"\""%>>  <%= (listR.size()== 1)?"":reponses.getText()%>
+	            		<br>
+	            	</div>
+	            	
+	            <% }
+	            }
+	             if(request.getAttribute("result") != null)
+	             	{ %>
+	             	</ul>
+         			<%
+         			} 
+	          }
+  			%>	  
+	         <input type="hidden" name="Questionnaire_envoi" value="totoro"> 
+	         <input type="hidden" name="questionnaireR" value="<%= (String) request.getAttribute("questionnaireR")%>">       
+	         <BUTTON type="submit" class="btn btn-success">Envoyer Questionnaire</BUTTON>
+		    </form>	    
+	     <% if((Integer) request.getAttribute("score") != null)
+	     		{
+	     		%>
+	           <h3>Score =   <%=(Integer) request.getAttribute("score")%>/<%=(Integer) request.getAttribute("scoreTotal")%></h3>
+	  		 <% } 
+	     } 
+	     
+   	  } %>
+	            </div>
+	            </div>
+    </div> 
 </body>
 </html>
