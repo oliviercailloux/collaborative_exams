@@ -88,8 +88,27 @@
    	  			%><h3>L'ensemble des questions :</h3><%	
    	  		} %>
    	  		<a href="creationSujet.jsp" class="pull-left btn btn-default">Créer un sujet</a>
-   	  		<form action="FormReponse" method="get">
+   	  		<br>
+   	  		<br>
    	  		
+   	  		<form  method="post" action="exportXml">
+     Choississez le sujet à exporter :
+      <SELECT name="subject">
+         <OPTION value="">--- Sujet ---</OPTION>
+         <%
+         for(String sujetName : listSujet ){
+         %>
+          <OPTION value="<%=sujetName.toString() %>"><%=sujetName.toString() %></OPTION>
+         <%
+         }
+         %>
+      </SELECT>
+      <input type="submit" value="Export"></input>
+   </form>
+   	  		
+   	  		
+   	  		
+   	  		<form action="FormReponse" method="get">
       		<table class="table" >
       		<thead>
           	 <tr>

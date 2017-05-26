@@ -134,7 +134,7 @@
 	     <% if((Integer) request.getAttribute("score") != null)
 	     		{
 	     		%>
-	           <h3>Score =   <%=(Integer) request.getAttribute("score")%>/<%=(Integer) request.getAttribute("scoreTotal")%></h3>
+	           <h3>Score =   <%=request.getAttribute("score")%>/<%=request.getAttribute("scoreTotal")%></h3>
 	  		 <% } 
 	     } 
 	     
