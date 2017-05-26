@@ -12,11 +12,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import org.apache.derby.tools.sysinfo;
-import org.jdom2.Attribute;
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
+
 
 @ApplicationScoped
 public class GestionQuestion 

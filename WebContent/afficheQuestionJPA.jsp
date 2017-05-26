@@ -91,7 +91,11 @@
    	  		
    	  		<br>
    	  		<br>
- <form action="exportXML" method="post">
+   	  		
+   	  		
+   	  		
+   	  		
+ <form  method="post" action="exportXml">
      Choississez le sujet à exporter :
       <SELECT name="subject">
          <OPTION value="">--- Sujet ---</OPTION>
@@ -103,7 +107,7 @@
          }
          %>
       </SELECT>
-      <BUTTON type="submit">Exporter en XML</BUTTON>
+      <input type="submit" value="Export"></input>
    </form>
    
    	  		

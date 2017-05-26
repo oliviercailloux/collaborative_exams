@@ -89,13 +89,13 @@ public class GestionSujet
     	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = factory.createEntityManager();
         // Read the existing entries and write to console
-        Query query = em.createQuery("SELECT u FROM SUJETS u where u.NOMSUJET = 'LOLLL'", Sujet.class);
+        Query query = em.createQuery("SELECT u FROM Sujet u where u.nomSujet like :arg1", Sujet.class);
         query.setParameter("arg1", name);
         Sujet subject = (Sujet) query.getResultList().get(0);
         em.close();
         return subject; 
     }
-    
+   
 
     
     /*public void ExportXML () throws IOException{
