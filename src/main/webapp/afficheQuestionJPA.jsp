@@ -92,7 +92,7 @@
    	  		<br>
    	  		
    	  		<form action="exportXml" method="post">
-     Choississez le sujet à exporter :
+     Choississez le sujet à exporter:
       <SELECT name="subject">
          <OPTION value="">--- Sujet ---</OPTION>
          <%
