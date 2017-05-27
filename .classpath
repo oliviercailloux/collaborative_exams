@@ -28,6 +28,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/Marmoh/Downloads/glassfish4/glassfish/domains/domain1/lib/ext/derbyclient.jar"/>
+	<classpathentry kind="lib" path="/Users/aslan/Desktop/testMaven/collaborative_exams/target/collaborative_exams-0.0.1-SNAPSHOT/WEB-INF/lib/derbyclient-10.12.1.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

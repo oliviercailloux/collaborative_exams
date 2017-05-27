@@ -3,7 +3,9 @@ package collaborative_exams;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -132,10 +134,13 @@ public class ExportXml extends HttpServlet
 	         StreamResult consoleResult =
 	         new StreamResult(System.out);
 	         transformer.transform(source, consoleResult);
-	      } catch (Exception e) {
+	      } catch (Exception e) 
+    	{
 	         e.printStackTrace();
 	      }
+    	
 
+    	  
     	
 	}
 
