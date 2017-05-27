@@ -37,15 +37,11 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-
-
-
-
 @WebServlet("/exportXml")
 public class ExportXml extends HttpServlet 
 {
 	@Inject
-	GestionSujet sujetT;
+	SubjectManager sujetT;
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -53,8 +49,8 @@ public class ExportXml extends HttpServlet
 		String name = req.getParameter("subject");
     	System.out.println(name);
     	
-    	Sujet s = sujetT.getSubjectByName(name);
-    	System.out.println(s.getNomSujet());
+    	Subject s = sujetT.getSubjectByName(name);
+    	System.out.println(s.getNameSubject());
     	
     	//sujetT.ExportJava(s);
     	
@@ -68,22 +64,22 @@ public class ExportXml extends HttpServlet
 	         // root element
 	         Element rootElement = doc.createElement("subject");
 	         Element subjectName = doc.createElement("name");
-	         subjectName.appendChild(doc.createTextNode(s.getNomSujet()));
+	         subjectName.appendChild(doc.createTextNode(s.getNameSubject()));
 	         rootElement.appendChild(subjectName);
 	         doc.appendChild(rootElement);
 	         
 	         
-	         for(Question x : s.getQuestionsSujet() ){
+	         for(Question x : s.getQuestionsSubject() ){
 	        	System.out.println("question");
  				Element question = doc.createElement("question");
  				Attr attr = doc.createAttribute("id");
  		        attr.setValue("1");
  		        question.setAttributeNode(attr);
  		        Element statement = doc.createElement("statement");
- 		        statement.appendChild(doc.createTextNode(x.getEnonce()));
+ 		        statement.appendChild(doc.createTextNode(x.getStatement()));
  		        question.appendChild(statement);
      			
-     			for(Reponse y : x.reponseR()){
+     			for(Answer y : x.answerA()){
      				Element answer = doc.createElement("answer");
      				Attr attr2 = doc.createAttribute("id");
      		        attr2.setValue("1");

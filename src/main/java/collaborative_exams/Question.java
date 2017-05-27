@@ -30,82 +30,81 @@ public class Question {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	int idtechnique;
-	
     int idTechvisible;
-    String enonceQ;
-    String nomAuteur;
-    String langueQ;
-    String competenceQ;
-    String variante;
+    String statement;
+    String authorName;
+    String language;
+    String skill;
+    String variant;
     String opinion;
     int idQ;
-    @OneToMany(mappedBy = "questionLien", cascade = CascadeType.PERSIST)
-    List <Reponse> listeR;
+    @OneToMany(mappedBy = "questionLink", cascade = CascadeType.PERSIST)
+    List <Answer> listeA;
     @ManyToOne(optional = true,fetch=FetchType.LAZY)
-    @JoinColumn(name="SUJET_ID", nullable=true)
-    Sujet sujetLien;
+    @JoinColumn(name="SUBJECT_ID", nullable=true)
+    Subject subjectLink;
     @ManyToMany
     @JoinColumn(name="QUESTION_ID", nullable=true)
-    List<Questionnaire> questionnaireLien;
+    List<Questionnary> questionnaryLink;
     //Attribut niveau de type String
-    String niveau;
+    String level;
     //Element de pour noter la pertinence de la question
-    int nbVotePertinence;
-    int totalNotePertinence;
+    int nbVoteRelevance;
+    int totalRelevanceMark;
     
     public Question(){
           
-        this.enonceQ= "";
-        this.nomAuteur="";
-        this.langueQ ="";
-        this.competenceQ ="";
+        this.statement= "";
+        this.authorName="";
+        this.language ="";
+        this.skill ="";
         this.idQ = 0;
         this.opinion ="";
-        this.listeR= new ArrayList <>();
-        this.variante="-";
-        this.niveau="";
-        this.nbVotePertinence = 0;
-        this.totalNotePertinence = 0;
+        this.listeA= new ArrayList <>();
+        this.variant="-";
+        this.level="";
+        this.nbVoteRelevance = 0;
+        this.totalRelevanceMark = 0;
        
       } 
     public Question(String pere)
     {
-        this.enonceQ= "";
-        this.nomAuteur="";
-        this.langueQ ="";
-        this.competenceQ ="";
+        this.statement= "";
+        this.authorName="";
+        this.language ="";
+        this.skill ="";
         this.idQ = 0;
         this.opinion ="";
-        this.listeR= new ArrayList <>();
-        this.variante=pere;
-        this.niveau="";
-        this.nbVotePertinence = 0;
-        this.totalNotePertinence = 0;
+        this.listeA= new ArrayList <>();
+        this.variant=pere;
+        this.level="";
+        this.nbVoteRelevance = 0;
+        this.totalRelevanceMark = 0;
       } 
     
-    public void setListReponse(List <Reponse> e)
+    public void setListAnswer(List <Answer> e)
     {
-      this.listeR = e;
+      this.listeA = e;
     }
-    public void setReponse(Reponse e)
+    public void setAnswer(Answer e)
     {
-      this.listeR.add(e);
+      this.listeA.add(e);
     }
-    public void setSujet(Sujet e)
+    public void setSubject(Subject e)
     {
-      this.sujetLien = e;
+      this.subjectLink = e;
     }
     public void setQuestionnaireNew()
     {
-    	this.questionnaireLien = new ArrayList <>();
+    	this.questionnaryLink = new ArrayList <>();
     }
-    public void setQuestionnaire( Questionnaire e)
+    public void setQuestionnaire( Questionnary e)
     {
-      this.questionnaireLien.add(e);
+      this.questionnaryLink.add(e);
     }
     public void setVar(String v)
     {
-      this.variante=v;
+      this.variant=v;
     }
     
     public String getOpinion()
@@ -117,13 +116,13 @@ public class Question {
       this.opinion = op;
     }
     
-    public String getCompetence()
+    public String getSkill()
     {
-      return this.competenceQ;
+      return this.skill;
     }
-    public void setCompetence(String competence)
+    public void setSkill(String skill)
     {
-      this.competenceQ = competence;
+      this.skill = skill;
     }
     
     public int getIdTech()
@@ -131,32 +130,32 @@ public class Question {
       return this.idTechvisible;
     }
     
-    public String getLangue()
+    public String getLanguage()
     {
-     String str2 = new String(this.langueQ.getBytes(),Charset.forName("UTF-8"));
+      String str2 = new String(this.language.getBytes(),Charset.forName("UTF-8"));
       return str2;
     }
-    public void setLangue(String langue)
+    public void setLanguage(String language)
     {
-      this.langueQ = langue;
+      this.language = language;
     }
     
-    public String getEnonce()
+    public String getStatement()
     {
-      return this.enonceQ;
+      return this.statement;
     }
-    public void setEnonce(String enonce)
+    public void setStatement(String statement)
     {
-      this.enonceQ = enonce;
+      this.statement = statement;
     }
     
     public String getAut()
     {
-      return this.nomAuteur;
+      return this.authorName;
     }
     public void setAut(String auteur)
     {
-      this.nomAuteur = auteur;
+      this.authorName = auteur;
     }
     
     public int getId()
@@ -187,31 +186,32 @@ public class Question {
     	 		-	Auteur +
     	 		-	Id
     	 */
-    	if(this.variante.equalsIgnoreCase("-"))
-    		return this.variante;
-		StringTokenizer st = new StringTokenizer(this.variante, "+"); 
-		String tableauEntier[] = new String[3];
+    	if(this.variant.equalsIgnoreCase("-"))
+    		return this.variant;
+		StringTokenizer st = new StringTokenizer(this.variant, "+"); 
+		String array[] = new String[3];
 		int i=0;
 		while (st.hasMoreTokens()) {
-			tableauEntier[i] = st.nextToken();
+			array[i] = st.nextToken();
 			i=i+1;
 	     }
-	  String Newligne=System.getProperty("line.separator"); 
-      return "- Identifiant question : "+tableauEntier[2]+Newligne+" - Auteur:"+tableauEntier[1];
+	  String NewLine=System.getProperty("line.separator"); 
+      return "- Identifiant question : "+array[2]+NewLine+" - Auteur:"+array[1];
     }
     
-    public String getVariante()
+    public String getVariant()
     {
-    	return this.variante;
+    	return this.variant;
     }
-    public static List <Question> trouveQuestionParMatiere(String matiere, List <Question> listeQ) 
+    
+    public static List <Question> findQuestionByMatter(String matter, List <Question> listQ) 
     {
         List <Question> questionT = new ArrayList <>();
-        if(matiere.isEmpty())
-        	return listeQ;
-        for (Question quest : listeQ) 
+        if(matter.isEmpty())
+        	return listQ;
+        for (Question quest : listQ) 
         {
-            if (quest.getCompetence().equalsIgnoreCase(matiere)) 
+            if (quest.getSkill().equalsIgnoreCase(matter)) 
             {
                 questionT.add(quest);
             }
@@ -222,46 +222,43 @@ public class Question {
     /***
 		On recupere une question selon son idTech et Auth
      ***/
-    public static Question getQuestion(String id, List <Question> listeQ) 
+    public static Question getQuestion(String id, List <Question> listQ) 
     {
         Question questionT = new Question();
         int idTemp = Integer.parseInt(id);
-        for (Question quest : listeQ) 
+        for (Question quest : listQ) 
         {
         }
         return questionT;
     }
   
-    public List <Reponse> reponseR() 
+    public List <Answer> answerA() 
     {
-        return listeR;
+        return listeA;
     }
     
-    public void setNiveau(String p) {
-        niveau = p;
+    public void setLevel(String l) {
+        level = l;
     }
-
-    public String getNiveau() {
-        return niveau;
-    }
-    
-    public void setNotePertinence(int note){
-    	nbVotePertinence ++;
-    	totalNotePertinence = totalNotePertinence + note;
+    public String getLevel() {
+        return level;
     }
     
-    public float getNotePertinence() {
-    	return 	(nbVotePertinence == 0) ? 0 : totalNotePertinence/nbVotePertinence ;
+    public void setRelevanceMark(int note){
+    	nbVoteRelevance ++;
+    	totalRelevanceMark = totalRelevanceMark + note;
+    }
+    public float getRelevanceMark() {
+    	return 	(nbVoteRelevance == 0) ? 0 : totalRelevanceMark/nbVoteRelevance ;
     }
     
-    public int getNbVotePertinence() {
-    	return nbVotePertinence;
+    public int getNbVoteRelevance() {
+    	return nbVoteRelevance;
     }
     
-    public String getNomSujet() 
+    public String getSubjectName() 
     {
-    	
-    	return (sujetLien==null) ? "-":sujetLien.getNomSujet();
+    	return (subjectLink==null) ? "-":subjectLink.getNameSubject();
     }
     
 
