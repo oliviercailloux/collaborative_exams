@@ -18,7 +18,7 @@ public class ServletRelevance extends HttpServlet
 	{
 		//Recupere les identifiants pour une question
 		String searchId = req.getParameter("setRelevanceMark");
-		int mark = Integer.parseInt(req.getParameter("noteRelevance"));
+		int mark = Integer.parseInt(req.getParameter("relevanceMark"));
 		
 		//Recherche et Recupere une question
 		req.setAttribute("Question",insert.returnQuestionMark(searchId, mark));
