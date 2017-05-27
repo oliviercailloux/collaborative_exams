@@ -30,7 +30,7 @@ public class InsertQuestion extends HttpServlet
         request.setAttribute("id", temp);
         request.setAttribute("nbAnswer", nb);
         request.setAttribute("aut", nom);
-        this.getServletContext().getRequestDispatcher("/reponse.jsp").forward(request, resp);
+        this.getServletContext().getRequestDispatcher("/answer.jsp").forward(request, resp);
 	}
 
 	

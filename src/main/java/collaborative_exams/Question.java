@@ -38,11 +38,12 @@ public class Question {
     String variant;
     String opinion;
     int idQ;
-    @OneToMany(mappedBy = "questionLink", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "questionLink", cascade = CascadeType.PERSIST)
     List <Answer> listeA;
-    @ManyToOne(optional = true,fetch=FetchType.LAZY)
+    @ManyToMany
     @JoinColumn(name="SUBJECT_ID", nullable=true)
-    Subject subjectLink;
+    List<Subject> subjectLink;
+    
     @ManyToMany
     @JoinColumn(name="QUESTION_ID", nullable=true)
     List<Questionnary> questionnaryLink;
@@ -92,7 +93,11 @@ public class Question {
     }
     public void setSubject(Subject e)
     {
-      this.subjectLink = e;
+      this.subjectLink.add(e);
+    }
+    public void setSubjectNew()
+    {
+    	this.subjectLink = new ArrayList <>();
     }
     public void setQuestionnaireNew()
     {
@@ -106,7 +111,10 @@ public class Question {
     {
       this.variant=v;
     }
-    
+    public void setVar()
+    {
+      this.variant="-";
+    }
     public String getOpinion()
     {
       return this.opinion;
@@ -132,8 +140,8 @@ public class Question {
     
     public String getLanguage()
     {
-      String str2 = new String(this.language.getBytes(),Charset.forName("UTF-8"));
-      return str2;
+      //String str2 = new String(this.language.getBytes(),Charset.forName("UTF-8"));
+      return this.language;
     }
     public void setLanguage(String language)
     {
@@ -186,7 +194,7 @@ public class Question {
     	 		-	Auteur +
     	 		-	Id
     	 */
-    	if(this.variant.equalsIgnoreCase("-"))
+    	/*if(this.variant.equalsIgnoreCase("-"))
     		return this.variant;
 		StringTokenizer st = new StringTokenizer(this.variant, "+"); 
 		String array[] = new String[3];
@@ -196,7 +204,8 @@ public class Question {
 			i=i+1;
 	     }
 	  String NewLine=System.getProperty("line.separator"); 
-      return "- Identifiant question : "+array[2]+NewLine+" - Auteur:"+array[1];
+      return "- Identifiant question : "+array[2]+NewLine+" - Auteur:"+array[1];*/
+    	return this.variant;
     }
     
     public String getVariant()
@@ -252,13 +261,31 @@ public class Question {
     	return 	(nbVoteRelevance == 0) ? 0 : totalRelevanceMark/nbVoteRelevance ;
     }
     
-    public int getNbVoteRelevance() {
+    public int getNbVoteRelevance() 
+    {
     	return nbVoteRelevance;
+    }
+    
+    public String getNameSubject() 
+    {
+    	String nameSubject="";
+    	for(int i= 0; i<this.subjectLink.size();i++ )
+    	{
+    		if(i==(subjectLink.size()-1))
+    		{
+    			nameSubject= nameSubject + subjectLink.get(i).getNameSubject();
+    		}
+    		else
+    		{
+    			nameSubject = nameSubject +subjectLink.get(i).getNameSubject()+"-";
+    		}
+    	}
+    	return nameSubject;
     }
     
     public String getSubjectName() 
     {
-    	return (subjectLink==null) ? "-":subjectLink.getNameSubject();
+    	return (subjectLink==null) ? "-":this.getNameSubject();
     }
     
 

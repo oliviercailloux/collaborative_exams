@@ -4,9 +4,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,9 +26,9 @@ public class Answer {
 	int idQuestion;
 	String author;
     String textAnswer;
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToMany
     @JoinColumn(name="QUESTION_ID")
-    Question questionLink;
+    List<Question> questionLink;
     int true_false;
     
       
@@ -33,7 +38,7 @@ public class Answer {
     	this.textAnswer = ""; 
     	this.true_false =2;
     	this.idQuestion = 0;
-    	questionLink = new Question();
+    	questionLink = new ArrayList();
     	
     } 
     
@@ -51,7 +56,7 @@ public class Answer {
     }
     public void setQuestion(Question q)
     {
-    	this.questionLink = q;
+    	this.questionLink.add(q);
     	this.idQuestion=q.getId();
     }
     public void setAuteurQ(String author)

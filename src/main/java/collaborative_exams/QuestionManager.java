@@ -33,9 +33,11 @@ public class QuestionManager
     	this.questionT.setStatement(statement);
     	this.questionT.setId(id);
     	this.questionT.setLevel(level);
+    	this.questionT.setVar();
     	this.questionT.nbVoteRelevance = 0;
     	this.questionT.totalRelevanceMark = 0;
     	questionT.setQuestionnaireNew();
+    	questionT.setSubjectNew();
 
     }
 	public void setAnswerG (Answer a)
@@ -46,7 +48,7 @@ public class QuestionManager
 	{
 		return this.questionT;
 	}
-	public Question createQuestionV(String name, String language, String skill, String statement, String idParent, int id, String opinion, String level)
+	public void createQuestionV(String name, String language, String skill, String statement, String idParent, int id, String opinion, String level)
     {
     	questionT = new Question(idParent);
     	questionT.setAut(name);
@@ -59,8 +61,8 @@ public class QuestionManager
         questionT.setLevel(level);
         questionT.nbVoteRelevance = 0;
         questionT.totalRelevanceMark = 0;
-        
-		return questionT;
+        questionT.setQuestionnaireNew();
+    	questionT.setSubjectNew();
     }
 	public void addAnswer(Answer ans) throws Exception 
 	{
@@ -73,6 +75,17 @@ public class QuestionManager
 	public void openQuestion(String name, String language, String skill, String statement, int id, String level)
 	{
 		this.createQuestion(name, language, skill, statement, id, level);
+		em.persist(this.questionT);
+		questionT.setIdV(questionT.idtechnique);
+		em.flush();
+		questionT.setIdV(this.questionT.idtechnique);
+	}
+	
+	public void openQuestionV(String name, String language, String skill, String statement, String idParent, int id, String opinion, String level)
+	{
+		this.createQuestionV(name, language, skill, statement, idParent, id, opinion, level);
+		Question temporaryQuestion = this.returnQuestion(idParent);
+		this.questionT.setListAnswer(temporaryQuestion.answerA());
 		em.persist(this.questionT);
 		questionT.setIdV(questionT.idtechnique);
 		em.flush();
@@ -148,7 +161,7 @@ public class QuestionManager
 	}
 	public List <Question> returnListQuestionSkill(String comp)
 	{
-        Query q = em.createQuery("SELECT u FROM Question u where u.competenceQ like :arg1", Question.class);
+        Query q = em.createQuery("SELECT u FROM Question u where u.skill like :arg1", Question.class);
         q.setParameter("arg1", comp);
         List <Question> searchList = q.getResultList();
         return searchList;
@@ -193,6 +206,16 @@ public class QuestionManager
         q.setParameter("arg1", nameSubject);
         List<Subject> subjectTemp = q.getResultList();
 		return subjectTemp.get(0).getQuestionsSubject();
+    	
+    }
+    
+    public Question getQuestion(String id)
+    {
+        // Read the existing entries and write to console
+        Query q = em.createQuery("SELECT u FROM Question u where u.idTechvisible =:arg1", Question.class);
+        q.setParameter("arg1", Integer.parseInt(id));
+        Question searchList = (Question) q.getResultList().get(0);
+		return searchList;
     	
     }
     

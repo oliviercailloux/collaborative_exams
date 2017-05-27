@@ -20,13 +20,13 @@
 <html>
 <body>
 
-	<label for="idQuestion"> Identifiant question </label> 
-	<input type="text" id="idQuestion" name="idQuestion"value="<%= id%>" readonly/> <br /> 
+	<label for="idQuest"> Identifiant question </label> 
+	<input type="text" id="idQuest" name="idQuest"value="<%= id%>" readonly/> <br /> 
 			
 	<label for="author">Nom Auteur</label> 
 	<input type="text" id="author" name="author" value="<%= author%>" readonly/> <br /> 
 	<form method="post" action="Pform">
-		<input type="hidden" id="idQuest" name="iduest" value="<%= id %>" size="50" /> <br /> 
+		<input type="hidden" id="idQuest" name="idQuest" value="<%= id %>" size="50" /> <br /> 
 		<input type="hidden" id="nb" name="nb" value="<%= nb %>" size="50" /> 
 		<fieldset>
 			<legend>Créer une réponse</legend>

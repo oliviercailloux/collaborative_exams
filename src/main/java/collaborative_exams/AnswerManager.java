@@ -23,7 +23,7 @@ private static EntityManagerFactory factory;
     	answer.setTextAnswer(textAnswer);
     	answer.setTrueFalse(pos);
     	answer.setIdQ(questionA.getIdTech());
-    	answer.questionLink = questionA;
+    	answer.questionLink.add(questionA);
     	
 		//return reponse;
     }
@@ -31,16 +31,6 @@ private static EntityManagerFactory factory;
 	{
 		return this.answer;
 	}
-	@SuppressWarnings("unused")
-	public void addAnswer(Answer ans) throws Exception {
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-        Answer test = new Answer();
-        em.getTransaction().begin();
-        em.persist(ans);
-        em.getTransaction().commit();
-        em.close();
-    }
 	public void commitAnswer()
 	{
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);

@@ -91,11 +91,11 @@
       <input type="hidden" name=test3 id="test3" value="">
 	  <input type="submit" onclick ="modify_valuePbis()"></input>
    </form>
-	<form name="testform" id="testform" action="QuestionnaireForm" method="Post" >
+	<form name="testform" id="testform" action="QuestionnaryForm" method="Post" >
 		<input type="submit"value="Enregistrer questionnaire" onclick="modify_value()"/>
-		<input type="hidden" name=questionnaireNom id="test2" value="">
+		<input type="hidden" name=questionnaryName id="test2" value="">
 		<input type="submit"value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
-		<input type="hidden" name=questionnaireNomBis id="test4" value="">
+		<input type="hidden" name=questionnaryNameBis id="test4" value="">
    <% 
    	  /***************
    	  		TEST display QUESTION

@@ -77,7 +77,7 @@
 			<h4>L'ensemble des questions :</h4>
 			<form name="testform" id="testform" action="SubjectForm" method="Post" >
 				<input type="submit"value="Enregistrer sujet" onclick="modify_value()"/>
-				<input type="hidden" name=sujetNom id="test2" value="">
+				<input type="hidden" name="nameSubject" id="test2" value="">
 				<table class="table" >
 					<thead>
 	   	 				<tr>

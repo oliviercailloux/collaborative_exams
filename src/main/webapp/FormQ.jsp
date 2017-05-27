@@ -28,18 +28,7 @@
 			<p>Vous pouvez enregistrer une question.</p>
 
 			<label for="question">Question</label>
-			<input type="text" id="question" name="question" value="test" size="50" /> 			
-			<label for="coef">Coefficient question</label> 			
-			<SELECT name="coef">
-         	<OPTION value="">--- Coefficient ---</OPTION>
-        	 <%
-        		 for(Integer i : coef )
-        		 {
-        	 %>
-          			<OPTION value="<%=i %>"><%=i %></OPTION>
-         	<%
-        	 	 }
-        	 %>
+			<input type="text" id="question" name="question" value="test" size="50" />
       		</SELECT> <br />
 			
 			<label for="type">Type question</label> 			

@@ -88,8 +88,8 @@
    	  		<div class ="row mt">
 				<input type="hidden" name=sujetNom id="test2" value="">
 				<div id="content">
-				<h3>L'ensemble des questions du questionnaire : <%=(String) request.getAttribute("questionnaireR")%></h3> 
-   	  		 <form action="affichageQuestionnaire" method="get">
+				<h3>L'ensemble des questions du questionnaire : <%=(String) request.getAttribute("questionnaryR")%></h3> 
+   	  		 <form action="displayQuestionnary" method="get">
    	  		<% for(Question question : list)
          	{ 
    	  			listA = question.answerA();
@@ -127,8 +127,8 @@
          			} 
 	          }
   			%>	  
-	         <input type="hidden" name="Questionnaire_envoi" value="totoro"> 
-	         <input type="hidden" name="questionnaireR" value="<%= (String) request.getAttribute("questionnaireR")%>">       
+	         <input type="hidden" name="Questionnary_send" value="totoro"> 
+	         <input type="hidden" name="questionnaryR" value="<%= (String) request.getAttribute("questionnaryR")%>">       
 	         <BUTTON type="submit" class="btn btn-success">Envoyer Questionnaire</BUTTON>
 		    </form>	    
 	     <% if((Integer) request.getAttribute("mark") != null)

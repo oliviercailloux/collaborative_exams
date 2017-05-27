@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/SujetForm")
+@WebServlet("/SubjectForm")
 
 public class SubjectForm extends HttpServlet 
 {
@@ -33,8 +33,9 @@ public class SubjectForm extends HttpServlet
     	String[] values = req.getParameterValues("questionSelect");
     	
     	//Recupération nom Sujet et création sujet
-    	String nomS = req.getParameter("subjectName");
-    	subjectTemp.createSubject(nomS);
+    	String nameS = req.getParameter("nameSubject");
+    	System.out.println("jjejejeje  "+ nameS);
+    	subjectTemp.createSubject(nameS);
     	subjectTemp.openSubject();
     	//navigue et récupère les questions sélectionées.
     	for(int i=0; i<values.length;i++)
@@ -44,9 +45,10 @@ public class SubjectForm extends HttpServlet
     	}
     	//sujetQ.add(sujetTemp);
     	subjectTemp.commitSubject();
-        req.setAttribute("listQuestionR", questionSearch.returnAllQuestions());
-		req.setAttribute("listSubject",subjectTemp.getNameSubjects());
-		this.getServletContext().getRequestDispatcher("/displayQuestionJPA.jsp").forward(req, resp);
+		req.setAttribute("listQuestionR", questionSearch.returnAllQuestions());
+	    req.setAttribute("listSubject", subjectTemp.getNameSubjects());
+        this.getServletContext().getRequestDispatcher("/displayQuestionJPA.jsp").forward(req, resp);
+
 	}
     
 	@Override

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,7 +23,7 @@ public class Subject
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected  int idSubject;
-	@OneToMany(mappedBy = "subjectLink", cascade = CascadeType.PERSIST)
+	@ManyToMany(mappedBy = "subjectLink", cascade = CascadeType.PERSIST)
 	 List <Question> listQuestionSubject;
 	 String nameSubject;
 	 

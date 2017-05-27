@@ -73,7 +73,7 @@ function afficheForm(id)
 	    		</tr>
 	    	<%} %>
 		</ol></table>
-		<form method="post" action="variantForm.jsp">
+		<form method="get" action="FormVariant">
 		<fieldset>
 			<legend>Création d'une variante</legend>
 			<SELECT name="variantType">

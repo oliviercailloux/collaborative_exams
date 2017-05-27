@@ -19,12 +19,12 @@ public class CreateVariantDisplayDetailForm extends HttpServlet
 {
 	@Inject
 	QuestionManager insert;
+	@Inject
+    SubjectManager subjectT;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-		//variable session pour identifier la variante
-		HttpSession session = req.getSession();
-		String idParent = (String)session.getAttribute("idParent");
+		String idParent = req.getParameter("idParent");
         
         //variable Question standard
         String name = req.getParameter("author");
@@ -36,12 +36,11 @@ public class CreateVariantDisplayDetailForm extends HttpServlet
         
         //variable Opinion
         String opinion = req.getParameter("opinionN");
-        CreateDisplayQuestionForm.listQ.add(insert.createQuestionV(name, language, skill, statement, idParent, id, opinion, level));
-        
-        req.setAttribute("listQuestionR", CreateDisplayQuestionForm.listQ);
-        session.invalidate();
-		req.setAttribute("listSubject", SubjectForm.subjectQ);
-        this.getServletContext().getRequestDispatcher("/displayQuestion.jsp").forward(req, resp);
+        insert.openQuestionV(name, language, skill, statement, idParent, id, opinion, level);
+        //insert.commitQuestion();
+        req.setAttribute("listQuestionR",insert.returnAllQuestions());
+		req.setAttribute("listSubject",subjectT.getNameSubjects());
+        this.getServletContext().getRequestDispatcher("/displayQuestionJPA.jsp").forward(req, resp);
 	}
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
@@ -49,7 +48,7 @@ public class CreateVariantDisplayDetailForm extends HttpServlet
 		String idSearch = req.getParameter("getDetail");
 		//Recupere les identifiants pour une question
 		req.setAttribute("Question",insert.returnQuestion(idSearch));
-		this.getServletContext().getRequestDispatcher("/displayQuestionD.jsp").forward(req, resp);
+		this.getServletContext().getRequestDispatcher("/displayQuestionDetails.jsp").forward(req, resp);
 	}
 	
 	

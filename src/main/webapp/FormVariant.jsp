@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String IdQParent = request.getParameter("IdQParent");
-	String variantType = request.getParameter("variantType");	
-	//insertion données première form
-	session.setAttribute( "idParent", IdQParent );
-	session.setAttribute( "variantType", variantType );
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,13 +11,16 @@
 	<%@page import="collaborative_exams.*" %>
 	<%
   		Question questionI = new Question();
-		questionI = Question.getQuestion(IdQParent, CreateDisplayQuestionForm.listQ);
+		questionI = (Question) request.getAttribute("questionSearch");
+		String variantType = (String) request.getAttribute("varType");
+		String idParent = (String) request.getAttribute("idParent");
 		String[] language = Data.findLanguage();
    		String[] skill = Data.findSkills();
    		String[] level = Data.findLevel();
 
    	%>
-	<form method="post" action="FormReponse">
+	<form method="post" action="FormAnswer">
+	<input type="hidden" id="idParent" name="idParent" value="<%= idParent %>" size="50" /> <br /> 
 		<fieldset>
 			<legend>Creation Variante</legend>
 			<p>Vous pouvez enregistrer une variante.</p>
