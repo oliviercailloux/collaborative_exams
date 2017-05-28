@@ -143,6 +143,7 @@
 	   	  		//test if the call is null
 	   	  		if(((request.getAttribute("skillR") != null)&&(request.getAttribute("skillR").equals(""))) || ((request.getAttribute("subjectNameR")!=null)&&(request.getAttribute("subjectNameR").equals(""))))
 	   	  		{
+	   	  			
 	   	  			%><h3>L'ensemble des questions :
 	   	  			   	  			<input type="submit" class="btn btn-success" value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
 				<input type="submit" class="btn btn-success"  value="Enregistrer questionnaire" onclick="modify_value()"/>
