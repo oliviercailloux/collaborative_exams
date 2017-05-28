@@ -30,7 +30,7 @@ function afficheForm(id)
    	  	list = (Question) request.getAttribute("Question");
    	  }%>
    	  <h1>Les informations de la question : <%=list.getStatement()%> </h1>
-   	  <p>Enonce : <strong><%=list.getStatement()%></strong> <a href="Difference?param1=<%=list.getIdTech()%>&param2=<%=list.getAut()%>">Difference originale</a></p>
+   	  <p>Enonce : <strong><%=list.getStatement()%></strong> <%if(list.getVar().equals("-")==false){%><a href="Difference?param1=<%=list.getIdTech()%>&param2=<%=list.getVar()%>/">Difference originale</a><%} %></p>
    	  <p>Langue de la question : <strong><%=list.getLanguage()%></strong></p>
    	  <p>La competence de la question : <strong><%=list.getSkill()%></strong></p>
    	  <p>Le niveau de la question : <strong><%=list.getLevel()%></strong></p>

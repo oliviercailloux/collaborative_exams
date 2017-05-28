@@ -123,7 +123,7 @@ public class ExportXml extends HttpServlet
 	         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 	         DOMSource source = new DOMSource(doc);
 	         StreamResult result =
-	         new StreamResult(new File("/Users/brahimfanch/Downloads/company7.xml"));
+	         new StreamResult(new File("/Users/Marmoh/Desktop/company7.xml"));
 	         transformer.transform(source, result);
 	         
 	         // Output to console for testing

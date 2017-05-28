@@ -9,7 +9,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Bootstrap -->
-    <title>CreerQuestion</title>
+    <title>Creer Question</title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
   </head>
 <body>
@@ -22,90 +22,113 @@
    		Integer[] coef = Data.findCoef();
    		RequestDispatcher rd;
    	%>
-	<form method="post" action="FormInsert">
+   	<div class="container">
+	<form method="post" action="FormInsert" class="form-horizontal">
 		<fieldset>
-			<legend>Creation Question</legend>
+			<h2>Creation Question</h2>
 			<p>Vous pouvez enregistrer une question.</p>
-
-			<label for="question">Question</label>
-			<input type="text" id="question" name="question" value="test" size="50" />
-      		</SELECT> <br />
-			
-			<label for="type">Type question</label> 			
-			<SELECT name="type">
-         	<OPTION value="">--- Type ---</OPTION>
-        	 <%
-        		 for(String type : typeQ )
-        		 {
-        	 %>
-          			<OPTION value="<%=type %>"><%=type %></OPTION>
-         	<%
-        	 	 }
-        	 %>
-      		</SELECT> <br />
-			
-			<label for="author">Nom Auteur</label> 
-			<input type="text" id="author" name="author" value="tonton" /> <br /> 
-      		
-			<label for="language">Langue</label> 			
-			<SELECT name="languageN">
-         	<OPTION value="">--- Langue ---</OPTION>
-        	 <%
-        		 for(String languageName : language )
-        		 {
-        	 %>
-          			<OPTION value="<%=languageName %>"><%=languageName %></OPTION>
-         	<%
-        	 	 }
-        	 %>
-      		</SELECT> <br /> 
-      		
-      	
-      		
-      		
-			<label for="skill">Competence</label> 
-			<SELECT name="skillN">
-         	<OPTION value="">--- Competence ---</OPTION>
-        	 <%
-        		 for(String skillName : skill )
-        		 {
-        	 %>
-          			<OPTION value="<%=skillName %>"><%=skillName %></OPTION>
-         	<%
-        	 	 }
-        	 %>
-      		</SELECT> <br />
-      		
-      		<label for="level">Niveau</label> 
-			<SELECT name="level">
-         	<OPTION value="">--- Niveau ---</OPTION>
-        	 <%
-        		 for(String l : level )
-        		 {
-        	 %>
-          			<OPTION value="<%=l %>"><%=l %></OPTION>
-         	<%
-        	 	 }
-        	 %>
-      		</SELECT> <br />
-      		 
-			<label for="id"> Identifiant question </label> 
-			<input type="text" id="id" name="id"value="1" /> <br /> 
-			
-			<label for="nbAnswer"> Nombre de Réponses souhaitées </label> 
-			<SELECT name="nbAnswer">
-         		<OPTION value="">--- Nombre ---</OPTION>
-         		<OPTION value="1">1</OPTION>
-          		<OPTION value="2">2</OPTION>
-          		<OPTION value="3">3</OPTION>
-          		<OPTION value="4">4</OPTION>
-          		<OPTION value="5">5</OPTION>
-      		</SELECT> <br /> 
-
-			<input type="submit"value="Poster" /> <br /> 
+			  <div class="form-group">
+			    <label for="question" class="col-sm-2 control-label">Question</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" name="question" id="question" placeholder="Enoncé">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="type" class="col-sm-2 control-label">Type question</label>
+			    <div class="col-sm-2">
+			      	<SELECT name="type" class="form-control">
+			         	<OPTION value="">--- Type ---</OPTION>
+			        	 <%
+			        		 for(String type : typeQ )
+			        		 {
+			        	 %>
+			          			<OPTION value="<%=type %>"><%=type %></OPTION>
+			         	<%
+			        	 	 }
+			        	 %>
+		      		</SELECT>
+			    </div>
+			  </div>
+			 <div class="form-group">
+			    <label for="author" class="col-sm-2 control-label">Nom Auteur</label>
+			    <div class="col-sm-2">
+			      <input type="text" class="form-control" name="author" id="author" placeholder="Auteur">
+			    </div>
+			  </div>
+      		 <div class="form-group">
+			    <label for="language" class="col-sm-2 control-label">Langue</label>
+			    <div class="col-sm-2">
+					<SELECT name="languageN" class="form-control">
+         				<OPTION value="">--- Langue ---</OPTION>
+			        	 <%
+			        		 for(String languageName : language )
+			        		 {
+			        	 %>
+			          			<OPTION value="<%=languageName %>"><%=languageName %></OPTION>
+			         	<%
+			        	 	 }
+			        	 %>
+      				</SELECT>   
+      			</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="skill" class="col-sm-2 control-label">Competence</label>
+			    <div class="col-sm-2">
+					<SELECT name="skillN" class="form-control">
+		         			<OPTION value="">--- Competence ---</OPTION>
+		        	 <%
+		        		 for(String skillName : skill )
+		        		 {
+		        	 %>
+		          			<OPTION value="<%=skillName %>"><%=skillName %></OPTION>
+		         	<%
+		        	 	 }
+		        	 %>
+      				</SELECT>
+			    </div>
+			  </div>
+      		  <div class="form-group">
+			    <label for="level" class="col-sm-2 control-label">Niveau</label>
+			    <div class="col-sm-2">
+					<SELECT name="level" class="form-control">
+			         	<OPTION value="">--- Niveau ---</OPTION>
+		        	 <%
+		        		 for(String l : level )
+		        		 {
+		        	 %>
+		          			<OPTION value="<%=l %>"><%=l %></OPTION>
+		         	<%
+		        	 	 }
+		        	 %>
+      				</SELECT>
+     			 </div>
+			  </div>
+      		 <div class="form-group">
+			    <label for="id" class="col-sm-2 control-label">Identifiant question</label>
+			    <div class="col-sm-2">
+			      <input type="text" class="form-control" name="id" id="id" placeholder="Identifiant question">
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="nbAnswer" class="col-sm-2 control-label">Nombre de Réponses souhaitées</label>
+			    <div class="col-sm-2">
+					<SELECT name="nbAnswer" class="form-control">
+			       		<OPTION value="">--- Nombre ---</OPTION>
+			         		<OPTION value="1">1</OPTION>
+			          		<OPTION value="2">2</OPTION>
+			          		<OPTION value="3">3</OPTION>
+			          		<OPTION value="4">4</OPTION>
+			          		<OPTION value="5">5</OPTION>
+			      		</SELECT>
+     			 </div>
+			  </div>
 		</fieldset>
+		<div class="col-md-4 text-center"> 
+		     <input type="submit" value="Poster" class="btn btn-success"/>
+		</div>
+		
 	</form>
-	
+	</div>
 	
 
 		

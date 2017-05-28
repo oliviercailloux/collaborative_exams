@@ -92,7 +92,7 @@ function diffString( o, n ) {
   {
       for (var i = 0; i < out.o.length; i++) 
       {
-        str += '<del>' + escape(out.o[i]) + oSpace[i] + "</del>";
+        str += '<del><font color="red">' + escape(out.o[i]) + oSpace[i] + "</font></del>";
       }
   } 
   else 
@@ -101,7 +101,7 @@ function diffString( o, n ) {
     {
       for (n = 0; n < out.o.length && out.o[n].text == null; n++) 
       {
-        str += '<del>' + escape(out.o[n]) + oSpace[n] + "</del>";
+        str += '<del><font color="red">' + escape(out.o[n]) + oSpace[n] + "</font></del>";
       }
     }
 
@@ -109,7 +109,7 @@ function diffString( o, n ) {
     {
       if (out.n[i].text == null) 
       {
-        str += '<ins>' + escape(out.n[i]) + nSpace[i] + "</ins>";
+        str += '<ins><font color="green">' + escape(out.n[i]) + nSpace[i] + "</font></ins>";
       } 
       else 
       {
@@ -117,7 +117,7 @@ function diffString( o, n ) {
 
         for (n = out.n[i].row + 1; n < out.o.length && out.o[n].text == null; n++ ) 
         {
-          pre += '<del>' + escape(out.o[n]) + oSpace[n] + "</del>";
+          pre += '<del><font color="red">' + escape(out.o[n]) + oSpace[n] + "</font></del>";
         }
         str += " " + out.n[i].text + nSpace[i] + pre;
       }//else

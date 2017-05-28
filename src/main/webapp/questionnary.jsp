@@ -55,13 +55,27 @@
 		nameQuestionnary =(String) request.getAttribute("questionnaryVal");
 	}
 %>
-   <label for="nameQuestionnary">Donner un nom à votre sujet</label> 
-   <input type="text" id="nameQuestionnary" name="nameQuestionnary" value="<%=nameQuestionnary%>" size="70"/><br />
-   
-   <h3>Choisissez une compétence</h3>
-   <form id="formC" action="QuestionnaryForm" method="get">
-     Merci de choisir une compétence :
-      <SELECT name="skillR">
+	<div class="container">
+	<div class="row mt">
+		<legend class="text-center">
+		<h2>Création questionnaire</h2>
+		 </legend>
+	</div>
+      <!-- Example row of columns -->
+ 		 	<div class="form-group">
+			    <label for="questionnary" class="col-sm-2 control-label">Titre du questionnaire : </label>
+			    <div class="col-sm-8">
+          			<input type="text" class="form-control" id="nameQuestionnary" name="nameQuestionnary" value="<%=nameQuestionnary%>" size="70"/>
+			    </div>
+			  </div>
+ <br>
+         <div class="col-md-4">
+          <h3>Filtrer par compétence</h3>
+          <p> Merci de choisir une compétence :
+          <div class="col-sm-10">
+          <form id="formC" action="QuestionnaryForm" method="get">
+          <div class="input-group">
+      <SELECT name="skillR" class="form-control">
          <OPTION value="">--- Competence ---</OPTION>
          <%
          for(String skillName : skill ){
@@ -71,16 +85,25 @@
          }
          %>
       </SELECT>
-      <input type="hidden" name=test1 id="test1" value="">
-		<input type="submit" onclick ="modify_valueP()"></input>
+            <span class="input-group-btn">
+        <button type="submit" class="btn btn-default" onclick ="modify_valueP()" aria-label="Left Align">
+		 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	</button>
+      </span>
+    </div>
    </form>
-   
-   <h3>Choisissez un sujet</h3>
+   </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Filtrer par sujet</h3>
+          <p>Merci de choisir un sujet :
    <form id="formC" action="QuestionnaryForm" method="get">
-     Merci de choisir une compétence :
-      <SELECT name="subjectR">
+     <div class="col-sm-10">
+     <div class="input-group">
+      <SELECT name="subjectR" class="form-control">
          <OPTION value="">--- Sujet ---</OPTION>
          <%
+         
          for(String subjectName : listSubject ){
          %>
           <OPTION value="<%=subjectName.toString() %>"><%=subjectName.toString() %></OPTION>
@@ -89,12 +112,19 @@
          %>
       </SELECT>
       <input type="hidden" name=test3 id="test3" value="">
-	  <input type="submit" onclick ="modify_valuePbis()"></input>
+            <span class="input-group-btn">
+        <button type="submit" class="btn btn-default" aria-label="Left Align">
+		 <span class="glyphicon glyphicon-search" onclick ="modify_valuePbis()" aria-hidden="true"></span>
+	</button>
+      </span>
+    </div>
    </form>
+   </div>
+   </div>
+   </div>
+  
 	<form name="testform" id="testform" action="QuestionnaryForm" method="Post" >
-		<input type="submit"value="Enregistrer questionnaire" onclick="modify_value()"/>
 		<input type="hidden" name=questionnaryName id="test2" value="">
-		<input type="submit"value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
 		<input type="hidden" name=questionnaryNameBis id="test4" value="">
    <% 
    	  /***************
@@ -113,25 +143,36 @@
 	   	  		//test if the call is null
 	   	  		if(((request.getAttribute("skillR") != null)&&(request.getAttribute("skillR").equals(""))) || ((request.getAttribute("subjectNameR")!=null)&&(request.getAttribute("subjectNameR").equals(""))))
 	   	  		{
-	   	  			%><h3>L'ensemble des questions :</h3><%
+	   	  			%><h3>L'ensemble des questions :
+	   	  			   	  			<input type="submit" class="btn btn-success" value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
+				<input type="submit" class="btn btn-success"  value="Enregistrer questionnaire" onclick="modify_value()"/>
+				</h3><%
 	   	  		}
 	   	  		//test if the filter is on a skill
 	   	  		else if(((request.getAttribute("skillR") != null)&&(request.getAttribute("skillR").equals("")==false)))
 	   	  		{%>
-      				<h3>Les questions liées à la competence <%= request.getAttribute("skillR") %> </h3><%	
+      				<h3>Les questions liées à la competence <%= request.getAttribute("skillR") %>
+      				   	  			<input type="submit" class="btn btn-success" value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
+				<input type="submit" class="btn btn-success"  value="Enregistrer questionnaire" onclick="modify_value()"/>
+				 </h3><%	
 	   	  		}
 	   	  		//test if the filter is on a subject
 	   	  		else if(((request.getAttribute("subjectNameR")!=null)&&(request.getAttribute("subjectNameR").equals("")==false)))
 	   	  		{%>
-	      			<h3>Les questions liées au sujet <%= request.getAttribute("subjectNameR") %> </h3><%
+	      			<h3>Les questions liées au sujet <%= request.getAttribute("subjectNameR") %> 
+	      			   	  			<input type="submit" class="btn btn-success" value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
+				<input type="submit" class="btn btn-success"  value="Enregistrer questionnaire" onclick="modify_value()"/>
+				</h3><%
 	      		}
    	  		}
    	  		else
    	  		{
-   	  			%><h3>L'ensemble des questions :</h3><%	
+   	  			%><h3>L'ensemble des questions : 		
+   	  			<input type="submit" class="btn btn-success" value="Enregistrer et continuer la selection" onclick="modify_valueLast()"/>
+				<input type="submit" class="btn btn-success"  value="Enregistrer questionnaire" onclick="modify_value()"/>
+				</h3><%	
    	  		} %>
-   	  		<h4>L'ensemble des questions :</h4>
-				<table class="table" >
+				<table class="table table-hover">
 					<thead>
 	   	 				<tr>
 	     					<th>Enonce</th>
@@ -151,21 +192,34 @@
 	
 					%>
 						<tr>
-							<td><input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>"><%=question.getStatement()%></td>
-						 	<td><%=question.getLanguage()%></td>
-							<td><%=question.getSkill()%></td>
-							<td><%=question.getLevel()%></td>
-						 	<td><%=question.getAut()%></td>
-						 	<td><%=question.getId()%></td>
-						 	<td><%=question.getRelevanceMark()%></td>
+							<td>
+							<div class="checkbox">
+						    	<label>
+						          <input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>"><%=question.getStatement()%>
+						        </label>
+						    </div>
+							</td>
+						 	<td><div class="checkbox"><%=question.getLanguage()%></div></td>
+							<td><div class="checkbox"><%=question.getSkill()%></div></td>
+							<td><div class="checkbox"><%=question.getLevel()%></div></td>
+						 	<td><div class="checkbox"><%=question.getAut()%></div></td>
+						 	<td><div class="checkbox"><%=question.getId()%></div></td>
+						 	<td><div class="checkbox"><%=question.getRelevanceMark()%></div></td>
 						 	
 					<%
 					}
-		}
 	 			%>
 				</tbody>
 			</table>
 		</form>
-    <%}%>
+		
+	    <%
+	    }
+		else
+		{%>
+			<h4>Pas de question pour ce sujet</h4>
+		<%}
+	}%>
+   </div>
 </body>
 </html>

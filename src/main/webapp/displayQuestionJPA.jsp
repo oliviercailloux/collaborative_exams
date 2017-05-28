@@ -13,6 +13,12 @@
   </head>
 <html>
 <body>
+<div class="container">
+<div class="row mt">
+<legend class="centered">
+<h2>Liste des questions</h2>
+ </legend>
+</div>
  <%@page import="collaborative_exams.*" %>
  <%@page import="java.util.*"%>
 <%
@@ -20,10 +26,16 @@
 	List <String> listSubject = (List<String>) request.getAttribute("listSubject");
 	
 %>
-   <h3>Choisissez une compétence</h3>
-   <form action="Pform" method="get">
-     Merci de choisir une compétence :
-      <SELECT name="skillR">
+<div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Filtrer par compétence</h3>
+          <p> Merci de choisir une compétence :
+          <div class="col-sm-10">
+          <form action="Pform" method="get">
+          <div class="input-group">
+      <SELECT name="skillR" class="form-control">
          <OPTION value="">--- Competence ---</OPTION>
          <%
          for(String skillName : skill ){
@@ -33,13 +45,22 @@
          }
          %>
       </SELECT>
-      <BUTTON type="submit">Chercher</BUTTON>
+            <span class="input-group-btn">
+        <button type="submit" class="btn btn-default" aria-label="Left Align">
+		 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	</button>
+      </span>
+    </div>
    </form>
-   
-   <h3>Choisissez un sujet</h3>
+   </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Filtrer par sujet</h3>
+          <p>Merci de choisir un sujet :
    <form action="Pform" method="get">
-     Merci de choisir une compétence :
-      <SELECT name="subjectR">
+     <div class="col-sm-10">
+     <div class="input-group">
+      <SELECT name="subjectR" class="form-control">
          <OPTION value="">--- Sujet ---</OPTION>
          <%
          
@@ -50,8 +71,46 @@
          }
          %>
       </SELECT>
-      <BUTTON type="submit">Chercher</BUTTON>
+            <span class="input-group-btn">
+        <button type="submit" class="btn btn-default" aria-label="Left Align">
+		 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	</button>
+      </span>
+    </div>
    </form>
+   </div>
+   </div>
+           <div class="col-md-4">
+          <h3>Export au format XML :</h3>
+          <p>Export du sujet au format XML : </p>
+          <p><form action="exportXml" method="post">
+               <div class="col-sm-10">
+			     <div class="input-group">
+			      <SELECT name="subject" class="form-control">
+			         <OPTION value="">--- Sujet ---</OPTION>
+			         <%
+			         for(String sujetName : listSubject ){
+			         %>
+			          <OPTION value="<%=sujetName.toString() %>"><%=sujetName.toString() %></OPTION>
+			         <%
+			         }
+			         %>
+			      </SELECT>
+			      <span class="input-group-btn">
+			        <button type="submit" value="Export" class="btn btn-default" aria-label="Left Align">
+					 <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+				</button>
+				      </span>
+   				 </div>
+   				 </div>
+   </form></p>
+        </div>
+       </div>
+      </div>  
+   </div>
+    	  		<br>
+   	  		<br> 
+   	  		<div class="container">
    <% 
    	  /***************
    	  		TEST DISPLAY QUESTION
@@ -70,57 +129,37 @@
 	   	  		//test if the call is null
 	   	  		if(((request.getAttribute("skillR") != null)&&(request.getAttribute("skillR").equals(""))) || ((request.getAttribute("subjectNameR")!=null)&&(request.getAttribute("subjectNameR").equals(""))))
 	   	  		{
-	   	  			%><h3>L'ensemble des questions :</h3><%
+	   	  			%><h2>L'ensemble des questions :</h2><%
 	   	  		}
 	   	  		//test if the filter is on a skill
 	   	  		else if(((request.getAttribute("skillR") != null)&&(request.getAttribute("skillR").equals("")==false)))
 	   	  		{%>
-      				<h3>Les questions liées à la competence <%= request.getAttribute("skillR") %> </h3><%	
+      				<h3>Les questions liées à la competence <%= request.getAttribute("skillR") %><%	
 	   	  		}
 	   	  		//test if the filter is on a subject
 	   	  		else if(((request.getAttribute("subjectNameR")!=null)&&(request.getAttribute("subjectNameR").equals("")==false)))
 	   	  		{%>
-	      			<h3>Les questions liées au sujet <%= request.getAttribute("") %> </h3><%
+	      			<h3>Les questions liées au sujet <%= request.getAttribute("") %><%
 	      		}
    	  		}
    	  		else
    	  		{
-   	  			%><h3>L'ensemble des questions :</h3><%	
+   	  			%><h3>L'ensemble des questions :<%	
    	  		} %>
-   	  		<a href="createSubject.jsp" class="pull-left btn btn-default">Créer un sujet</a>
-   	  		<br>
-   	  		<br>
-   	  		
-   	  		<form action="exportXml" method="post">
-     Choississez le sujet à exporter:
-      <SELECT name="subject">
-         <OPTION value="">--- Sujet ---</OPTION>
-         <%
-         for(String sujetName : listSubject ){
-         %>
-          <OPTION value="<%=sujetName.toString() %>"><%=sujetName.toString() %></OPTION>
-         <%
-         }
-         %>
-      </SELECT>
-      <input type="submit" value="Export"></input>
-   </form>
-   	  		
-   	  		
-   	  		
+	  		<a href="createSubject.jsp" class="btn btn-success">Créer un sujet</a>
+   	  		<a href="FormQ.jsp" class="btn btn-success">Créer une question</a></h3>
    	  		<form action="FormAnswer" method="get">
-      		<table class="table" >
+      		<table class="table table-hover">
       		<thead>
           	 <tr>
             	<th>Enonce</th>
              	<th>Langue</th>
              	<th>Competence</th>
              	<th>Niveau</th>
-             	<th>Auteur</th>
              	<th>Id</th>
              	<th>Pertinence</th>
-             	<th>Sujet</th>
              	<th>Variante de</th>
+             	<th>Plus d'info</th>
              </tr>
              </thead>
              <tbody>
@@ -133,12 +172,14 @@
 	             	<td><%=question.getLanguage()%></td>
 	            	<td><%=question.getSkill()%></td>
 	            	<td><%=question.getLevel()%></td>
-	             	<td><%=question.getAut()%></td>
 	             	<td><%=question.getId()%></td>
 	             	<td><%=question.getRelevanceMark()+" ("+question.getNbVoteRelevance()+" vote(s))"%></td>
-	             	<td><%=question.getSubjectName()%></td>
 	             	<td><%=question.getVar()%></td>
-	             	<td><BUTTON type="submit" name="getDetail" value="<%=question.getIdTech()%>">afficher détails</BUTTON></td>
+	             	<td>
+	             	<button type="submit" class="btn btn-info" aria-label="Left Align" name="getDetail" value="<%=question.getIdTech()%>">
+					  <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> Détails
+					</button>
+					</td>
 	            </tr>
          	<%
          	}
@@ -147,5 +188,6 @@
          %>
        </tbody></table></form>
     <%}%>
+</div>
 </body>
 </html>

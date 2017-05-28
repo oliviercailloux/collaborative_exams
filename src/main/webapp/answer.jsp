@@ -3,6 +3,7 @@
 <%
 	String author =(String) request.getAttribute("aut");
 	String nb =  (String) request.getAttribute("nbAnswer");
+	String statement = (String) request.getAttribute("statement");
 	String id =(String) request.getAttribute("id");
 
 	int answer = 1;
@@ -19,44 +20,55 @@
   </head>
 <html>
 <body>
+<div class="container">
+			<legend>Créer une réponse</legend>
 
-	<label for="idQuest"> Identifiant question </label> 
-	<input type="text" id="idQuest" name="idQuest"value="<%= id%>" readonly/> <br /> 
-			
-	<label for="author">Nom Auteur</label> 
-	<input type="text" id="author" name="author" value="<%= author%>" readonly/> <br /> 
-	<form method="post" action="Pform">
+<blockquote>
+			  <p><b>Question :</b>
+			  <br>
+			   <%=statement %>
+			   </p>
+			  <footer><b>Auteur :</b> <%=author %></footer>
+			  <footer><b>Identifiant question :</b> <%=id %></footer>
+			</blockquote>
+	<form method="post" action="Pform" class="form-horizontal">
 		<input type="hidden" id="idQuest" name="idQuest" value="<%= id %>" size="50" /> <br /> 
 		<input type="hidden" id="nb" name="nb" value="<%= nb %>" size="50" /> 
 		<fieldset>
-			<legend>Créer une réponse</legend>
 			<p>Vous pouvez enregistrer votre réponse.</p>
+			
 			<% while(answer <= Integer.parseInt(nb) )
 			{%>
-				<label for="textAnswer">Réponse <%= answer %> : </label> 
-				<input type="text" id="textAnswer<%= answer %>" name="textAnswer<%= answer %>" value="" size="70" /> <br /> 
-			<%
+				<div class="form-group">
+			    <label for="textAnswer" class="col-sm-2 control-label">Réponse N°<%= answer %></label>
+				    <div class="col-sm-2">
+				      <input type="text" class="form-control" name="textAnswer<%= answer %>" id="textAnswer<%= answer %>" placeholder="">
+				    </div>
+			  	
+				<%
 				if(Integer.parseInt(nb)==1)
 				{%>
-					<label for="pos<%= answer %>">Position Réponse <%= answer %> : </label> 
-					<SELECT name="pos<%= answer %>">
-		          		<OPTION value="V">V</OPTION>
-		      		</SELECT> <br />
+		          		<inpute type="hidden" name="pos<%= answer %>" value="V">
+		          		</div>
 				<%}
 				else
 				{%>
-					<label for="pos<%= answer %>"> Position Réponse <%= answer %> : </label> 
-					<SELECT name="pos<%= answer %>">
-		          		<OPTION value="V">V</OPTION>
-		          		<OPTION value="F">F</OPTION>
-		      		</SELECT> <br />
+				<label class="radio-inline">
+				  <input type="radio" name="pos<%= answer %>" id="pos<%= answer %>" value="V"> Vraie
+				</label>	
+				<label class="radio-inline">
+				  <input type="radio" name="pos<%= answer %>" id="pos<%= answer %>" value="F"> Faux
+				</label>	
+				</div>	    
 				<%}
 				answer=answer+1; 
 			}%>
 			<!-- NE PAS OUBLIER DE FAIRE UNE FONCTION ONCLICK POUR VEFIRIER SELON CM-CU  -->
-			<input type="submit"value="Poster" /> <br />
+		<div class="col-md-4 text-center"> 
+		     <input type="submit" value="Poster" class="btn btn-success"/>
+		</div>
 		</fieldset>
 	</form>
-
+</div>
 </body>
 </html>

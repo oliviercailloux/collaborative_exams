@@ -45,40 +45,58 @@
 		}
 	   	
 	%>
-	<legend>Création De Sujet</legend>
-	<p>Vous pouvez enregistrer un sujet.</p>
-	
-	<label for="nameSubject">Donner un nom à votre sujet</label> 
-	<input type="text" id="nameSubject" name="nameSubject" value="<%=nameSubject%>" size="70"/><br />
-	
-	<h3>Veuillez choisir une compétence pour créer un sujet</h3>
-	<form name="formC" id="formC"action="SubjectForm" method="get">
-		Merci de choisir une compétence :
-		<SELECT name="skillR">
-			<OPTION value="">--- Competence ---</OPTION>
-			<%
-			for(String skillName : skill ){
-			%>
-			<OPTION value="<%=skillName %>"><%=skillName %></OPTION>
-			<%
-			}
-			%>
-		</SELECT>
-		<input type="hidden" name=test1 id="test1" value="">
-		<input type="submit" onclick ="modify_valueP()"></input>
-	</form>
-	
+	<div class="container">
+<div class="row mt">
+<legend class="text-center">
+<h2>Création sujet</h2>
+ </legend>
+</div>
+
+	<div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+
+            <div class="form-group">
+			    <h3>Donner un nom à votre sujet :</h3>
+				<input type="text" class="form-control" id="nameSubject" name="nameSubject" value="<%=nameSubject%>"/><br />		  
+          </div>
+                  <div class="col-md-6">
+          <h3>Choisir la compétence du sujet :</h3>
+          <p>           <div class="col-sm-10">
+          <form name="formC" id="formC"action="SubjectForm" method="get">
+          <div class="input-group">
+      <SELECT name="skillR" class="form-control">
+         <OPTION value="">--- Competence ---</OPTION>
+         <%
+         for(String skillName : skill ){
+         %>
+          <OPTION value="<%=skillName %>"><%=skillName %></OPTION>
+         <%
+         }
+         %>
+      </SELECT>
+      <input type="hidden" name=test1 id="test1" value="">
+            <span class="input-group-btn">
+        <button type="submit" class="btn btn-default" aria-label="Left Align">
+		 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	</button>
+      </span>
+    </div>
+   </form>
+   </div></p>
+          </div>
+      	</div>
 	<% 
 	if ( request.getAttribute("listQuestionR") != null)
 	{
 		List <Question> list = (List<Question>) request.getAttribute("listQuestionR");
 		if (list.size() > 0) 
 		{%>
-			<h4>L'ensemble des questions :</h4>
+			
 			<form name="testform" id="testform" action="SubjectForm" method="Post" >
-				<input type="submit"value="Enregistrer sujet" onclick="modify_value()"/>
+			<h4>L'ensemble des questions : <input type="submit" class="btn btn-success" value="Enregistrer sujet" onclick="modify_value()"/> </h4>
 				<input type="hidden" name="nameSubject" id="test2" value="">
-				<table class="table" >
+				<table class="table table-hover">
 					<thead>
 	   	 				<tr>
 	     					<th>Enonce</th>
@@ -88,7 +106,6 @@
 					      	<th>Auteur</th>
 					      	<th>Id</th>
 					      	<th>Pertinence</th>
-					      	<th>Variante de</th>
 	     				</tr>
 	      			</thead>
 	     			<tbody>
@@ -99,13 +116,19 @@
 	
 					%>
 						<tr>
-							<td><input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>"><%=question.getStatement()%></td>
-						 	<td><%=question.getLanguage()%></td>
-							<td><%=question.getSkill()%></td>
-							<td><%=question.getLevel()%></td>
-						 	<td><%=question.getAut()%></td>
-						 	<td><%=question.getId()%></td>
-						 	<td><%=question.getRelevanceMark()%></td>
+							<td>
+							<div class="checkbox">
+						    	<label>
+						          <input type="checkbox" name="questionSelect" value="<%=question.getIdTech()%>"><%=question.getStatement()%>
+						        </label>
+						    </div>
+							</td>
+						 	<td><div class="checkbox"><%=question.getLanguage()%></div></td>
+							<td><div class="checkbox"><%=question.getSkill()%></div></td>
+							<td><div class="checkbox"><%=question.getLevel()%></div></td>
+						 	<td><div class="checkbox"><%=question.getAut()%></div></td>
+						 	<td><div class="checkbox"><%=question.getId()%></div></td>
+						 	<td><div class="checkbox"><%=question.getRelevanceMark()%></div></td>
 						 	
 					<%
 					}
@@ -121,6 +144,6 @@
 			<h4>Pas de question pour ce sujet</h4>
 		<%}
 	}%>
-   
+   </div>
 </body>
 </html>

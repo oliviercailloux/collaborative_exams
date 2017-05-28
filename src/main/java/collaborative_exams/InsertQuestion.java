@@ -29,6 +29,7 @@ public class InsertQuestion extends HttpServlet
         String temp =  ""+question.getQuestion().getIdTech();
         request.setAttribute("id", temp);
         request.setAttribute("nbAnswer", nb);
+        request.setAttribute("statement",statement);
         request.setAttribute("aut", nom);
         this.getServletContext().getRequestDispatcher("/answer.jsp").forward(request, resp);
 	}
