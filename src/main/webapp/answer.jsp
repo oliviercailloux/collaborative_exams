@@ -48,7 +48,7 @@
 				<%
 				if(Integer.parseInt(nb)==1)
 				{%>
-		          		<inpute type="hidden" name="pos<%= answer %>" value="V">
+		          		<input type="hidden" name="pos<%= answer %>" value="V">
 		          		</div>
 				<%}
 				else
