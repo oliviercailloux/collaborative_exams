@@ -72,20 +72,29 @@ public class ExportXmlQuestionnary extends HttpServlet
 	         
 	         
 	         for(Question x : s.getQuestionsQuestionnary() ){
+	        	
 	        	System.out.println("question");
  				Element question = doc.createElement("question");
  				Attr attr = doc.createAttribute("id");
- 		        attr.setValue("1");
+ 		        attr.setValue(Integer.toString(x.getId()));
  		        question.setAttributeNode(attr);
+ 		        Attr attr4 = doc.createAttribute("author");
+		        attr.setValue(x.getAut());
+		        question.setAttributeNode(attr4);
  		        Element statement = doc.createElement("statement");
  		        statement.appendChild(doc.createTextNode(x.getStatement()));
  		        question.appendChild(statement);
      			
+ 		        int j = 0;
      			for(Answer y : x.answerA()){
      				Element answer = doc.createElement("answer");
      				Attr attr2 = doc.createAttribute("id");
-     		        attr2.setValue("1");
+     				j++;
+     		        attr2.setValue(Integer.toString(j));
+     		        Attr attr3 = doc.createAttribute("type");
+     		        attr3.setValue(y.getPos());
      		        answer.setAttributeNode(attr2);
+     		        answer.setAttributeNode(attr3);
      		        answer.appendChild(doc.createTextNode(y.getText()));
      		        question.appendChild(answer);
      			}
