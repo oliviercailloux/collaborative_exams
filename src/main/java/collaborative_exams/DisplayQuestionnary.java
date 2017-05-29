@@ -16,12 +16,6 @@ public class DisplayQuestionnary extends HttpServlet
     QuestionManager questionM;
     @Inject
     QuestionnaryManager questionnaryT;
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
-	{
-
-    	
-	}
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 

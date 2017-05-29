@@ -32,13 +32,14 @@ public class QuestionnaryManager
 	{
 		this.questionnaryT.insertQuestionnary(e);
 	}
+    
+    //Open the questionnary using persistence
     public void openQuestionnary()
 	{
         em.persist(this.questionnaryT);
 	}
     public void addQuestion(Question app)
 	{
-        // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u FROM Question u where u.idTechvisible =:arg1", Question.class);
         q.setParameter("arg1", app.getIdTech());
         Question searchList = (Question) q.getResultList().get(0);
@@ -53,7 +54,6 @@ public class QuestionnaryManager
 	}
     public List<String> getNameQuestionnaries()
     {
-        // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u.nameQuestionnary FROM Questionnary u", Questionnary.class);
         List<String> listeQuestionA;
         listeQuestionA = q.getResultList();
@@ -62,7 +62,6 @@ public class QuestionnaryManager
     }
     public List<Question> getQuestionsQuestionnary(String nameQuestionnary)
     {
-        // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u FROM Questionnary u where u.nameQuestionnary like :arg1", Questionnary.class);
         q.setParameter("arg1", nameQuestionnary);
         List<Questionnary> QuestionnaryTemp = q.getResultList();
@@ -71,7 +70,6 @@ public class QuestionnaryManager
     }
     public List<Question> getQuestions(int identifiant)
     {
-        // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u FROM Questionnary u where u.idQuestionnary = :arg1", Questionnary.class);
         q.setParameter("arg1", identifiant);
         List<Questionnary> QuestionnaireTemp = q.getResultList();
@@ -79,9 +77,9 @@ public class QuestionnaryManager
     	
     }
     
+    //Add the question to a temporary list
     public Question addQuestionListTemp(String id)
 	{
-        // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u FROM Question u where u.idTechvisible =:arg1", Question.class);
         q.setParameter("arg1", Integer.parseInt(id));
         Question listeRechercher = (Question) q.getResultList().get(0);
@@ -89,10 +87,10 @@ public class QuestionnaryManager
         
 	}
     
+    //Get the questionnary using its name
     public Questionnary getQuestionnaryByName(String name){
     	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = factory.createEntityManager();
-        // Read the existing entries and write to console
         Query query = em.createQuery("SELECT u FROM Questionnary u where u.nameQuestionnary like :arg1", Questionnary.class);
         query.setParameter("arg1", name);
         Questionnary questionnaire = (Questionnary) query.getResultList().get(0);

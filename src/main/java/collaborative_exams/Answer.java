@@ -38,7 +38,7 @@ public class Answer {
     	this.textAnswer = ""; 
     	this.true_false =2;
     	this.idQuestion = 0;
-    	questionLink = new ArrayList();
+    	questionLink = new ArrayList<>();
     	
     } 
     
@@ -54,11 +54,16 @@ public class Answer {
     {
     	this.idQuestion=id;
     }
+    
+    
+    
     public void setQuestion(Question q)
     {
     	this.questionLink.add(q);
     	this.idQuestion=q.getId();
     }
+    
+    
     public void setAuteurQ(String author)
     {
     	this.author=author;
@@ -68,6 +73,8 @@ public class Answer {
     {
     	this.textAnswer=textR;
     }
+    
+    
     public void setTrueFalse(String position)
     {
     	if(position.equalsIgnoreCase("V"))
@@ -79,14 +86,20 @@ public class Answer {
     		this.true_false=0;
     	}
     }
+    
+    
     public int getIdQuestion()
     {
       return this.idQuestion;
     }
+    
+    
     public String getAut()
     {
       return this.author;
     }
+    
+    
     public int getid()
     {
       return this.id;

@@ -35,10 +35,7 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-
-
-
-
+//Servlet for export a questionnary in XML
 @WebServlet("/exportXmlQuestionnary")
 public class ExportXmlQuestionnary extends HttpServlet 
 {
@@ -48,22 +45,18 @@ public class ExportXmlQuestionnary extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
+		//Get the questionnary to export
 		String name = req.getParameter("questionnary");
-    	System.out.println(name);
-    	
     	Questionnary s = QuestionnaireT.getQuestionnaryByName(name);
-    	System.out.println(s.getNomQuestionnary());
-    	
-    	//sujetT.ExportJava(s);
-    	
-    	
+  
 
     	try {
+    		
+    	//Construct the XML document
 	         DocumentBuilderFactory dbFactory =
 	         DocumentBuilderFactory.newInstance();
 	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	         Document doc = dBuilder.newDocument();
-	         // root element
 	         Element rootElement = doc.createElement("questionnaire");
 	         Element questionnaireName = doc.createElement("name");
 	         questionnaireName.appendChild(doc.createTextNode(s.getNomQuestionnary()));
@@ -73,7 +66,7 @@ public class ExportXmlQuestionnary extends HttpServlet
 	         
 	         for(Question x : s.getQuestionsQuestionnary() ){
 	        	
-	        	System.out.println("question");
+	        	
  				Element question = doc.createElement("question");
  				Attr attr = doc.createAttribute("id");
  		        attr.setValue(Integer.toString(x.getId()));
@@ -101,7 +94,7 @@ public class ExportXmlQuestionnary extends HttpServlet
      			rootElement.appendChild(question);
  			}
 	    
-	         // write the content into xml file
+	         // Write the content on the document
 	         TransformerFactory transformerFactory =
 	         TransformerFactory.newInstance();
 	         Transformer transformer =
@@ -112,10 +105,6 @@ public class ExportXmlQuestionnary extends HttpServlet
 	         new StreamResult(new File("../applications/collaborative_exams/export_questionnary.xml"));
 	         transformer.transform(source, result);
 	         
-	         // Output to console for testing
-	         StreamResult consoleResult =
-	         new StreamResult(System.out);
-	         transformer.transform(source, consoleResult);
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }

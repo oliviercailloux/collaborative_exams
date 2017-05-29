@@ -52,23 +52,5 @@ public class Questionnary
 	 {
 		 return this.nameQuestionnary;
 	 }
-	 
-	/* public static Questionnaire getQuestionnaire(String nom, List <Questionnaire> QuestionnaireQ) 
-	    {
-	        Questionnaire QuestionnaireT = new Questionnaire();
-	        if(nom.isEmpty())
-	        {
-	        	QuestionnaireT.listeQuestionQuestionnaire=CreationEtAffichageQuestionForm.listeQ;
-	        	return QuestionnaireT;
-	        	
-	        }
-	        for (Questionnaire questionnaireTemp : questionnaireQ) 
-	        {
-	            if (questionnaireTemp.getNomQuestionnaire().equalsIgnoreCase(nom)) 
-	            {
-	               QuestionnaireT =QuestionnaireTemp;
-	            }
-	        }
-	        return QuestionnaireT;
-	    }*/
+	
 }

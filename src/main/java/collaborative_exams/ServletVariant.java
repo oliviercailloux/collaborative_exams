@@ -16,10 +16,10 @@ public class ServletVariant  extends HttpServlet
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		//Recupere les identifiants pour une question
+		//Get the id of a question
 		String searchId = req.getParameter("IdQParent");
 		String variantType = req.getParameter("variantType");
-				//Recherche et Recupere une question
+		//Search and get a question 
 		req.setAttribute("questionSearch",insert.getQuestion(searchId));
 		req.setAttribute("varType",variantType);
 		req.setAttribute("idParent",searchId);

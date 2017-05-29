@@ -36,9 +36,10 @@ public class SubjectManager
 	{
         em.persist(this.subjectT);
 	}
+    
+    
     public void addQuestion(String id)
 	{
-        // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u FROM Question u where u.idTechvisible =:arg1", Question.class);
         q.setParameter("arg1", Integer.parseInt(id));
         Question searchList = (Question) q.getResultList().get(0);
@@ -53,7 +54,6 @@ public class SubjectManager
 	}
     public List<String> getNameSubjects()
     {
-        // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u.nameSubject FROM Subject u", Subject.class);
         List<String> listQuestionA;
         listQuestionA = q.getResultList();
@@ -61,17 +61,16 @@ public class SubjectManager
     }
     public List<Question> getQuestionsSubject(String nameSubject)
     {
-        // Read the existing entries and write to console
         Query q = em.createQuery("SELECT u FROM Subject u where u.nameSubject like :arg1", Subject.class);
         q.setParameter("arg1", nameSubject);
         List<Subject> subjectTemp = q.getResultList();
 		return subjectTemp.get(0).getQuestionsSubject();
     }
     
+    //Get subject by name
     public Subject getSubjectByName(String name){
     	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         em = factory.createEntityManager();
-        // Read the existing entries and write to console
         Query query = em.createQuery("SELECT u FROM Subject u where u.nameSubject like :arg1", Subject.class);
         query.setParameter("arg1", name);
         Subject subject = (Subject) query.getResultList().get(0);
