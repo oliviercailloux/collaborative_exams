@@ -16,11 +16,11 @@ public class ServletRelevance extends HttpServlet
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		//Recupere les identifiants pour une question
+		//Get the id of a question 
 		String searchId = req.getParameter("setRelevanceMark");
 		int mark = Integer.parseInt(req.getParameter("relevanceMark"));
 		
-		//Recherche et Recupere une question
+		//Search and get a question 
 		req.setAttribute("Question",insert.returnQuestionMark(searchId, mark));
 		this.getServletContext().getRequestDispatcher("/displayQuestionDetails.jsp").forward(req, resp);
 	}

@@ -46,8 +46,7 @@ public class Compte {
 	{
 		for (int i= 0; i<listeC.size() ; i++)
 		{
-			System.out.println(listeC.get(i).mail);
-			System.out.println(m);
+			
 			if(listeC.get(i).mail.equals(m))return true;
 		}
 		

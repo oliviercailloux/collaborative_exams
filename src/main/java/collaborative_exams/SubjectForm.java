@@ -29,21 +29,20 @@ public class SubjectForm extends HttpServlet
     @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-    	//permet de récupérer la liste des questions sélectionnées
+    	//Permit to get the list of the selected questions 
     	String[] values = req.getParameterValues("questionSelect");
     	
-    	//Recupération nom Sujet et création sujet
+    	//get the subject name and create the subject 
     	String nameS = req.getParameter("nameSubject");
-    	System.out.println("jjejejeje  "+ nameS);
     	subjectTemp.createSubject(nameS);
     	subjectTemp.openSubject();
-    	//navigue et récupère les questions sélectionées.
+    	//navigate and get the selected questions 
     	for(int i=0; i<values.length;i++)
     	{
     		String idTemp = values[i];
     		subjectTemp.addQuestion(idTemp);
     	}
-    	//sujetQ.add(sujetTemp);
+    	
     	subjectTemp.commitSubject();
 		req.setAttribute("listQuestionR", questionSearch.returnAllQuestions());
 	    req.setAttribute("listSubject", subjectTemp.getNameSubjects());

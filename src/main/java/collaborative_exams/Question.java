@@ -47,9 +47,9 @@ public class Question {
     @ManyToMany
     @JoinColumn(name="QUESTION_ID", nullable=true)
     List<Questionnary> questionnaryLink;
-    //Attribut niveau de type String
+    //String Level attributs 
     String level;
-    //Element de pour noter la pertinence de la question
+    //Elements to give a mark to the relevance of the question
     int nbVoteRelevance;
     int totalRelevanceMark;
     
@@ -140,7 +140,6 @@ public class Question {
     
     public String getLanguage()
     {
-      //String str2 = new String(this.language.getBytes(),Charset.forName("UTF-8"));
       return this.language;
     }
     public void setLanguage(String language)
@@ -194,17 +193,7 @@ public class Question {
     	 		-	Auteur +
     	 		-	Id
     	 */
-    	/*if(this.variant.equalsIgnoreCase("-"))
-    		return this.variant;
-		StringTokenizer st = new StringTokenizer(this.variant, "+"); 
-		String array[] = new String[3];
-		int i=0;
-		while (st.hasMoreTokens()) {
-			array[i] = st.nextToken();
-			i=i+1;
-	     }
-	  String NewLine=System.getProperty("line.separator"); 
-      return "- Identifiant question : "+array[2]+NewLine+" - Auteur:"+array[1];*/
+    	
     	return this.variant;
     }
     
@@ -212,7 +201,7 @@ public class Question {
     {
     	return this.variant;
     }
-    
+    //Find a question using its matter in a list
     public static List <Question> findQuestionByMatter(String matter, List <Question> listQ) 
     {
         List <Question> questionT = new ArrayList <>();
@@ -229,17 +218,9 @@ public class Question {
     }
     
     /***
-		On recupere une question selon son idTech et Auth
+		We get the question according to its idTech and Auth
      ***/
-    public static Question getQuestion(String id, List <Question> listQ) 
-    {
-        Question questionT = new Question();
-        int idTemp = Integer.parseInt(id);
-        for (Question quest : listQ) 
-        {
-        }
-        return questionT;
-    }
+  
   
     public List <Answer> answerA() 
     {
@@ -266,6 +247,7 @@ public class Question {
     	return nbVoteRelevance;
     }
     
+   
     public String getNameSubject() 
     {
     	String nameSubject="";

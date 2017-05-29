@@ -48,7 +48,6 @@ public class CreateQuestionnary extends HttpServlet
         
     	if(nomQ.isEmpty()==true)
     	{
-    		System.out.println("pourqoi" + listQ);
     		req.setAttribute("questionnaryVal",req.getParameter("questionnaryNameBis"));
     		req.setAttribute("listQuestionR", questionSearch.returnDiff(listQ));
     		req.setAttribute("listSubject", subjectTemp.getNameSubjects());
