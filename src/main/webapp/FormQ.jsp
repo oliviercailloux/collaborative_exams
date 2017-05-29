@@ -22,11 +22,47 @@
    		Integer[] coef = Data.findCoef();
    		RequestDispatcher rd;
    	%>
+   	
+   	     <div class="navbar navbar-default navbar-default-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Collaborative Exams</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Question <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="FormQ.jsp">Création Question</a></li>
+	            	<li><a href="Pform">Liste Question</a></li>
+	            </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sujet <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="createSubject.jsp">Création Sujet</a></li>
+	            </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Questionnaire <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="QuestionnaryForm">Création Questionnaire</a></li>
+	            	<li><a href="displayQuestionnary">Liste Questionnaire</a></li>
+	            </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
    	<div class="container">
 	<form method="post" action="FormInsert" class="form-horizontal">
 		<fieldset>
-			<h2>Creation Question</h2>
-			<p>Vous pouvez enregistrer une question.</p>
+			<h2 class="text-center">Creation Question</h2>
+			<hr>
+			<p class="text-center">Vous pouvez enregistrer une question.</p>
+			<br>
 			  <div class="form-group">
 			    <label for="question" class="col-sm-2 control-label">Question</label>
 			    <div class="col-sm-8">
@@ -130,7 +166,10 @@
 	</form>
 	</div>
 	
-
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 		
 </body>
 </html>

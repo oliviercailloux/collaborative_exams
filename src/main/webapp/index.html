@@ -12,43 +12,68 @@
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="bootstrap/css/narrow-jumbotron.css" rel="stylesheet">
-  </head>
+    </head>
 
   <body>
-
-    <div class="container">
-      <div class="header clearfix">
-        <h3 class="text-muted">Collaborative Exams</h3>
+     <div class="navbar navbar-default navbar-default-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Collaborative Exams</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Question <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="FormQ.jsp">Création Question</a></li>
+	            	<li><a href="Pform">Liste Question</a></li>
+	            </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sujet <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="createSubject.jsp">Création Sujet</a></li>
+	            </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Questionnaire <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="QuestionnaryForm">Création Questionnaire</a></li>
+	            	<li><a href="displayQuestionnary">Liste Questionnaire</a></li>
+	            </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-      <div class="jumbotron">
+    </div>
+    <div class="container">
+      <div class="jumbotron col-md-6 col-md-offset-3">
         <h2>Collaborative Exams</h2>
         <p class="lead">Créez, modifiez, partagez vos sujets d'examens en collaboration avec les autres professeurs</p>
-        
+        <p><a class="btn btn-lg btn-info" href="FormQ.jsp" role="button">Créer une question</a>
+         
+          <a class="btn btn-lg btn-success" href="QuestionnaryForm" role="button">Créer un questionnaire</a></p>
+         
+          <p><a class="btn btn-lg btn-warning" href="createSubject.jsp" role="button">Créer un sujet</a>
+          
+          <a class="btn btn-lg btn-danger" href="Pform" role="button">Liste des questions</a></p>
       </div>
 	
-      <div class="row marketing"  style="text-align: center">
-        <div class="col-lg-6">
-          <a class="btn btn-lg btn-success" href="FormQ.jsp" role="button">Créer une question</a>
-          	<p><br></p>
-          <a class="btn btn-lg btn-success" href="connect.jsp" role="button">Se connecter</a>
-          	<p><br></p>
-          <a class="btn btn-lg btn-success" href="createSubject.jsp" role="button">Créer un sujet</a>
-          	<p><br></p>
-        </div>
 
-      <footer class="footer">
+    </div>
+          <footer class="footer text-center">
         <p>&copy; Collaborative Exams 2017</p>
       </footer>
-
-    </div> <!-- /container -->
-    </div>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!--     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

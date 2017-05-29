@@ -20,6 +20,8 @@ public class DifferenceStatement extends HttpServlet
 		//Recupere les identifiants pour une question
 		String idSon = req.getParameter("param1");
 		String idParent = req.getParameter("param2");
+		req.setAttribute("questionP", questionM.getQuestion(idSon));
+		req.setAttribute("questionv", questionM.getQuestion(idParent.replace("/", "")));
 		req.setAttribute("statementV",questionM.getQuestion(idSon).getStatement());
 		req.setAttribute("statementP",questionM.getQuestion(idParent.replace("/", "")).getStatement());
 		this.getServletContext().getRequestDispatcher("/displayDiffOriginalVariant.jsp").forward(req, resp);

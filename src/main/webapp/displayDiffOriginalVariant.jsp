@@ -15,35 +15,127 @@
  <%@page import="collaborative_exams.*" %>
  <%@page import="java.util.*"%>  
  <%
+ 	Question list = (Question) request.getAttribute("questionv");
+ 	Question list2 = (Question) request.getAttribute("questionP");
  	String statementP = (String) request.getAttribute("statementP");
  	String statementV = (String) request.getAttribute("statementV");
  %>
- 
+     <div class="navbar navbar-default navbar-default-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  Collaborative Exams</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Question <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="FormQ.jsp">Création Question</a></li>
+	            	<li><a href="Pform">Liste Question</a></li>
+	            </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sujet <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="createSubject.jsp">Création Sujet</a></li>
+	            </ul>
+            </li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Questionnaire <span class="caret"></span></a>
+	            <ul class="dropdown-menu">
+	            	<li><a href="QuestionnaryForm">Création Questionnaire</a></li>
+	            	<li><a href="displayQuestionnary">Liste Questionnaire</a></li>
+	            </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+ <div class="container">
+ 			<h2 class="text-center">Creation Variante</h2>
+			<hr>
+ <div class="row">
+ <div class="col-md-6">
+ <div class="panel panel-danger"> 
+	<div class="panel-heading"> 
+		<h3 class="panel-title">Question parente </h3>
+	 </div>
+	 <div class="panel-body">
+	 <dl class="dl-horizontal">
+	  <dt>Enonce : </dt>
+	  <dd><%=list.getStatement()%></dd>
+	  <dt>Langue : </dt>
+	  <dd><%=list.getLanguage()%></dd>
+	  <dt>La compétence : </dt>
+	  <dd><%=list.getSkill()%></dd>
+	  <dt>Le niveau : </dt>
+	  <dd><%=list.getLevel()%></dd>
+	  <dt>L'auteur : </dt>
+	  <dd><%=list.getAut()%></dd>
+	  <dt>L'identifiant : </dt>
+	  <dd><%=list.getId()%></dd>
+	  <dt>Pertinence : </dt>
+	  <dd>
+		    <%=list.getRelevanceMark()+" ("+list.getNbVoteRelevance()+" vote(s))"%> 
+	  </dd>
+	</dl> 
+	 </div> 
+</div>
     <div>
         <label>Original:</label>
         <br />
-        <textarea id="statementParent" cols="75" readonly><%=statementP %></textarea>
+        <blockquote> <span id="statementParentc"><%=statementP %></span></blockquote>
     </div>
-  
+</div>
+ <div class="col-md-6">
+ <div class="panel panel-success"> 
+	<div class="panel-heading"> 
+		<h3 class="panel-title">Question variante </h3>
+	 </div>
+	 <div class="panel-body">
+	 <dl class="dl-horizontal">
+	  <dt>Enonce : </dt>
+	  <dd><%=list2.getStatement()%></dd>
+	  <dt>Langue : </dt>
+	  <dd><%=list2.getLanguage()%></dd>
+	  <dt>La compétence : </dt>
+	  <dd><%=list2.getSkill()%></dd>
+	  <dt>Le niveau : </dt>
+	  <dd><%=list2.getLevel()%></dd>
+	  <dt>L'auteur : </dt>
+	  <dd><%=list2.getAut()%></dd>
+	  <dt>L'identifiant : </dt>
+	  <dd><%=list2.getId()%></dd>
+	  <dt>Pertinence : </dt>
+	  <dd>
+		    <%=list2.getRelevanceMark()+" ("+list2.getNbVoteRelevance()+" vote(s))"%> 
+	  </dd>
+	</dl> 
+	 </div> 
+</div>
     <div>
         <label>Variante:</label>
         <br />
-        <textarea id="statementVar" cols="75" readonly><%=statementV %></textarea>
+        <blockquote><span id="statementVarc"><%=statementV %></span></blockquote>
     </div>
+</div>
+</div>
     
-    <div>
-        <label>Differences:</label>
+    <div class="text-center">
+        <label>Difference:</label>
         <br />
         <div id="textareaDiff"></div>
     </div>
-  
+</div>  
 <!-- user interface ends -->
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
 $( document ).ready(function() 
 {
-	var textBefore = document.getElementById("statementParent").value;
-    var textAfter = document.getElementById("statementVar").value;
+	var textBefore = document.getElementById("statementParentc").textContent;
+    var textAfter = document.getElementById("statementVarc").textContent;
   
     var differences = diffString(textBefore, textAfter)
   
@@ -92,7 +184,7 @@ function diffString( o, n ) {
   {
       for (var i = 0; i < out.o.length; i++) 
       {
-        str += '<del><font color="red">' + escape(out.o[i]) + oSpace[i] + "</font></del>";
+        str += '<del><mark class="bg-danger">' + escape(out.o[i]) + oSpace[i] + "</mark></del>";
       }
   } 
   else 
@@ -101,7 +193,7 @@ function diffString( o, n ) {
     {
       for (n = 0; n < out.o.length && out.o[n].text == null; n++) 
       {
-        str += '<del><font color="red">' + escape(out.o[n]) + oSpace[n] + "</font></del>";
+        str += '<del><mark class="bg-danger">' + escape(out.o[n]) + oSpace[n] + "</mark></del>";
       }
     }
 
@@ -109,7 +201,7 @@ function diffString( o, n ) {
     {
       if (out.n[i].text == null) 
       {
-        str += '<ins><font color="green">' + escape(out.n[i]) + nSpace[i] + "</font></ins>";
+        str += '<ins><mark class="bg-success">' + escape(out.n[i]) + nSpace[i] + "</mark></ins>";
       } 
       else 
       {
@@ -117,7 +209,7 @@ function diffString( o, n ) {
 
         for (n = out.n[i].row + 1; n < out.o.length && out.o[n].text == null; n++ ) 
         {
-          pre += '<del><font color="red">' + escape(out.o[n]) + oSpace[n] + "</font></del>";
+          pre += '<del><mark class="bg-danger">' + escape(out.o[n]) + oSpace[n] + "</mark></del>";
         }
         str += " " + out.n[i].text + nSpace[i] + pre;
       }//else
@@ -187,5 +279,9 @@ function diff( o, n ) {
   return { o: o, n: n };
 }
 </script>
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
