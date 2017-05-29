@@ -3,9 +3,7 @@ package collaborative_exams;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,20 +35,24 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-@WebServlet("/exportXml")
-public class ExportXml extends HttpServlet 
+
+
+
+
+@WebServlet("/exportXmlQuestionnary")
+public class ExportXmlQuestionnary extends HttpServlet 
 {
 	@Inject
-	SubjectManager sujetT;
+	QuestionnaryManager QuestionnaireT;
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-		String name = req.getParameter("subject");
+		String name = req.getParameter("questionnary");
     	System.out.println(name);
     	
-    	Subject s = sujetT.getSubjectByName(name);
-    	System.out.println(s.getNameSubject());
+    	Questionnary s = QuestionnaireT.getQuestionnaryByName(name);
+    	System.out.println(s.getNomQuestionnary());
     	
     	//sujetT.ExportJava(s);
     	
@@ -62,14 +64,14 @@ public class ExportXml extends HttpServlet
 	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	         Document doc = dBuilder.newDocument();
 	         // root element
-	         Element rootElement = doc.createElement("subject");
-	         Element subjectName = doc.createElement("name");
-	         subjectName.appendChild(doc.createTextNode(s.getNameSubject()));
-	         rootElement.appendChild(subjectName);
+	         Element rootElement = doc.createElement("questionnaire");
+	         Element questionnaireName = doc.createElement("name");
+	         questionnaireName.appendChild(doc.createTextNode(s.getNomQuestionnary()));
+	         rootElement.appendChild(questionnaireName);
 	         doc.appendChild(rootElement);
 	         
 	         
-	         for(Question x : s.getQuestionsSubject() ){
+	         for(Question x : s.getQuestionsQuestionnary() ){
 	        	System.out.println("question");
  				Element question = doc.createElement("question");
  				Attr attr = doc.createAttribute("id");
@@ -89,32 +91,7 @@ public class ExportXml extends HttpServlet
      			}
      			rootElement.appendChild(question);
  			}
-	         
-	         
-	         
-
-	        /*   supercars element
-	         Element supercar = doc.createElement("supercars");
-	         rootElement.appendChild(supercar);
-	         // setting attribute to element
-	         Attr attr = doc.createAttribute("company");
-	         attr.setValue("Ferrari");
-	         supercar.setAttributeNode(attr);
-	         // carname element
-	         Element carname = doc.createElement("carname");
-	         Attr attrType = doc.createAttribute("type");
-	         attrType.setValue("formula one");
-	         carname.setAttributeNode(attrType);
-	         carname.appendChild(doc.createTextNode("Ferrari 101"));
-	         supercar.appendChild(carname);
-	         Element carname1 = doc.createElement("carname");
-	         Attr attrType1 = doc.createAttribute("type");
-	         attrType1.setValue("sports");
-	         carname1.setAttributeNode(attrType1);
-	         carname1.appendChild(
-	         doc.createTextNode("Ferrari 202"));
-	         supercar.appendChild(carname1);*/
-
+	    
 	         // write the content into xml file
 	         TransformerFactory transformerFactory =
 	         TransformerFactory.newInstance();
@@ -123,24 +100,19 @@ public class ExportXml extends HttpServlet
 	         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 	         DOMSource source = new DOMSource(doc);
 	         StreamResult result =
-	         new StreamResult(new File("../applications/collaborative_exams/export_subject.xml"));
+	         new StreamResult(new File("../applications/collaborative_exams/export_questionnary.xml"));
 	         transformer.transform(source, result);
 	         
 	         // Output to console for testing
 	         StreamResult consoleResult =
 	         new StreamResult(System.out);
 	         transformer.transform(source, consoleResult);
-	      } catch (Exception e) 
-    	{
+	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
-    	
 
-        this.getServletContext().getRequestDispatcher("/export_subject.xml").forward(req, resp);
-
-    	
+    	   this.getServletContext().getRequestDispatcher("/export_questionnary.xml").forward(req, resp);
 	}
 
-	
 	
 }

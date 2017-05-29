@@ -89,5 +89,16 @@ public class QuestionnaryManager
         
 	}
     
+    public Questionnary getQuestionnaryByName(String name){
+    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        em = factory.createEntityManager();
+        // Read the existing entries and write to console
+        Query query = em.createQuery("SELECT u FROM Questionnary u where u.nameQuestionnary like :arg1", Questionnary.class);
+        query.setParameter("arg1", name);
+        Questionnary questionnaire = (Questionnary) query.getResultList().get(0);
+        em.close();
+        return questionnaire; 
+    }
+    
     
 }

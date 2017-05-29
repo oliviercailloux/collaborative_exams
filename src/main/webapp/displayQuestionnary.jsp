@@ -69,6 +69,25 @@
       <BUTTON type="submit" class="btn btn-success">Chercher</BUTTON>
    </form>
    </div>
+   
+  
+   <br>
+   	<br>
+   	<form  method="post" action="exportXmlQuestionnary">
+		<SELECT name="questionnary" class="selectpicker">
+        <OPTION value="">--- Questionnaire ---</OPTION>
+         <%
+         
+         for(String sujetQuestionnaire : listQuestionnary ){
+         %>
+          <OPTION value="<%=sujetQuestionnaire.toString() %>"><%=sujetQuestionnaire.toString() %></OPTION>
+         <%
+         }
+         %>
+      </SELECT>
+    <BUTTON type="submit" class="btn btn-success">Export en XML</BUTTON>
+   </form>
+  
   <% 
   if (request.getAttribute("listQuestionR")== null) {}
    	  /***************
