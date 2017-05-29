@@ -79,7 +79,7 @@ public class ExportXmlQuestionnary extends HttpServlet
  		        attr.setValue(Integer.toString(x.getId()));
  		        question.setAttributeNode(attr);
  		        Attr attr4 = doc.createAttribute("author");
-		        attr.setValue(x.getAut());
+		        attr4.setValue(x.getAut());
 		        question.setAttributeNode(attr4);
  		        Element statement = doc.createElement("statement");
  		        statement.appendChild(doc.createTextNode(x.getStatement()));
