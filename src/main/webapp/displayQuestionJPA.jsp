@@ -172,7 +172,7 @@
 	   	  		//test if the filter is on a subject
 	   	  		else if(((request.getAttribute("subjectNameR")!=null)&&(request.getAttribute("subjectNameR").equals("")==false)))
 	   	  		{%>
-	      			<h3>Les questions liées au sujet <%= request.getAttribute("") %><%
+	      			<h3>Les questions liées au sujet <%= request.getAttribute("subjectNameR") %><%
 	      		}
    	  		}
    	  		else

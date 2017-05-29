@@ -72,6 +72,8 @@
 	  <dd><%=list.getSkill()%></dd>
 	  <dt>Le niveau : </dt>
 	  <dd><%=list.getLevel()%></dd>
+	  <dt>Le sujet : </dt>
+	  <dd><%=list.getSubjectName()%></dd>
 	  <dt>L'auteur : </dt>
 	  <dd><%=list.getAut()%></dd>
 	  <dt>L'identifiant : </dt>
@@ -104,6 +106,8 @@
 	  <dd><%=list2.getSkill()%></dd>
 	  <dt>Le niveau : </dt>
 	  <dd><%=list2.getLevel()%></dd>
+	  <dt>Le sujet : </dt>
+	  <dd><%=list.getSubjectName()%></dd>
 	  <dt>L'auteur : </dt>
 	  <dd><%=list2.getAut()%></dd>
 	  <dt>L'identifiant : </dt>

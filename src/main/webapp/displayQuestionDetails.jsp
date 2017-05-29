@@ -84,6 +84,8 @@ function afficheForm(id)
 	  <dd><%=list.getSkill()%></dd>
 	  <dt>Le niveau : </dt>
 	  <dd><%=list.getLevel()%></dd>
+	  <dt>Le sujet : </dt>
+	  <dd><%=list.getSubjectName()%></dd>
 	  <dt>L'auteur : </dt>
 	  <dd><%=list.getAut()%></dd>
 	  <dt>L'identifiant : </dt>

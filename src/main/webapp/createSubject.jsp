@@ -110,7 +110,7 @@
       </SELECT>
       <input type="hidden" name=test1 id="test1" value="">
             <span class="input-group-btn">
-        <button type="submit" class="btn btn-default" aria-label="Left Align">
+        <button type="submit" class="btn btn-default" onclick ="modify_valueP()" aria-label="Left Align">
 		 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	</button>
       </span>

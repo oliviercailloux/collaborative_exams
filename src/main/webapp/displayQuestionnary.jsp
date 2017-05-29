@@ -118,7 +118,7 @@
    	  {
    	  	List <Question> list = (List<Question>) request.getAttribute("listQuestionR");
    	  	List <Answer> listA;
-   	  	int questionnumero = 0;
+   	  	int questionnumero = 1;
    
    	  	//Test si la liste est vide == des questions créées ou pas
    	  	if (list.size() > 0) 
